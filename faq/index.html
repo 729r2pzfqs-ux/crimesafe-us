@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | HoodSafe - Frequently Asked Questions</title>
+<meta name="description" content="Frequently asked questions about HoodSafe neighborhood safety scores, data sources, and how to use the crime explorer.">
+<link rel="canonical" href="https://hoodsafe.org/faq/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="FAQ | HoodSafe">
+<meta property="og:description" content="Frequently asked questions about HoodSafe neighborhood safety scores.">
+<meta property="og:url" content="https://hoodsafe.org/faq/">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<meta name="theme-color" content="#3b82f6">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<style>
+:root {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-primary: #3b82f6;
+  --color-border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+header { padding: 1rem 2rem; border-bottom: 1px solid var(--color-border); }
+header a { color: var(--color-text); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+header svg { width: 28px; height: 28px; }
+h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+.faq-item { background: var(--color-surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+.faq-q { font-weight: 600; color: var(--color-text); margin-bottom: 0.75rem; font-size: 1.1rem; }
+.faq-a { color: var(--color-text-muted); }
+.faq-a a { color: var(--color-primary); }
+.back-link { display: inline-block; margin-top: 2rem; color: var(--color-primary); text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+</style>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is the safety score calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Safety scores (1-100) are calculated using violent crime rates (60% weight), property crime rates (30% weight), and year-over-year trends (10% weight). Scores are normalized against national averages, where 50 represents the median."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is the data updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cities with real portal data are updated quarterly. Cities using FBI UCR estimates are updated annually. Last update: March 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my city not listed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HoodSafe currently covers the 50 largest US cities by population. We plan to expand coverage in future updates based on data availability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does the crime data come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We use official data from 10 city open data portals (NYC, LA, Chicago, etc.) and FBI UCR statistics calibrated for the remaining 40 cities."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+  <a href="/">
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M16 3L5 8v7c0 7.2 4.7 13.5 11 16 6.3-2.5 11-8.8 11-16V8L16 3z" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M16 11l-6 5v6h4v-4h4v4h4v-6l-6-5z" fill="#3b82f6"/>
+    </svg>
+    HoodSafe
+  </a>
+</header>
+
+<main class="container">
+  <h1>Frequently Asked Questions</h1>
+  
+  <div class="faq-item">
+    <div class="faq-q">How is the safety score calculated?</div>
+    <div class="faq-a">Safety scores (1-100) are calculated using violent crime rates (60% weight), property crime rates (30% weight), and year-over-year trends (10% weight). Scores are normalized against national averages, where 50 represents the median. Higher scores indicate safer areas.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How often is the data updated?</div>
+    <div class="faq-a">Cities with real portal data (10 cities) are updated quarterly when new crime reports are published. Cities using FBI UCR estimates (40 cities) are updated annually. Last update: March 2026.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Why is my city not listed?</div>
+    <div class="faq-a">HoodSafe currently covers the 50 largest US cities by population. We're working to expand coverage based on data availability from open data portals and FBI statistics.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where does the crime data come from?</div>
+    <div class="faq-a">We pull real crime data from 10 official city open data portals (New York, Los Angeles, Chicago, Dallas, Austin, San Francisco, Seattle, Kansas City, Detroit, Baltimore). The remaining 40 cities use FBI Uniform Crime Reporting (UCR) data calibrated with local factors. See our <a href="/about/">methodology page</a> for details.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What types of crime are included?</div>
+    <div class="faq-a">We track both violent crimes (homicide, assault, robbery, rape) and property crimes (burglary, theft, vehicle theft). Violent crimes are weighted more heavily in safety scores.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How accurate are the neighborhood boundaries?</div>
+    <div class="faq-a">Neighborhood boundaries are based on official city designations where available. For some cities, we use police precinct or district boundaries. Boundaries may not match all local definitions.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I use this data for real estate decisions?</div>
+    <div class="faq-a">HoodSafe provides general safety information to help inform decisions. We recommend combining our data with local knowledge, visiting neighborhoods in person, and consulting multiple sources before making major decisions.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is HoodSafe free to use?</div>
+    <div class="faq-a">Yes, HoodSafe is completely free. We believe safety information should be accessible to everyone.</div>
+  </div>
+
+  <a href="/" class="back-link">← Back to HoodSafe</a>
+</main>
+
+</body>
+</html>

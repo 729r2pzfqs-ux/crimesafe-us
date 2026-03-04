@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About & Methodology | HoodSafe - How We Calculate Safety Scores</title>
+<meta name="description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data from 10 city portals and FBI UCR statistics.">
+<link rel="canonical" href="https://hoodsafe.org/about/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="About & Methodology | HoodSafe">
+<meta property="og:description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data.">
+<meta property="og:url" content="https://hoodsafe.org/about/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://hoodsafe.org/favicon-512.png">
+
+<!-- Favicon -->
+<meta name="theme-color" content="#3b82f6">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<style>
+:root {
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-primary: #3b82f6;
+  --color-border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+header { padding: 1rem 2rem; border-bottom: 1px solid var(--color-border); }
+header a { color: var(--color-text); text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+header svg { width: 28px; height: 28px; }
+h1 { font-size: 2rem; margin-bottom: 1rem; }
+h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--color-primary); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+p { margin-bottom: 1rem; color: var(--color-text-muted); }
+ul { margin: 1rem 0 1rem 1.5rem; color: var(--color-text-muted); }
+li { margin-bottom: 0.5rem; }
+.badge { display: inline-block; background: var(--color-primary); color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; }
+.data-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.data-table th, .data-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--color-border); }
+.data-table th { color: var(--color-text); font-weight: 600; }
+.data-table td { color: var(--color-text-muted); }
+.back-link { display: inline-block; margin-top: 2rem; color: var(--color-primary); text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/">
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M16 3L5 8v7c0 7.2 4.7 13.5 11 16 6.3-2.5 11-8.8 11-16V8L16 3z" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M16 11l-6 5v6h4v-4h4v4h4v-6l-6-5z" fill="#3b82f6"/>
+    </svg>
+    HoodSafe
+  </a>
+</header>
+
+<main class="container">
+  <h1>About HoodSafe & Methodology</h1>
+  
+  <p>HoodSafe provides neighborhood-level crime safety data for 50 major US cities. Our goal is to help residents, homebuyers, and travelers make informed decisions about where to live and visit.</p>
+
+  <h2>Data Sources</h2>
+  
+  <h3>Real-Time City Portal Data <span class="badge">10 Cities</span></h3>
+  <p>We pull crime data directly from official city open data portals for the following cities:</p>
+  
+  <table class="data-table">
+    <tr><th>City</th><th>Source</th><th>Data</th></tr>
+    <tr><td>New York</td><td>NYPD CompStat</td><td>Full yearly crime counts</td></tr>
+    <tr><td>Los Angeles</td><td>data.lacity.org</td><td>Yearly + neighborhoods</td></tr>
+    <tr><td>Chicago</td><td>data.cityofchicago.org</td><td>Yearly + neighborhoods</td></tr>
+    <tr><td>Dallas</td><td>dallasopendata.com</td><td>Yearly + divisions</td></tr>
+    <tr><td>Austin</td><td>data.austintexas.gov</td><td>Yearly + council districts</td></tr>
+    <tr><td>San Francisco</td><td>data.sfgov.org</td><td>Yearly + neighborhoods</td></tr>
+    <tr><td>Seattle</td><td>data.seattle.gov</td><td>Yearly + precincts</td></tr>
+    <tr><td>Kansas City</td><td>data.kcmo.org</td><td>2019 baseline, trend-adjusted</td></tr>
+    <tr><td>Detroit</td><td>data.detroitmi.gov</td><td>Real neighborhood names</td></tr>
+    <tr><td>Baltimore</td><td>data.baltimorecity.gov</td><td>Real neighborhood names</td></tr>
+  </table>
+
+  <h3>FBI UCR Calibrated Estimates <span class="badge">40 Cities</span></h3>
+  <p>For the remaining 40 cities, we use FBI Uniform Crime Reporting (UCR) data calibrated with local population and demographic factors to estimate neighborhood-level crime rates.</p>
+
+  <h2>Safety Score Calculation</h2>
+  <p>Our safety scores (1-100) are calculated using:</p>
+  <ul>
+    <li><strong>Violent crime rate</strong> — homicide, assault, robbery, rape (weighted 60%)</li>
+    <li><strong>Property crime rate</strong> — burglary, theft, vehicle theft (weighted 30%)</li>
+    <li><strong>Trend analysis</strong> — year-over-year changes (weighted 10%)</li>
+  </ul>
+  <p>Scores are normalized against national averages. A score of 50 represents the national median; higher is safer.</p>
+
+  <h2>Update Frequency</h2>
+  <ul>
+    <li><strong>Real portal cities:</strong> Data updated quarterly when new reports are published</li>
+    <li><strong>FBI UCR cities:</strong> Updated annually with new FBI releases</li>
+    <li><strong>Last update:</strong> March 2026</li>
+  </ul>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li>Crime data depends on reporting rates, which vary by neighborhood and city</li>
+    <li>Not all crimes are reported to police</li>
+    <li>Neighborhood boundaries may differ from official designations</li>
+    <li>Historical trends may not predict future safety</li>
+  </ul>
+
+  <a href="/" class="back-link">← Back to HoodSafe</a>
+</main>
+
+</body>
+</html>
