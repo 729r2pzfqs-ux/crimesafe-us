@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Shield outline -->
+  <path d="M16 3L5 8v7c0 7.2 4.7 13.5 11 16 6.3-2.5 11-8.8 11-16V8L16 3z" fill="#94a3b8" opacity="0.15" stroke="#94a3b8" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- House -->
+  <path d="M16 11l-6 5v6h4v-4h4v4h4v-6l-6-5z" fill="#3b82f6"/>
+  <!-- House roof accent -->
+  <path d="M16 11l-6 5h12l-6-5z" fill="#3b82f6"/>
+</svg>
