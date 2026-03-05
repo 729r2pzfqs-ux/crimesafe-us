@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" fill="none">
+  <g transform="translate(10,6) scale(0.17)">
+    <path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" 
+          fill="#4F98A3" opacity="0.08"/>
+    <path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" 
+          fill="none" stroke="#4F98A3" stroke-width="20" stroke-linejoin="round"/>
+    <path d="M256 196l-60 48v64h40v-36h40v36h40v-64l-60-48z" fill="#4F98A3"/>
+  </g>
+  <text x="108" y="46" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="32" font-weight="700" fill="#E0DFDD">Hood</text>
+  <text x="198" y="46" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="32" font-weight="700" fill="#4F98A3">Safe</text>
+  <text x="108" y="70" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="400" fill="#908F8D" letter-spacing="2.5">NEIGHBORHOOD SAFETY</text>
+</svg>
