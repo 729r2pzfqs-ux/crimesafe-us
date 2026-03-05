@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 40">
+  <g transform="translate(2, 2) scale(1.1)" fill="none">
+    <path d="M16 3L5 8v7c0 7.2 4.7 13.5 11 16 6.3-2.5 11-8.8 11-16V8L16 3z" fill="#01696f" opacity="0.1" stroke="#01696f" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M16 11l-6 5v6h4v-4h4v4h4v-6l-6-5z" fill="#01696f" opacity="0.9"/>
+    <path d="M16 11l-6 5h12l-6-5z" fill="#01696f"/>
+  </g>
+  <text x="44" y="28" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#28251d">Hood<tspan fill="#01696f">Safe</tspan></text>
+</svg>
