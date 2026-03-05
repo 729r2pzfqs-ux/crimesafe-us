@@ -724,6 +724,102 @@ CITIES = {
             "location": "address_1",
             "district": "neighborhood"
         }
+    },
+    "denver_arcgis": {
+        "name": "Denver",
+        "state": "CO",
+        "population": 715000,
+        "api": "https://services1.arcgis.com/YvJkKP3I2NydFmVT/arcgis/rest/services/CRIME_OFFENSES_P/FeatureServer/0/query",
+        "type": "arcgis",
+        "fields": {
+            "date": "FIRST_OCCU",
+            "type": "OFFENSE_TY",
+            "description": "OFFENSE_CA",
+            "lat": "GEO_LAT",
+            "lng": "GEO_LON",
+            "location": "INCIDENT_A",
+            "district": "NEIGHBORHO"
+        }
+    },
+    "detroit_arcgis": {
+        "name": "Detroit",
+        "state": "MI",
+        "population": 640000,
+        "api": "https://services2.arcgis.com/RQcpPaCpMAXzUI5g/arcgis/rest/services/RMS_Crime_Incidents/FeatureServer/0/query",
+        "type": "arcgis",
+        "fields": {
+            "date": "incident_t",
+            "type": "offense_de",
+            "description": "offense_ca",
+            "lat": "latitude",
+            "lng": "longitude",
+            "location": "address",
+            "district": "neighborho"
+        }
+    },
+    "minneapolis_arcgis": {
+        "name": "Minneapolis",
+        "state": "MN",
+        "population": 425000,
+        "api": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Crime_Data/FeatureServer/0/query",
+        "type": "arcgis",
+        "fields": {
+            "date": "Reported_Date",
+            "type": "Offense",
+            "description": "Offense_Category",
+            "lat": "Latitude",
+            "lng": "Longitude",
+            "location": "Address",
+            "district": "Neighborhood"
+        }
+    },
+    "charlotte_arcgis": {
+        "name": "Charlotte",
+        "state": "NC",
+        "population": 875000,
+        "api": "https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDIncidents/MapServer/0/query",
+        "type": "arcgis",
+        "fields": {
+            "date": "DATE_INCIDENT_BEGAN",
+            "type": "HIGHEST_NIBRS_DESCRIPTION",
+            "description": "PLACE_TYPE_DESCRIPTION",
+            "lat": "LATITUDE_PUBLIC",
+            "lng": "LONGITUDE_PUBLIC",
+            "location": "LOCATION",
+            "district": "CMPD_PATROL_DIVISION"
+        }
+    },
+    "louisville_arcgis": {
+        "name": "Louisville",
+        "state": "KY",
+        "population": 620000,
+        "api": "https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Louisville_Metro_KY_Crime_Data_2022/FeatureServer/0/query",
+        "type": "arcgis",
+        "fields": {
+            "date": "DATE_OCCURED",
+            "type": "CRIME_TYPE",
+            "description": "UOR_DESC",
+            "lat": "latitude",
+            "lng": "longitude",
+            "location": "BLOCK_ADDRESS",
+            "district": "LMPD_DIVISION"
+        }
+    },
+    "phoenix_arcgis": {
+        "name": "Phoenix",
+        "state": "AZ",
+        "population": 1600000,
+        "api": "https://services2.arcgis.com/l4TwMwwoiuEVRPw9/arcgis/rest/services/PoliceIncidents/FeatureServer/0/query",
+        "type": "arcgis",
+        "fields": {
+            "date": "Date_From",
+            "type": "Crime_Type",
+            "description": "Crime_Category",
+            "lat": "Lat",
+            "lng": "Lon",
+            "location": "GeoCode",
+            "district": "District"
+        }
     }
 }
 
@@ -757,26 +853,43 @@ def fetch_socrata(city_config, limit=50000, days_back=365):
 
 
 def fetch_arcgis(city_config, limit=50000):
-    """Fetch data from ArcGIS FeatureServer"""
+    """Fetch data from ArcGIS FeatureServer (with pagination)"""
     url = city_config["api"]
-    
-    params = {
-        "where": "1=1",
-        "outFields": "*",
-        "resultRecordCount": limit,
-        "f": "json",
-        "returnGeometry": "true"
-    }
+    all_records = []
+    offset = 0
+    batch_size = 2000  # ArcGIS default max
     
     print(f"  Fetching from: {url}")
-    response = requests.get(url, params=params, timeout=60)
-    response.raise_for_status()
-    data = response.json()
     
-    # Extract features
-    if "features" in data:
-        return [f.get("attributes", {}) for f in data["features"]]
-    return []
+    while len(all_records) < limit:
+        params = {
+            "where": "1=1",
+            "outFields": "*",
+            "resultRecordCount": min(batch_size, limit - len(all_records)),
+            "resultOffset": offset,
+            "f": "json",
+            "returnGeometry": "true"
+        }
+        
+        response = requests.get(url, params=params, timeout=60)
+        response.raise_for_status()
+        data = response.json()
+        
+        features = data.get("features", [])
+        if not features:
+            break
+            
+        records = [f.get("attributes", {}) for f in features]
+        all_records.extend(records)
+        print(f"    Fetched {len(all_records)} records...")
+        
+        # Check if there are more records
+        if len(features) < batch_size:
+            break
+        offset += batch_size
+        time.sleep(0.5)  # Be nice to the API
+    
+    return all_records
 
 
 def fetch_ckan(city_config, limit=50000):
