@@ -367,10 +367,10 @@ CITIES = {
             "date": "datetime",
             "type": "crimetype",
             "description": "description",
-            "lat": "latitude",
-            "lng": "longitude",
+            "lat": "location_1.coordinates.1",
+            "lng": "location_1.coordinates.0",
             "location": "address",
-            "district": "beat"
+            "district": "policebeat"
         }
     },
     "tucson": {
@@ -571,13 +571,12 @@ CITIES = {
         "population": 1600000,
         "api": "https://phl.carto.com/api/v2/sql",
         "type": "carto",
-        "query": "SELECT * FROM incidents_part1_part2 WHERE dispatch_date >= current_date - interval '1 year' ORDER BY dispatch_date DESC LIMIT 50000",
         "fields": {
             "date": "dispatch_date",
             "type": "text_general_code",
             "description": "text_general_code",
-            "lat": "lat",
-            "lng": "lng",
+            "lat": "point_y",
+            "lng": "point_x",
             "location": "location_block",
             "district": "dc_dist"
         }
@@ -677,6 +676,54 @@ CITIES = {
             "location": "ADDRESS",
             "district": "SECTOR"
         }
+    },
+    "baton_rouge": {
+        "name": "Baton Rouge",
+        "state": "LA",
+        "population": 225000,
+        "api": "https://data.brla.gov/resource/fabb-cnnu.json",
+        "type": "socrata",
+        "fields": {
+            "date": "offense_date",
+            "type": "crime",
+            "description": "offense_desc",
+            "lat": "geolocation.latitude",
+            "lng": "geolocation.longitude",
+            "location": "address",
+            "district": "district"
+        }
+    },
+    "cincinnati": {
+        "name": "Cincinnati",
+        "state": "OH",
+        "population": 310000,
+        "api": "https://data.cincinnati-oh.gov/resource/k59e-2pvf.json",
+        "type": "socrata",
+        "fields": {
+            "date": "date_reported",
+            "type": "offense",
+            "description": "offense",
+            "lat": "latitude_x",
+            "lng": "longitude_x",
+            "location": "address_x",
+            "district": "cpd_neighborhood"
+        }
+    },
+    "buffalo": {
+        "name": "Buffalo",
+        "state": "NY",
+        "population": 280000,
+        "api": "https://data.buffalony.gov/resource/d6g9-xbgu.json",
+        "type": "socrata",
+        "fields": {
+            "date": "incident_datetime",
+            "type": "incident_type_primary",
+            "description": "incident_description",
+            "lat": "latitude",
+            "lng": "longitude",
+            "location": "address_1",
+            "district": "neighborhood"
+        }
     }
 }
 
@@ -754,7 +801,8 @@ def fetch_ckan(city_config, limit=50000):
 def fetch_carto(city_config, limit=50000):
     """Fetch data from Carto SQL API (Philadelphia)"""
     url = city_config["api"]
-    query = city_config.get("query", "")
+    # Simple query without date filter
+    query = f"SELECT * FROM incidents_part1_part2 ORDER BY dispatch_date DESC LIMIT {limit}"
     
     params = {
         "q": query,
@@ -762,7 +810,7 @@ def fetch_carto(city_config, limit=50000):
     }
     
     print(f"  Fetching from: {url}")
-    response = requests.get(url, params=params, timeout=60)
+    response = requests.get(url, params=params, timeout=120)
     response.raise_for_status()
     data = response.json()
     
@@ -807,15 +855,23 @@ def fetch_geojson(city_config, limit=50000):
 # ============================================================
 
 def get_nested_value(obj, key):
-    """Get value from nested dict using dot notation"""
+    """Get value from nested dict using dot notation (supports array indices)"""
     if not key:
         return None
     
     parts = key.split(".")
     value = obj
     for part in parts:
+        if value is None:
+            return None
         if isinstance(value, dict):
             value = value.get(part)
+        elif isinstance(value, list):
+            try:
+                idx = int(part)
+                value = value[idx] if idx < len(value) else None
+            except (ValueError, IndexError):
+                return None
         else:
             return None
     return value
