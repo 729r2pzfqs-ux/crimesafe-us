@@ -651,6 +651,36 @@ table { border-collapse: collapse; width: 100%; }
   transition: background var(--transition-interactive);
 }
 .lookup-btn:hover { background: var(--color-primary-hover); }
+.lookup-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  max-height: 280px;
+  overflow-y: auto;
+  display: none;
+}
+.lookup-suggestions.active { display: block; }
+.lookup-suggestion {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background var(--transition-interactive);
+}
+.lookup-suggestion:last-child { border-bottom: none; }
+.lookup-suggestion:hover { background: var(--color-surface-offset); }
+.lookup-suggestion svg { flex-shrink: 0; opacity: 0.5; }
+.lookup-suggestion-text { font-size: var(--text-sm); color: var(--color-text); }
+.lookup-suggestion-type { font-size: var(--text-xs); color: var(--color-text-muted); margin-left: auto; }
 .lookup-result {
   display: flex;
   align-items: center;
@@ -829,13 +859,14 @@ table { border-collapse: collapse; width: 100%; }
       </div>
     </div>
     <div class="lookup-card">
-      <div class="lookup-input-wrap">
+      <div class="lookup-input-wrap" style="position:relative;">
         <svg class="lookup-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <input type="text" class="lookup-input" id="addressInput" placeholder="Enter an address (e.g., 123 Main St, Chicago, IL)">
+        <input type="text" class="lookup-input" id="addressInput" placeholder="Enter an address (e.g., 123 Main St, Chicago, IL)" autocomplete="off">
         <button class="lookup-btn" id="lookupBtn" onclick="lookupAddress()">
           <span>Check Score</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
+        <div class="lookup-suggestions" id="addressSuggestions"></div>
       </div>
       <div class="lookup-result" id="lookupResult" style="display:none;">
         <div class="result-score-wrap">
@@ -1109,7 +1140,102 @@ function showLookupError(msg) {
 
 // Handle Enter key on address input
 document.getElementById('addressInput').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') lookupAddress();
+  if (e.key === 'Enter') {
+    hideSuggestions();
+    lookupAddress();
+  }
+});
+
+// ===== AUTOCOMPLETE =====
+let acTimeout = null;
+const addressInput = document.getElementById('addressInput');
+const suggestionsDiv = document.getElementById('addressSuggestions');
+
+// Our covered cities for filtering/highlighting
+const coveredCities = ['new york','nyc','chicago','los angeles','seattle','dallas','philadelphia','detroit','minneapolis','charlotte','san francisco','new orleans','buffalo','baton rouge','cincinnati','oakland','phoenix'];
+
+function debounce(fn, delay) {
+  return function(...args) {
+    clearTimeout(acTimeout);
+    acTimeout = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+async function fetchSuggestions(query) {
+  if (query.length < 3) {
+    hideSuggestions();
+    return;
+  }
+  
+  try {
+    const encoded = encodeURIComponent(query + ', USA');
+    const resp = await fetch(`https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=6&addressdetails=1`);
+    const data = await resp.json();
+    
+    if (!data || data.length === 0) {
+      hideSuggestions();
+      return;
+    }
+    
+    showSuggestions(data);
+  } catch (err) {
+    console.error('Autocomplete error:', err);
+    hideSuggestions();
+  }
+}
+
+function showSuggestions(results) {
+  suggestionsDiv.innerHTML = results.map(r => {
+    const city = r.address?.city || r.address?.town || r.address?.county || '';
+    const isCovered = coveredCities.some(c => city.toLowerCase().includes(c) || r.display_name.toLowerCase().includes(c));
+    const type = r.type === 'house' ? 'Address' : (r.type === 'city' ? 'City' : r.type);
+    
+    return `<div class="lookup-suggestion" data-lat="${r.lat}" data-lon="${r.lon}" data-name="${r.display_name.replace(/"/g, '&quot;')}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="lookup-suggestion-text">${r.display_name.split(',').slice(0,3).join(',')}</span>
+      ${isCovered ? '<span class="lookup-suggestion-type" style="color:var(--color-success);">✓ Covered</span>' : '<span class="lookup-suggestion-type">'+type+'</span>'}
+    </div>`;
+  }).join('');
+  
+  suggestionsDiv.classList.add('active');
+  
+  // Add click handlers
+  suggestionsDiv.querySelectorAll('.lookup-suggestion').forEach(el => {
+    el.addEventListener('click', () => {
+      const lat = parseFloat(el.dataset.lat);
+      const lon = parseFloat(el.dataset.lon);
+      const name = el.dataset.name;
+      
+      addressInput.value = name.split(',').slice(0,3).join(',');
+      hideSuggestions();
+      
+      // Look up score directly
+      const result = findHoodScore(lat, lon);
+      if (result) {
+        showLookupResult(result, name);
+        document.getElementById('lookupError').style.display = 'none';
+      } else {
+        showLookupError('This address is not in our coverage area. We currently cover 16 major US cities.');
+        document.getElementById('lookupResult').style.display = 'none';
+      }
+    });
+  });
+}
+
+function hideSuggestions() {
+  suggestionsDiv.classList.remove('active');
+}
+
+// Input listener with debounce
+addressInput.addEventListener('input', debounce((e) => {
+  fetchSuggestions(e.target.value.trim());
+}, 350));
+
+// Hide on click outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lookup-input-wrap')) {
+    hideSuggestions();
+  }
 });
 </script>
 <script>
