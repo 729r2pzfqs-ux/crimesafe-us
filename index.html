@@ -913,11 +913,6 @@ table { border-collapse: collapse; width: 100%; }
     </div>
     <div class="table-controls">
       <input type="text" class="table-search" id="tableSearch" placeholder="Filter cities...">
-      <button class="filter-btn active" data-region="all">All</button>
-      <button class="filter-btn" data-region="Northeast">Northeast</button>
-      <button class="filter-btn" data-region="South">South</button>
-      <button class="filter-btn" data-region="Midwest">Midwest</button>
-      <button class="filter-btn" data-region="West">West</button>
       <label style="margin-left:auto;display:flex;align-items:center;gap:0.5rem;font-size:var(--text-xs);color:var(--color-text-muted);cursor:pointer">
         <input type="checkbox" id="showAllCities" style="cursor:pointer"> Show all 9K cities
       </label>
@@ -1537,7 +1532,6 @@ setTimeout(initMap, 100);
 // ===== RANKINGS TABLE =====
 let sortKey = 'rank';
 let sortAsc = true;
-let regionFilter = 'all';
 let tableSearchQuery = '';
 
 function renderTable() {
@@ -1560,7 +1554,6 @@ function renderTable() {
     filtered = [...CRIME_DATA];
   }
   
-  if (regionFilter !== 'all' && !showAll) filtered = filtered.filter(c => c.region === regionFilter);
   if (tableSearchQuery) {
     const q = tableSearchQuery.toLowerCase();
     filtered = filtered.filter(c => c.city.toLowerCase().includes(q) || c.state.toLowerCase().includes(q));
@@ -1616,16 +1609,6 @@ document.querySelectorAll('.data-table th[data-sort]').forEach(th => {
     document.querySelectorAll('.data-table th').forEach(h => h.classList.remove('sorted'));
     th.classList.add('sorted');
     th.querySelector('.sort-arrow').textContent = sortAsc ? '▲' : '▼';
-    renderTable();
-  });
-});
-
-// Filter handlers
-document.querySelectorAll('.filter-btn[data-region]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn[data-region]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    regionFilter = btn.dataset.region;
     renderTable();
   });
 });
