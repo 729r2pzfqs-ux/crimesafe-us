@@ -438,6 +438,16 @@ table { border-collapse: collapse; width: 100%; }
 .data-table tbody tr:hover { background: var(--color-surface-offset); }
 .data-table tbody tr:last-child td { border-bottom: none; }
 
+/* Mobile: show only Rank, City, Safety Score */
+@media (max-width: 600px) {
+  .data-table th:nth-child(3), .data-table td:nth-child(3), /* State */
+  .data-table th:nth-child(5), .data-table td:nth-child(5), /* Violent */
+  .data-table th:nth-child(6), .data-table td:nth-child(6), /* Property */
+  .data-table th:nth-child(7), .data-table td:nth-child(7)  /* Population */
+  { display: none; }
+  .data-table th, .data-table td { padding: var(--space-2) var(--space-3); }
+}
+
 .score-pill {
   display: inline-flex; align-items: center; justify-content: center;
   padding: var(--space-1) var(--space-2); border-radius: var(--radius-sm);
