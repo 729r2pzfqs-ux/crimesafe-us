@@ -10,7 +10,7 @@ with open('data/fbi/cities_crime_2024.json') as f:
 
 # Sort by population (largest first)
 cities_sorted = sorted(cities, key=lambda x: x.get('population', 0), reverse=True)
-top_cities = cities_sorted[:200]
+top_cities = cities_sorted[:500]
 
 print(f"Generating comparisons for top {len(top_cities)} cities...")
 
