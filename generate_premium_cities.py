@@ -77,6 +77,13 @@ def get_grade_text(score):
 def format_number(n):
     return f"{n:,}"
 
+# Cities with address lookup data (from hoodsafe_compact.js)
+CITIES_WITH_LOOKUP = {
+    'minneapolis', 'seattle', 'baton rouge', 'san francisco', 'cincinnati',
+    'phoenix', 'buffalo', 'charlotte', 'oakland', 'philadelphia',
+    'kansas city', 'chicago', 'new york', 'dallas', 'detroit', 'new orleans'
+}
+
 TEMPLATE = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -231,11 +238,7 @@ TEMPLATE = '''<!DOCTYPE html>
             </div>
         </div>
         
-        <div class="cta">
-            <h3>Check Any Address</h3>
-            <p>Get detailed safety scores for specific neighborhoods</p>
-            <a href="/#lookup-section">Check Address Safety →</a>
-        </div>
+        {cta_section}
     </main>
     
     <footer>
@@ -268,6 +271,22 @@ for c in top_50:
     violent_comparison = "below" if violent_rate < 380 else "above"
     property_comparison = "below" if property_rate < 2000 else "above"
     
+    # CTA - different for cities with/without address lookup
+    has_lookup = city_name.lower() in CITIES_WITH_LOOKUP
+    if has_lookup:
+        cta_section = '''<div class="cta">
+            <h3>Check Any Address in ''' + city_name + '''</h3>
+            <p>Get detailed safety scores for specific neighborhoods</p>
+            <a href="/#lookup-section">Check Address Safety →</a>
+        </div>'''
+    else:
+        state_slug = state_name.lower().replace(' ', '-')
+        cta_section = f'''<div class="cta">
+            <h3>Compare {city_name} with Other Cities</h3>
+            <p>See how {city_name} ranks against other cities in {state_name}</p>
+            <a href="/safest-cities/{state_slug}/">View {state_name} Rankings →</a>
+        </div>'''
+    
     html = TEMPLATE.format(
         city=city_name,
         state_abbr=state_abbr,
@@ -288,6 +307,7 @@ for c in top_50:
         safety_comparison=safety_comparison,
         violent_comparison=violent_comparison,
         property_comparison=property_comparison,
+        cta_section=cta_section,
     )
     
     # Write file
