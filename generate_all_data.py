@@ -32,6 +32,17 @@ def slugify(name):
     s = re.sub(r'[^a-z0-9]+', '-', s)
     return s.strip('-')
 
+def shorten_name(name):
+    """Shorten long department names for display."""
+    replacements = {
+        'Las Vegas Metropolitan Police Department': 'Las Vegas',
+        'Metropolitan Nashville Police Department': 'Nashville',
+        'Charlotte-Mecklenburg': 'Charlotte',
+        'Louisville Metro': 'Louisville',
+        'Honolulu Police Department': 'Honolulu',
+    }
+    return replacements.get(name, name)
+
 def get_state_abbrev(state):
     return STATE_ABBREVS.get(state.strip().upper(), state[:2].upper())
 
@@ -79,8 +90,9 @@ table_data = []
 for rank, c in enumerate(top_50_sorted, 1):
     state_abbrev = get_state_abbrev(c['state'])
     coords = COORDS.get(c['city'], (39.5, -98.5))  # Default to US center
+    display_name = shorten_name(c['city'])
     table_data.append({
-        'city': c['city'],
+        'city': display_name,
         'state': state_abbrev,
         'lat': coords[0],
         'lng': coords[1],
