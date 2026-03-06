@@ -1588,15 +1588,16 @@ function renderTable() {
   const limited = filtered.slice(0, displayLimit);
 
   const tbody = document.getElementById('tableBody');
+  const hideCols = showAll ? 'display:none' : '';
   tbody.innerHTML = limited.map(c => `
     <tr onclick="window.location.href='/city/${c.slug}/'">
       <td style="font-weight:600;color:var(--color-text-muted)">${c.rank}</td>
       <td style="font-weight:600">${c.city}</td>
       <td style="color:var(--color-text-muted)">${c.state}</td>
       <td><span class="score-pill" style="background:${getScoreGradient(c.safety_score)}">${c.safety_score}</span></td>
-      <td>${c.violent_rate === '-' ? '-' : formatNumber(c.violent_rate)}</td>
-      <td>${c.property_rate === '-' ? '-' : formatNumber(c.property_rate)}</td>
-      <td>${c.population === '-' ? '-' : formatNumber(c.population)}</td>
+      <td style="${hideCols}">${c.violent_rate === '-' ? '-' : formatNumber(c.violent_rate)}</td>
+      <td style="${hideCols}">${c.property_rate === '-' ? '-' : formatNumber(c.property_rate)}</td>
+      <td style="${hideCols}">${c.population === '-' ? '-' : formatNumber(c.population)}</td>
     </tr>`
   ).join('');
   
@@ -1638,6 +1639,11 @@ document.getElementById('showAllCities')?.addEventListener('change', function() 
   // Reset sort to score when switching modes
   sortKey = 'safety_score';
   sortAsc = false;
+  // Hide/show crime columns based on mode
+  const showAll = this.checked;
+  document.querySelectorAll('.data-table th:nth-child(5), .data-table th:nth-child(6), .data-table th:nth-child(7)').forEach(th => {
+    th.style.display = showAll ? 'none' : '';
+  });
   renderTable();
 });
 
