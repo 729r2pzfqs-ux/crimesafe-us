@@ -31,9 +31,12 @@ function findHoodScore(lat, lng) {
     
     if (!nearest || minDist > 0.001) return null; // ~1km threshold
     
+    // HOOD_DATA scores are crime indices (lower = safer)
+    // Convert to safety score (higher = safer): 100 - crimeIndex
+    const safetyScore = Math.round(100 - nearest[2]);
     return {
-        score: nearest[2],
-        grade: scoreToGrade(nearest[2]),
+        score: safetyScore,
+        grade: scoreToGrade(safetyScore),
         city: HS.n[HS.c[nearest[3]]],
         distance: Math.sqrt(minDist) * 111 // rough km
     };
