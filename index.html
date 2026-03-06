@@ -34,7 +34,7 @@
   "@type": "WebApplication",
   "name": "HoodSafe",
   "url": "https://hoodsafe.org",
-  "description": "Neighborhood crime safety explorer for 9,000+ US cities and 2,300 counties with FBI UCR 2024 crime data.",
+  "description": "Neighborhood crime safety explorer for 9,000+ US cities and 2,300 counties with latest FBI crime data.",
   "applicationCategory": "Reference",
   "operatingSystem": "Web",
   "offers": {
@@ -841,7 +841,7 @@ table { border-collapse: collapse; width: 100%; }
 <section class="hero" id="top">
   <div class="container">
     <h1>Find Your Safest Neighborhood</h1>
-    <p class="hero-sub">Search 9,000+ cities · 2,300 counties · FBI crime data 2024</p>
+    <p class="hero-sub">Search 9,000+ cities · 2,300 counties · Latest FBI crime data</p>
     <div class="search-wrap">
       <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" class="search-input" id="heroSearch" placeholder="Search any US city..." autocomplete="off">
@@ -1397,7 +1397,7 @@ document.getElementById('kpiGrid').innerHTML = `
   <div class="kpi-card animate-in" style="animation-delay: 180ms">
     <div class="kpi-label">Cities Searchable</div>
     <div class="kpi-value">${totalSearchable.toLocaleString()}</div>
-    <div class="kpi-detail">FBI UCR 2024 data</div>
+    <div class="kpi-detail">Latest FBI data</div>
   </div>
 `;
 
