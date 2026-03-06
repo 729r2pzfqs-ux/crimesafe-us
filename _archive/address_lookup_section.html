@@ -1,0 +1,30 @@
+<!-- ADDRESS LOOKUP SECTION - Saved for future expansion -->
+<!-- Supports 16 cities: NYC, Chicago, LA*, Seattle, Dallas, Philadelphia, Detroit, Minneapolis, Charlotte, San Francisco, New Orleans, Buffalo, Baton Rouge, Cincinnati, Oakland, Phoenix -->
+
+<div class="lookup-input-wrap" style="position:relative;">
+  <svg class="lookup-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <input type="text" class="lookup-input" id="addressInput" placeholder="Enter an address (e.g., 123 Main St, Chicago, IL)" autocomplete="off">
+  <button class="lookup-btn" id="lookupBtn" onclick="lookupAddress()">
+    <span>Check Score</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+  <div class="lookup-suggestions" id="addressSuggestions"></div>
+</div>
+<div class="lookup-result" id="lookupResult" style="display:none;">
+  <div class="result-score-wrap">
+    <div class="result-score" id="resultScore"></div>
+    <div class="result-grade" id="resultGrade"></div>
+  </div>
+  <div class="result-details">
+    <div class="result-city" id="resultCity"></div>
+    <div class="result-address" id="resultAddress"></div>
+    <div class="result-stats" id="resultStats"></div>
+  </div>
+</div>
+<div class="lookup-error" id="lookupError" style="display:none;">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+  <span id="errorMsg">Address not found in our coverage area</span>
+</div>
+<div style="display:flex;align-items:center;gap:1rem;margin:1.5rem 0;justify-content:center">
+  <span style="color:var(--color-text-muted);font-size:var(--text-sm)">— OR —</span>
+</div>
