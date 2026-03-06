@@ -937,7 +937,7 @@ table { border-collapse: collapse; width: 100%; }
               <th data-sort="safety_score">Safety Score <span class="sort-arrow">▲</span></th>
               <th data-sort="violent">Violent Crime <span class="sort-arrow">▲</span></th>
               <th data-sort="property">Property Crime <span class="sort-arrow">▲</span></th>
-              <th data-sort="yoy">YoY Change <span class="sort-arrow">▲</span></th>
+              <th data-sort="population">Population <span class="sort-arrow">▲</span></th>
             </tr>
           </thead>
           <tbody id="tableBody"></tbody>
@@ -947,8 +947,8 @@ table { border-collapse: collapse; width: 100%; }
   </div>
 </section>
 
-<!-- ===== TRENDS ===== -->
-<section class="trends-section" id="trends-section">
+<!-- ===== TRENDS (hidden - no historical data) ===== -->
+<section class="trends-section" id="trends-section" style="display:none">
   <div class="container">
     <div class="section-header">
       <div>
@@ -1050,6 +1050,7 @@ table { border-collapse: collapse; width: 100%; }
 // ===== EMBEDDED DATA =====
 </script>
 <script src="./crime_data_embedded.js"></script>
+<script src="./cities_search.js"></script>
 <script src="./hoodsafe_compact.js"></script>
 <script>
 // ===== ADDRESS LOOKUP =====
@@ -1319,19 +1320,20 @@ const searchDropdown = document.getElementById('searchDropdown');
 heroSearch.addEventListener('input', function() {
   const q = this.value.toLowerCase().trim();
   if (!q) { searchDropdown.classList.remove('active'); return; }
-  const results = CRIME_DATA.filter(c =>
-    c.city.toLowerCase().includes(q) || c.state.toLowerCase().includes(q) ||
-    (c.city + ', ' + c.state).toLowerCase().includes(q)
-  ).slice(0, 8);
+  // CITIES_SEARCH format: [name, state, score, slug]
+  const results = CITIES_SEARCH.filter(c =>
+    c[0].toLowerCase().includes(q) || c[1].toLowerCase().includes(q) ||
+    (c[0] + ', ' + c[1]).toLowerCase().includes(q)
+  ).slice(0, 10);
   if (!results.length) { searchDropdown.classList.remove('active'); return; }
   searchDropdown.innerHTML = results.map(c => `
-    <div class="search-item" onclick="openCityModal(CRIME_DATA.find(d=>d.city==='${c.city.replace(/'/g,"\\'")}'))">
+    <a class="search-item" href="/city/${c[3]}/" style="text-decoration:none;color:inherit;display:flex;">
       <div>
-        <span class="search-item-name">${c.city}</span>
-        <span class="search-item-state"> · ${c.state}</span>
+        <span class="search-item-name">${c[0]}</span>
+        <span class="search-item-state"> · ${c[1]}</span>
       </div>
-      <span class="search-item-score" style="background:${getScoreGradient(c.safety_score)}">${c.safety_score}</span>
-    </div>
+      <span class="search-item-score" style="background:${getScoreGradient(c[2])}">${c[2]}</span>
+    </a>
   `).join('');
   searchDropdown.classList.add('active');
 });
@@ -1342,28 +1344,29 @@ heroSearch.addEventListener('focus', () => { if (heroSearch.value.trim()) heroSe
 // ===== KPI CARDS =====
 const avgScore = (CRIME_DATA.reduce((s, c) => s + c.safety_score, 0) / CRIME_DATA.length).toFixed(1);
 const safestCity = CRIME_DATA.reduce((a, b) => a.safety_score > b.safety_score ? a : b);
-const biggestImprovement = CRIME_DATA.reduce((a, b) => a.violent_change_yoy < b.violent_change_yoy ? a : b);
+const lowestViolent = CRIME_DATA.reduce((a, b) => a.violent_rate < b.violent_rate ? a : b);
+const totalSearchable = typeof CITIES_SEARCH !== 'undefined' ? CITIES_SEARCH.length : 50;
 
 document.getElementById('kpiGrid').innerHTML = `
   <div class="kpi-card animate-in" style="animation-delay: 0ms">
     <div class="kpi-label">Avg Safety Score</div>
     <div class="kpi-value" style="color: ${getScoreGradient(parseFloat(avgScore))}">${avgScore}</div>
-    <div class="kpi-detail">Across all tracked cities</div>
+    <div class="kpi-detail">Top 50 US cities</div>
   </div>
   <div class="kpi-card animate-in" style="animation-delay: 60ms">
-    <div class="kpi-label">Safest City</div>
+    <div class="kpi-label">Safest Major City</div>
     <div class="kpi-value" style="color: var(--color-primary)">${safestCity.city}</div>
     <div class="kpi-detail">${safestCity.state} · Score: ${safestCity.safety_score}</div>
   </div>
   <div class="kpi-card animate-in" style="animation-delay: 120ms">
-    <div class="kpi-label">Most Improved City</div>
-    <div class="kpi-value" style="color: var(--color-success)">↓ ${Math.abs(biggestImprovement.violent_change_yoy)}%</div>
-    <div class="kpi-detail">${biggestImprovement.city}, ${biggestImprovement.state}</div>
+    <div class="kpi-label">Lowest Violent Crime</div>
+    <div class="kpi-value" style="color: var(--color-success)">${lowestViolent.city}</div>
+    <div class="kpi-detail">${lowestViolent.violent_rate} per 100K</div>
   </div>
   <div class="kpi-card animate-in" style="animation-delay: 180ms">
-    <div class="kpi-label">Cities Tracked</div>
-    <div class="kpi-value">50</div>
-    <div class="kpi-detail">Major US metropolitan areas</div>
+    <div class="kpi-label">Cities Searchable</div>
+    <div class="kpi-value">${totalSearchable.toLocaleString()}</div>
+    <div class="kpi-detail">FBI UCR 2024 data</div>
   </div>
 `;
 
@@ -1404,16 +1407,13 @@ function addCityMarkers() {
       opacity: 0.8
     }).addTo(mapInstance);
 
-    const latestViolent = city.yearly_data['2025'].violent;
-    const latestProperty = city.yearly_data['2025'].property;
-
     marker.bindPopup(`
       <div class="popup-city">${city.city}, ${city.state}</div>
       <div class="popup-stat"><span>Safety Score</span><span style="color:${color};font-weight:700;">${city.safety_score}</span></div>
-      <div class="popup-stat"><span>Violent Crime</span><span>${formatNumber(latestViolent)}</span></div>
-      <div class="popup-stat"><span>Property Crime</span><span>${formatNumber(latestProperty)}</span></div>
+      <div class="popup-stat"><span>Violent Crime</span><span>${formatNumber(city.violent_rate)}</span></div>
+      <div class="popup-stat"><span>Property Crime</span><span>${formatNumber(city.property_rate)}</span></div>
       <div class="popup-stat"><span>Population</span><span>${formatPop(city.population)}</span></div>
-      <a class="popup-link" onclick="openCityModal(CRIME_DATA.find(d=>d.city==='${city.city.replace(/'/g,"\\'")}'))">View Details →</a>
+      <a class="popup-link" href="/city/${city.slug}/">View Details →</a>
     `, { maxWidth: 220 });
 
     marker.on('mouseover', function() { this.setStyle({ fillOpacity: 0.85, weight: 3 }); });
@@ -1444,9 +1444,9 @@ function renderTable() {
       case 'city': va = a.city; vb = b.city; break;
       case 'state': va = a.state; vb = b.state; break;
       case 'safety_score': va = a.safety_score; vb = b.safety_score; break;
-      case 'violent': va = a.yearly_data['2025'].violent; vb = b.yearly_data['2025'].violent; break;
-      case 'property': va = a.yearly_data['2025'].property; vb = b.yearly_data['2025'].property; break;
-      case 'yoy': va = a.violent_change_yoy; vb = b.violent_change_yoy; break;
+      case 'violent': va = a.violent_rate; vb = b.violent_rate; break;
+      case 'property': va = a.property_rate; vb = b.property_rate; break;
+      case 'population': va = a.population; vb = b.population; break;
       default: va = a.rank; vb = b.rank;
     }
     if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
@@ -1454,20 +1454,17 @@ function renderTable() {
   });
 
   const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = filtered.map(c => {
-    const yoyClass = c.violent_change_yoy < -1 ? 'negative' : c.violent_change_yoy > 1 ? 'positive' : 'neutral';
-    const yoyArrow = c.violent_change_yoy < -1 ? '↓' : c.violent_change_yoy > 1 ? '↑' : '→';
-    return `
-    <tr onclick="openCityModal(CRIME_DATA.find(d=>d.city==='${c.city.replace(/'/g,"\\'")}'))">
+  tbody.innerHTML = filtered.map(c => `
+    <tr onclick="window.location.href='/city/${c.slug}/'">
       <td style="font-weight:600;color:var(--color-text-muted)">${c.rank}</td>
       <td style="font-weight:600">${c.city}</td>
       <td style="color:var(--color-text-muted)">${c.state}</td>
       <td><span class="score-pill" style="background:${getScoreGradient(c.safety_score)}">${c.safety_score}</span></td>
-      <td>${formatNumber(c.yearly_data['2025'].violent)}</td>
-      <td>${formatNumber(c.yearly_data['2025'].property)}</td>
-      <td><span class="yoy-change ${yoyClass}">${yoyArrow} ${Math.abs(c.violent_change_yoy).toFixed(1)}%</span></td>
-    </tr>`;
-  }).join('');
+      <td>${formatNumber(c.violent_rate)}</td>
+      <td>${formatNumber(c.property_rate)}</td>
+      <td>${formatNumber(c.population)}</td>
+    </tr>`
+  ).join('');
 }
 
 // Sort handlers
@@ -1594,7 +1591,7 @@ function buildTrendsChart() {
     }
   });
 }
-buildTrendsChart();
+// buildTrendsChart(); // Disabled - no historical data
 
 // ===== CITY DETAIL MODAL =====
 let currentCity = null;
