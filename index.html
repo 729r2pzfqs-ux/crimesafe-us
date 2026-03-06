@@ -930,12 +930,12 @@ table { border-collapse: collapse; width: 100%; }
           <thead>
             <tr>
               <th>#</th>
-              <th data-sort="city" class="sorted">City <span class="sort-arrow">▲</span></th>
+              <th data-sort="city">City <span class="sort-arrow">▲</span></th>
               <th data-sort="state">State <span class="sort-arrow">▲</span></th>
               <th data-sort="safety_score">Safety Score <span class="sort-arrow">▲</span></th>
               <th data-sort="violent">Violent Crime <span class="sort-arrow">▲</span></th>
               <th data-sort="property">Property Crime <span class="sort-arrow">▲</span></th>
-              <th data-sort="population">Population <span class="sort-arrow">▲</span></th>
+              <th data-sort="population" class="sorted">Population <span class="sort-arrow">▼</span></th>
             </tr>
           </thead>
           <tbody id="tableBody"></tbody>
@@ -1538,8 +1538,8 @@ document.querySelectorAll('[data-map-filter]').forEach(btn => {
 setTimeout(initMap, 100);
 
 // ===== RANKINGS TABLE =====
-let sortKey = 'city';
-let sortAsc = true;
+let sortKey = 'population';
+let sortAsc = false;
 let tableSearchQuery = '';
 let currentPage = 0;
 const PAGE_SIZE = 50;
