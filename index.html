@@ -1262,7 +1262,7 @@ document.addEventListener('click', (e) => {
 (function() {
   const toggle = document.querySelector('[data-theme-toggle]');
   const root = document.documentElement;
-  let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  let theme = 'light'; // Default to light mode
   root.setAttribute('data-theme', theme);
   function updateIcon() {
     toggle.innerHTML = theme === 'dark'
