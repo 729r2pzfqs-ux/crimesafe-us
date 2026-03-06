@@ -829,7 +829,7 @@ table { border-collapse: collapse; width: 100%; }
       <a href="#overview">Overview</a>
       <a href="#map-section">Map</a>
       <a href="#rankings">Rankings</a>
-      <a href="#trends">Trends</a>
+      <a href="#states-section">States</a>
       <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
@@ -956,6 +956,17 @@ table { border-collapse: collapse; width: 100%; }
         </table>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===== STATES ===== -->
+<section class="section" id="states-section" style="padding:var(--space-8) 0;background:var(--color-surface);">
+  <div class="container">
+    <div class="section-header" style="text-align:center;margin-bottom:var(--space-6);">
+      <h2 class="section-title">Browse by State</h2>
+      <p class="section-desc">Find the safest cities in each state</p>
+    </div>
+    <div id="statesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--space-2);"></div>
   </div>
 </section>
 
@@ -1519,6 +1530,25 @@ document.getElementById('tableSearch').addEventListener('input', function() {
 });
 
 renderTable();
+
+// ===== STATES GRID =====
+const states = [
+  ['Alabama','al'],['Alaska','ak'],['Arizona','az'],['Arkansas','ar'],['California','ca'],
+  ['Colorado','co'],['Connecticut','ct'],['Delaware','de'],['Florida','fl'],['Georgia','ga'],
+  ['Hawaii','hi'],['Idaho','id'],['Illinois','il'],['Indiana','in'],['Iowa','ia'],
+  ['Kansas','ks'],['Kentucky','ky'],['Louisiana','la'],['Maine','me'],['Maryland','md'],
+  ['Massachusetts','ma'],['Michigan','mi'],['Minnesota','mn'],['Mississippi','ms'],['Missouri','mo'],
+  ['Montana','mt'],['Nebraska','ne'],['Nevada','nv'],['New Hampshire','nh'],['New Jersey','nj'],
+  ['New Mexico','nm'],['New York','ny'],['North Carolina','nc'],['North Dakota','nd'],['Ohio','oh'],
+  ['Oklahoma','ok'],['Oregon','or'],['Pennsylvania','pa'],['Rhode Island','ri'],['South Carolina','sc'],
+  ['South Dakota','sd'],['Tennessee','tn'],['Texas','tx'],['Utah','ut'],['Vermont','vt'],
+  ['Virginia','va'],['Washington','wa'],['West Virginia','wv'],['Wisconsin','wi'],['Wyoming','wy']
+];
+document.getElementById('statesGrid').innerHTML = states.map(([name, abbr]) => `
+  <a href="/safest-cities/${abbr}/" style="display:block;padding:var(--space-3);background:var(--color-bg);border:1px solid var(--color-divider);border-radius:var(--radius-md);text-decoration:none;color:var(--color-text);font-size:var(--text-sm);text-align:center;transition:all 0.15s ease;">
+    ${name}
+  </a>
+`).join('');
 
 // ===== TRENDS CHART =====
 function buildTrendsChart() {
