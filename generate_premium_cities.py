@@ -8,8 +8,8 @@ import re
 with open('data/fbi/cities_crime_2024.json') as f:
     cities = json.load(f)
 
-# Get top 50 by population
-top_50 = sorted(cities, key=lambda x: x.get('population', 0), reverse=True)[:50]
+# Get top 100 by population
+top_100 = sorted(cities, key=lambda x: x.get('population', 0), reverse=True)[:100]
 
 # State full names
 STATE_NAMES = {
@@ -249,7 +249,7 @@ TEMPLATE = '''<!DOCTYPE html>
 </html>'''
 
 # Generate pages
-for c in top_50:
+for c in top_100:
     city_name = shorten_name(c['city'])
     state = c['state'].strip()
     state_abbr = STATE_ABBREVS.get(state.upper(), state[:2].upper())
@@ -318,4 +318,4 @@ for c in top_50:
     
     print(f"✓ {city_name}, {state_abbr} ({score} - {grade})")
 
-print(f"\n✅ Generated {len(top_50)} premium city pages!")
+print(f"\n✅ Generated {len(top_100)} premium city pages!")
