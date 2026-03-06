@@ -1182,12 +1182,11 @@ async function fetchSuggestions(query) {
 }
 
 function showSuggestions(results) {
-  // Filter to only show results in covered cities
+  // Filter to only show results that have data in our grid (actual coverage check)
   const covered = results.filter(r => {
-    const city = r.address?.city || r.address?.town || r.address?.county || '';
-    const state = r.address?.state || '';
-    const full = (city + ' ' + state + ' ' + r.display_name).toLowerCase();
-    return coveredCities.some(c => full.includes(c));
+    const lat = parseFloat(r.lat);
+    const lon = parseFloat(r.lon);
+    return findHoodScore(lat, lon) !== null;
   });
   
   if (covered.length === 0) {
@@ -1196,12 +1195,13 @@ function showSuggestions(results) {
   }
   
   suggestionsDiv.innerHTML = covered.map(r => {
-    const city = r.address?.city || r.address?.town || r.address?.county || '';
+    const score = findHoodScore(parseFloat(r.lat), parseFloat(r.lon));
+    const cityName = score?.city || '';
     
     return `<div class="lookup-suggestion" data-lat="${r.lat}" data-lon="${r.lon}" data-name="${r.display_name.replace(/"/g, '&quot;')}">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span class="lookup-suggestion-text">${r.display_name.split(',').slice(0,3).join(',')}</span>
-      <span class="lookup-suggestion-type" style="color:var(--color-success);">✓ ${city || 'Covered'}</span>
+      <span class="lookup-suggestion-type" style="color:var(--color-success);">✓ ${cityName}</span>
     </div>`;
   }).join('');
   
