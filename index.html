@@ -1074,6 +1074,7 @@ table { border-collapse: collapse; width: 100%; }
 </script>
 <script src="./crime_data_embedded.js"></script>
 <script src="./cities_search.js"></script>
+<script src="./counties_search.js"></script>
 <script src="./hoodsafe_compact.js"></script>
 <script>
 // ===== ADDRESS LOOKUP =====
@@ -1351,19 +1352,26 @@ const searchDropdown = document.getElementById('searchDropdown');
 heroSearch.addEventListener('input', function() {
   const q = this.value.toLowerCase().trim();
   if (!q) { searchDropdown.classList.remove('active'); return; }
-  // CITIES_SEARCH format: [name, state, score, slug]
-  const results = CITIES_SEARCH.filter(c =>
+  // Search cities: [name, state, score, slug]
+  const cityResults = CITIES_SEARCH.filter(c =>
     c[0].toLowerCase().includes(q) || c[1].toLowerCase().includes(q) ||
     (c[0] + ', ' + c[1]).toLowerCase().includes(q)
-  ).slice(0, 10);
+  ).slice(0, 6).map(c => ({name: c[0], state: c[1], score: c[2], url: '/city/' + c[3] + '/', type: 'city'}));
+  // Search counties: [name, state, score, slug]
+  const countyResults = (typeof COUNTIES_SEARCH !== 'undefined' ? COUNTIES_SEARCH : []).filter(c =>
+    c[0].toLowerCase().includes(q) || c[1].toLowerCase().includes(q) ||
+    (c[0] + ', ' + c[1]).toLowerCase().includes(q)
+  ).slice(0, 4).map(c => ({name: c[0], state: c[1], score: c[2], url: '/county/' + c[3] + '/', type: 'county'}));
+  const results = [...cityResults, ...countyResults];
   if (!results.length) { searchDropdown.classList.remove('active'); return; }
   searchDropdown.innerHTML = results.map(c => `
-    <a class="search-item" href="/city/${c[3]}/" style="text-decoration:none;color:inherit;display:flex;">
+    <a class="search-item" href="${c.url}" style="text-decoration:none;color:inherit;display:flex;">
       <div>
-        <span class="search-item-name">${c[0]}</span>
-        <span class="search-item-state"> · ${c[1]}</span>
+        <span class="search-item-name">${c.name}</span>
+        <span class="search-item-state"> · ${c.state}</span>
+        ${c.type === 'county' ? '<span style="font-size:10px;color:var(--color-text-muted);margin-left:4px">county</span>' : ''}
       </div>
-      <span class="search-item-score" style="background:${getScoreGradient(c[2])}">${c[2]}</span>
+      <span class="search-item-score" style="background:${getScoreGradient(c.score)}">${c.score}</span>
     </a>
   `).join('');
   searchDropdown.classList.add('active');
