@@ -548,6 +548,16 @@ table { border-collapse: collapse; width: 100%; }
 }
 .btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
+#tablePagination button {
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-md);
+  font-size: var(--text-sm); font-weight: 500; cursor: pointer;
+  border: 1px solid var(--color-border); background: var(--color-surface);
+  color: var(--color-text); transition: all var(--transition-interactive);
+}
+#tablePagination button:hover:not(:disabled) { border-color: var(--color-primary); color: var(--color-primary); }
+#tablePagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+#tablePagination span { color: var(--color-text-muted); }
+
 /* ===== COMPARISON MODE ===== */
 .comparison-overlay {
   position: fixed; inset: 0; background: oklch(0.1 0 0 / 0.6);
@@ -913,17 +923,14 @@ table { border-collapse: collapse; width: 100%; }
     </div>
     <div class="table-controls">
       <input type="text" class="table-search" id="tableSearch" placeholder="Filter cities...">
-      <label style="margin-left:auto;display:flex;align-items:center;gap:0.5rem;font-size:var(--text-xs);color:var(--color-text-muted);cursor:pointer">
-        <input type="checkbox" id="showAllCities" style="cursor:pointer"> Show all 9K cities
-      </label>
     </div>
     <div class="table-wrap">
       <div class="table-scroll">
         <table class="data-table">
           <thead>
             <tr>
-              <th data-sort="rank" class="sorted">Rank <span class="sort-arrow">▲</span></th>
-              <th data-sort="city">City <span class="sort-arrow">▲</span></th>
+              <th>#</th>
+              <th data-sort="city" class="sorted">City <span class="sort-arrow">▲</span></th>
               <th data-sort="state">State <span class="sort-arrow">▲</span></th>
               <th data-sort="safety_score">Safety Score <span class="sort-arrow">▲</span></th>
               <th data-sort="violent">Violent Crime <span class="sort-arrow">▲</span></th>
@@ -935,6 +942,7 @@ table { border-collapse: collapse; width: 100%; }
         </table>
       </div>
     </div>
+    <div id="tablePagination" style="display:flex;justify-content:center;align-items:center;gap:1rem;padding:1rem;font-size:var(--text-sm)"></div>
   </div>
 </section>
 
@@ -1049,7 +1057,7 @@ table { border-collapse: collapse; width: 100%; }
 // ===== EMBEDDED DATA =====
 </script>
 <script src="./crime_data_embedded.js"></script>
-<script src="./cities_search.js"></script>
+<script src="./cities_full.js"></script>
 <script src="./counties_search.js"></script>
 <script src="./zips_search.js"></script>
 <script src="./hoodsafe_compact.js"></script>
@@ -1353,12 +1361,12 @@ function formatPop(n) {
 const quickCityNames = ['New York', 'Chicago', 'Los Angeles', 'Houston', 'Phoenix', 'San Francisco', 'Miami', 'Seattle'];
 const quickCitiesEl = document.getElementById('quickCities');
 quickCityNames.forEach(name => {
-  // Find in CRIME_DATA first (top 50 with slugs), fallback to CITIES_SEARCH
+  // Find in CRIME_DATA first (top 50 with slugs), fallback to CITIES_FULL
   let city = CRIME_DATA.find(c => c.city === name);
   let slug = city ? city.slug : null;
   if (!slug) {
-    // Search in CITIES_SEARCH: [name, state, score, slug]
-    const found = CITIES_SEARCH.find(c => c[0] === name);
+    // Search in CITIES_FULL: [name, state, score, slug, violentRate, propertyRate, population]
+    const found = CITIES_FULL.find(c => c[0] === name);
     if (found) slug = found[3];
   }
   if (slug) {
@@ -1386,8 +1394,8 @@ heroSearch.addEventListener('input', function() {
   const zipData = zipExists ? ZIPS_SEARCH.find(z => z[0] === q) : null;
   const zipResult = zipExists ? [{name: 'ZIP Code ' + q, state: zipData ? zipData[1] + ', ' + zipData[2] : 'View Safety Score', score: '→', url: '/zip/' + q + '/', type: 'zip'}] : [];
   
-  // Search cities: [name, state, score, slug]
-  const cityResults = CITIES_SEARCH.filter(c =>
+  // Search cities: [name, state, score, slug, violentRate, propertyRate, population]
+  const cityResults = CITIES_FULL.filter(c =>
     c[0].toLowerCase().includes(q) || c[1].toLowerCase().includes(q) ||
     (c[0] + ', ' + c[1]).toLowerCase().includes(q)
   ).slice(0, isZip ? 3 : 6).map(c => ({name: c[0], state: c[1], score: c[2], url: '/city/' + c[3] + '/', type: 'city'}));
@@ -1419,7 +1427,7 @@ heroSearch.addEventListener('focus', () => { if (heroSearch.value.trim()) heroSe
 const avgScore = (CRIME_DATA.reduce((s, c) => s + c.safety_score, 0) / CRIME_DATA.length).toFixed(1);
 const safestCity = CRIME_DATA.reduce((a, b) => a.safety_score > b.safety_score ? a : b);
 const dangerousCity = CRIME_DATA.reduce((a, b) => a.safety_score < b.safety_score ? a : b);
-const totalSearchable = typeof CITIES_SEARCH !== 'undefined' ? CITIES_SEARCH.length : 50;
+const totalSearchable = typeof CITIES_FULL !== 'undefined' ? CITIES_FULL.length : 50;
 const totalZips = typeof ZIPS_SEARCH !== 'undefined' ? ZIPS_SEARCH.length : 0;
 
 document.getElementById('kpiGrid').innerHTML = `
@@ -1530,75 +1538,84 @@ document.querySelectorAll('[data-map-filter]').forEach(btn => {
 setTimeout(initMap, 100);
 
 // ===== RANKINGS TABLE =====
-let sortKey = 'rank';
+let sortKey = 'city';
 let sortAsc = true;
 let tableSearchQuery = '';
+let currentPage = 0;
+const PAGE_SIZE = 50;
+
+// Convert CITIES_FULL to objects: [name, state, score, slug, violentRate, propertyRate, population]
+const ALL_CITIES = typeof CITIES_FULL !== 'undefined' ? CITIES_FULL.map(c => ({
+  city: c[0],
+  state: c[1],
+  safety_score: c[2],
+  slug: c[3],
+  violent_rate: c[4],
+  property_rate: c[5],
+  population: c[6]
+})) : CRIME_DATA;
 
 function renderTable() {
-  const showAll = document.getElementById('showAllCities')?.checked;
-  let filtered;
-  
-  if (showAll && typeof CITIES_SEARCH !== 'undefined') {
-    // Use all 9K cities from CITIES_SEARCH (format: [name, state, score, slug])
-    filtered = CITIES_SEARCH.map((c, i) => ({
-      rank: i + 1,
-      city: c[0],
-      state: c[1],
-      safety_score: c[2],
-      slug: c[3],
-      violent_rate: '-',
-      property_rate: '-',
-      population: '-'
-    }));
-  } else {
-    filtered = [...CRIME_DATA];
-  }
+  let filtered = [...ALL_CITIES];
   
   if (tableSearchQuery) {
     const q = tableSearchQuery.toLowerCase();
     filtered = filtered.filter(c => c.city.toLowerCase().includes(q) || c.state.toLowerCase().includes(q));
+    currentPage = 0; // Reset to first page on search
   }
 
   // Sort
   filtered.sort((a, b) => {
     let va, vb;
     switch (sortKey) {
-      case 'rank': va = a.rank; vb = b.rank; break;
       case 'city': va = a.city; vb = b.city; break;
       case 'state': va = a.state; vb = b.state; break;
       case 'safety_score': va = a.safety_score; vb = b.safety_score; break;
-      case 'violent': va = a.violent_rate === '-' ? 9999 : a.violent_rate; vb = b.violent_rate === '-' ? 9999 : b.violent_rate; break;
-      case 'property': va = a.property_rate === '-' ? 9999 : a.property_rate; vb = b.property_rate === '-' ? 9999 : b.property_rate; break;
-      case 'population': va = a.population === '-' ? 0 : a.population; vb = b.population === '-' ? 0 : b.population; break;
-      default: va = a.rank; vb = b.rank;
+      case 'violent': va = a.violent_rate; vb = b.violent_rate; break;
+      case 'property': va = a.property_rate; vb = b.property_rate; break;
+      case 'population': va = a.population; vb = b.population; break;
+      default: va = a.city; vb = b.city;
     }
     if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
     return sortAsc ? va - vb : vb - va;
   });
   
-  // Limit to 500 rows for performance when showing all
-  const displayLimit = showAll ? 500 : filtered.length;
-  const limited = filtered.slice(0, displayLimit);
+  // Paginate
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const start = currentPage * PAGE_SIZE;
+  const pageData = filtered.slice(start, start + PAGE_SIZE);
 
   const tbody = document.getElementById('tableBody');
-  const hideCols = showAll ? 'display:none' : '';
-  tbody.innerHTML = limited.map(c => `
+  tbody.innerHTML = pageData.map((c, i) => `
     <tr onclick="window.location.href='/city/${c.slug}/'">
-      <td style="font-weight:600;color:var(--color-text-muted)">${c.rank}</td>
+      <td style="font-weight:600;color:var(--color-text-muted)">${start + i + 1}</td>
       <td style="font-weight:600">${c.city}</td>
       <td style="color:var(--color-text-muted)">${c.state}</td>
       <td><span class="score-pill" style="background:${getScoreGradient(c.safety_score)}">${c.safety_score}</span></td>
-      <td style="${hideCols}">${c.violent_rate === '-' ? '-' : formatNumber(c.violent_rate)}</td>
-      <td style="${hideCols}">${c.property_rate === '-' ? '-' : formatNumber(c.property_rate)}</td>
-      <td style="${hideCols}">${c.population === '-' ? '-' : formatNumber(c.population)}</td>
+      <td>${formatNumber(c.violent_rate)}</td>
+      <td>${formatNumber(c.property_rate)}</td>
+      <td>${formatNumber(c.population)}</td>
     </tr>`
   ).join('');
   
-  // Show count info
-  if (showAll && filtered.length > displayLimit) {
-    tbody.innerHTML += `<tr><td colspan="7" style="text-align:center;color:var(--color-text-muted);font-size:var(--text-xs);padding:1rem">Showing ${displayLimit} of ${filtered.length.toLocaleString()} cities. Use search to filter.</td></tr>`;
-  }
+  // Update pagination controls
+  updatePagination(filtered.length, totalPages);
 }
+
+function updatePagination(total, totalPages) {
+  const pag = document.getElementById('tablePagination');
+  if (!pag) return;
+  const start = currentPage * PAGE_SIZE + 1;
+  const end = Math.min((currentPage + 1) * PAGE_SIZE, total);
+  pag.innerHTML = `
+    <button onclick="prevPage()" ${currentPage === 0 ? 'disabled' : ''}>← Prev</button>
+    <span>Showing ${start.toLocaleString()}–${end.toLocaleString()} of ${total.toLocaleString()} cities</span>
+    <button onclick="nextPage()" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>Next →</button>
+  `;
+}
+
+function prevPage() { if (currentPage > 0) { currentPage--; renderTable(); } }
+function nextPage() { currentPage++; renderTable(); }
 
 // Sort handlers
 document.querySelectorAll('.data-table th[data-sort]').forEach(th => {
@@ -1618,17 +1635,7 @@ document.getElementById('tableSearch').addEventListener('input', function() {
   renderTable();
 });
 
-document.getElementById('showAllCities')?.addEventListener('change', function() {
-  // Reset sort to score when switching modes
-  sortKey = 'safety_score';
-  sortAsc = false;
-  // Hide/show crime columns based on mode
-  const showAll = this.checked;
-  document.querySelectorAll('.data-table th:nth-child(5), .data-table th:nth-child(6), .data-table th:nth-child(7)').forEach(th => {
-    th.style.display = showAll ? 'none' : '';
-  });
-  renderTable();
-});
+
 
 renderTable();
 
