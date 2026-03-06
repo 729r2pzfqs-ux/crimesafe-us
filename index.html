@@ -1149,7 +1149,7 @@ const addressInput = document.getElementById('addressInput');
 const suggestionsDiv = document.getElementById('addressSuggestions');
 
 // Our covered cities for filtering/highlighting
-const coveredCities = ['new york','nyc','chicago','los angeles','seattle','dallas','philadelphia','detroit','minneapolis','charlotte','san francisco','new orleans','buffalo','baton rouge','cincinnati','oakland','phoenix'];
+const coveredCities = ['new york','nyc','manhattan','brooklyn','bronx','queens','chicago','los angeles','seattle','dallas','philadelphia','detroit','minneapolis','charlotte','san francisco','new orleans','buffalo','baton rouge','cincinnati','oakland','phoenix','kansas city'];
 
 function debounce(fn, delay) {
   return function(...args) {
@@ -1182,15 +1182,26 @@ async function fetchSuggestions(query) {
 }
 
 function showSuggestions(results) {
-  suggestionsDiv.innerHTML = results.map(r => {
+  // Filter to only show results in covered cities
+  const covered = results.filter(r => {
     const city = r.address?.city || r.address?.town || r.address?.county || '';
-    const isCovered = coveredCities.some(c => city.toLowerCase().includes(c) || r.display_name.toLowerCase().includes(c));
-    const type = r.type === 'house' ? 'Address' : (r.type === 'city' ? 'City' : r.type);
+    const state = r.address?.state || '';
+    const full = (city + ' ' + state + ' ' + r.display_name).toLowerCase();
+    return coveredCities.some(c => full.includes(c));
+  });
+  
+  if (covered.length === 0) {
+    hideSuggestions();
+    return;
+  }
+  
+  suggestionsDiv.innerHTML = covered.map(r => {
+    const city = r.address?.city || r.address?.town || r.address?.county || '';
     
     return `<div class="lookup-suggestion" data-lat="${r.lat}" data-lon="${r.lon}" data-name="${r.display_name.replace(/"/g, '&quot;')}">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span class="lookup-suggestion-text">${r.display_name.split(',').slice(0,3).join(',')}</span>
-      ${isCovered ? '<span class="lookup-suggestion-type" style="color:var(--color-success);">✓ Covered</span>' : '<span class="lookup-suggestion-type">'+type+'</span>'}
+      <span class="lookup-suggestion-type" style="color:var(--color-success);">✓ ${city || 'Covered'}</span>
     </div>`;
   }).join('');
   
