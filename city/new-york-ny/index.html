@@ -1,198 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New York City, NY Crime Rate & Safety Score | HoodSafe</title>
-    <meta name="description" content="New York City crime rate and safety statistics. Safety Score: 81/100 (A). Violent crime rate: 126.0 per 100k. Updated 2025.">
-    <link rel="canonical" href="https://hoodsafe.org/city/new-york-ny">
-    
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="48x48">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="New York City Crime Rate - Safety Score 81/100">
-    <meta property="og:description" content="Is New York City safe? Crime statistics and safety analysis.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hoodsafe.org/city/new-york-ny">
-    
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "New York City, NY Crime Rate & Safety Score",
-        "description": "Crime statistics and safety analysis for New York City, New York",
-        "author": {"@type": "Organization", "name": "HoodSafe"},
-        "dateModified": "2026-03-06"
-    }
-    </script>
-    
-    <style>
-        :root {
-            --primary: #0d9488;
-            --danger: #dc2626;
-            --warning: #f59e0b;
-            --success: #16a34a;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #1e293b;
-            --muted: #64748b;
-            --border: #e2e8f0;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 1rem; }
-        header { background: var(--card); border-bottom: 1px solid var(--border); padding: 1rem 0; }
-        .header-inner { display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-weight: 700; font-size: 1.25rem; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
-        .breadcrumb { font-size: 0.875rem; color: var(--muted); margin-top: 1rem; }
-        .breadcrumb a { color: var(--primary); text-decoration: none; }
-        
-        .hero { background: var(--card); padding: 2rem; border-radius: 1rem; margin: 1.5rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .hero h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
-        .hero-meta { color: var(--muted); margin-bottom: 1.5rem; }
-        
-        .score-card { display: flex; gap: 2rem; align-items: center; }
-        .score-circle { width: 120px; height: 120px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-weight: 700; }
-        .score-num { font-size: 2.5rem; line-height: 1; }
-        .score-label { font-size: 0.75rem; opacity: 0.9; }
-        .score-details { flex: 1; }
-        .grade { font-size: 3rem; font-weight: 700; }
-        .grade-text { color: var(--muted); }
-        
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-        .stat-card { background: var(--card); padding: 1.25rem; border-radius: 0.75rem; border: 1px solid var(--border); }
-        .stat-value { font-size: 1.5rem; font-weight: 700; }
-        .stat-label { font-size: 0.875rem; color: var(--muted); }
-        .stat-rate { font-size: 0.75rem; color: var(--muted); }
-        
-        .section { background: var(--card); padding: 1.5rem; border-radius: 1rem; margin: 1.5rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .section h2 { font-size: 1.25rem; margin-bottom: 1rem; }
-        
-        .faq { margin-top: 1rem; }
-        .faq-item { border-bottom: 1px solid var(--border); padding: 1rem 0; }
-        .faq-q { font-weight: 600; margin-bottom: 0.5rem; }
-        .faq-a { color: var(--muted); }
-        
-        .cta { background: linear-gradient(135deg, var(--primary), #0f766e); color: white; text-align: center; padding: 2rem; border-radius: 1rem; margin: 2rem 0; }
-        .cta h3 { margin-bottom: 0.5rem; }
-        .cta a { display: inline-block; background: white; color: var(--primary); padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; margin-top: 1rem; }
-        
-        footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.875rem; }
-        footer a { color: var(--primary); }
-        
-        @media (max-width: 600px) {
-            .score-card { flex-direction: column; text-align: center; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New York, NY Crime Rate & Safety Score | HoodSafe</title>
+<meta name="description" content="New York, NY crime statistics. Safety Score: 20/100 (F). Violent crime: 671.0/100k. Property crime: 2368.3/100k. 2024 FBI data.">
+<link rel="canonical" href="https://hoodsafe.org/city/new-york-ny">
+<link rel="icon" href="/favicon.ico"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root{--primary:#0d9488;--danger:#dc2626;--warning:#f59e0b;--success:#16a34a;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{max-width:1000px;margin:0 auto;padding:1rem}header{background:var(--card);border-bottom:1px solid var(--border);padding:1rem 0}
+.logo{font-weight:700;font-size:1.25rem;color:var(--primary);text-decoration:none}.hero{background:var(--card);padding:2rem;border-radius:1rem;margin:1.5rem 0}
+.hero h1{font-size:1.5rem}.score-card{display:flex;gap:2rem;align-items:center;margin-top:1.5rem;flex-wrap:wrap}
+.score-circle{width:100px;height:100px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.score-num{font-size:2rem}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0}
+.stat-card{background:var(--card);padding:1rem;border-radius:0.75rem;border:1px solid var(--border)}.stat-value{font-size:1.25rem;font-weight:700}
+.stat-label{font-size:0.875rem;color:var(--muted)}.section{background:var(--card);padding:1.5rem;border-radius:1rem;margin:1.5rem 0}
+.section h2{font-size:1.125rem;margin-bottom:1rem}footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.875rem}
+</style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-inner">
-                <a href="/" class="logo">
-                    <svg width="28" height="28" viewBox="0 0 512 512" fill="none">
-                        <path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" fill="currentColor" opacity="0.15"/>
-                        <path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" fill="none" stroke="currentColor" stroke-width="20" stroke-linejoin="round"/>
-                        <path d="M256 196l-60 48v64h40v-36h40v36h40v-64l-60-48z" fill="currentColor"/>
-                    </svg>
-                    HoodSafe
-                </a>
-                <nav>
-                    <a href="/#rankings" style="color: var(--muted); text-decoration: none;">Rankings</a>
-                </nav>
-            </div>
-            <div class="breadcrumb">
-                <a href="/">Home</a> → <a href="/#rankings">Cities</a> → New York City, NY
-            </div>
-        </div>
-    </header>
-    
-    <main class="container">
-        <div class="hero">
-            <h1>New York City, NY Crime Rate</h1>
-            <p class="hero-meta">Population: 8,336,817 • Data updated 2025</p>
-            
-            <div class="score-card">
-                <div class="score-circle" style="background: var(--success);">
-                    <span class="score-num">81</span>
-                    <span class="score-label">Safety Score</span>
-                </div>
-                <div class="score-details">
-                    <div class="grade" style="color: var(--success);">A</div>
-                    <div class="grade-text">
-                        Above Average Safety
-                    </div>
-                    <div style="margin-top: 0.5rem; color: var(--muted);">
-                        Trend: → Stable
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--danger);">10,506</div>
-                <div class="stat-label">Violent Crimes</div>
-                <div class="stat-rate">126.0 per 100k residents</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" style="color: var(--warning);">20,825</div>
-                <div class="stat-label">Property Crimes</div>
-                <div class="stat-rate">249.8 per 100k residents</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">50,000</div>
-                <div class="stat-label">Total Incidents</div>
-                <div class="stat-rate">599.7 per 100k residents</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">81/100</div>
-                <div class="stat-label">Safety Score</div>
-                <div class="stat-rate">Grade: A</div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>Is New York City Safe?</h2>
-            <p>New York City has a safety score of <strong>81/100</strong>, which is above the national average. 
-            The city reported 10,506 violent crimes and 20,825 property crimes in 2025.</p>
-            <p style="margin-top: 1rem;">With a violent crime rate of 126.0 per 100,000 residents, New York City is 
-            safer than the national average of 380 per 100k.</p>
-        </div>
-        
-        <div class="section">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq">
-                <div class="faq-item">
-                    <div class="faq-q">What is New York City's crime rate?</div>
-                    <div class="faq-a">New York City has a total crime rate of 599.7 per 100,000 residents, with 126.0 violent crimes and 249.8 property crimes per 100k.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">Is New York City safe to live in?</div>
-                    <div class="faq-a">New York City has a safety score of 81/100 (Grade A), indicating above average safety compared to other US cities.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">How does New York City's crime rate compare to the national average?</div>
-                    <div class="faq-a">The violent crime rate is lower than the US average of 380 per 100k. Property crime is also below the national average of 2,000 per 100k.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="cta">
-            <h3>Check Any Address</h3>
-            <p>Get detailed safety scores for specific neighborhoods</p>
-            <a href="/#lookup-section">Check Address Safety →</a>
-        </div>
-    </main>
-    
-    <footer>
-        <p>© 2026 HoodSafe.org • <a href="/">Home</a> • <a href="/#rankings">City Rankings</a></p>
-        <p style="margin-top: 0.5rem;">Data sources: Local police departments, FBI UCR</p>
-    </footer>
+<header><div class="container"><a href="/" class="logo">🛡️ HoodSafe</a></div></header>
+<main class="container">
+<div class="hero">
+<h1>New York, NY Crime Rate</h1>
+<p style="color:var(--muted)">Population: 8,299,271 • 2024 FBI Data</p>
+<div class="score-card">
+<div class="score-circle" style="background:var(--danger)"><span class="score-num">20</span><small>Score</small></div>
+<div><div style="font-size:2.5rem;font-weight:700;color:var(--danger)">F</div><div style="color:var(--muted)">Below Average Safety</div></div>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-value" style="color:var(--danger)">55,690</div><div class="stat-label">Violent Crimes</div><div style="font-size:0.75rem;color:var(--muted)">671.0/100k</div></div>
+<div class="stat-card"><div class="stat-value" style="color:var(--warning)">196,549</div><div class="stat-label">Property Crimes</div><div style="font-size:0.75rem;color:var(--muted)">2368.3/100k</div></div>
+<div class="stat-card"><div class="stat-value">325</div><div class="stat-label">Murders</div></div>
+<div class="stat-card"><div class="stat-value">15559</div><div class="stat-label">Robberies</div></div>
+<div class="stat-card"><div class="stat-value">37863</div><div class="stat-label">Assaults</div></div>
+<div class="stat-card"><div class="stat-value">12842</div><div class="stat-label">Burglaries</div></div>
+<div class="stat-card"><div class="stat-value">167,230</div><div class="stat-label">Thefts</div></div>
+<div class="stat-card"><div class="stat-value">16477</div><div class="stat-label">Auto Thefts</div></div>
+</div>
+<div class="section">
+<h2>Is New York Safe?</h2>
+<p>New York, NY has a safety score of <strong>20/100 (F)</strong>. The violent crime rate is 671.0 per 100,000 residents (above the national average of 380). Property crime rate is 2368.3 per 100,000 (above average).</p>
+</div>
+</main>
+<footer>© 2026 HoodSafe.org • <a href="/" style="color:var(--primary)">Home</a> • Data: FBI UCR 2024</footer>
 </body>
 </html>
