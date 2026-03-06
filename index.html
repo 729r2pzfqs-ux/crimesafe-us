@@ -1396,7 +1396,10 @@ function initMap() {
   mapInstance = L.map('mapContainer', {
     scrollWheelZoom: false,
     zoomControl: true
-  }).setView([39.5, -98.5], 4);
+  });
+  // Zoom out more on mobile to show full US
+  const isMobile = window.innerWidth < 768;
+  mapInstance.setView([39.5, -98.5], isMobile ? 3 : 4);
   initMapTiles();
   addCityMarkers();
   // Fix Leaflet sizing issue
