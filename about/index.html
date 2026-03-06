@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About & Methodology | HoodSafe - How We Calculate Safety Scores</title>
-<meta name="description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data from FBI UCR crime statistics covering 9,000+ cities and 2,300 counties.">
+<meta name="description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data from FBI UCR crime statistics covering 9,000+ cities, 2,300 counties, and 10,000+ ZIP codes.">
 <link rel="canonical" href="https://hoodsafe.org/about/">
 
 <!-- Open Graph -->
@@ -129,7 +129,7 @@ table { border-collapse: collapse; width: 100%; }
 <main class="page-content">
   <h1>About HoodSafe & Methodology</h1>
   
-  <p>HoodSafe provides neighborhood-level crime safety data for over 9,000 US cities and 2,300 counties. Our goal is to help residents, homebuyers, and travelers make informed decisions about where to live and visit.</p>
+  <p>HoodSafe provides comprehensive crime safety data for over <strong>9,000 US cities</strong>, <strong>2,300 counties</strong>, and <strong>10,000+ ZIP codes</strong>. With <strong>125,000+ city comparisons</strong>, we help residents, homebuyers, and travelers make informed decisions about where to live and visit.</p>
 
   <h2>Data Sources</h2>
   
@@ -150,17 +150,29 @@ table { border-collapse: collapse; width: 100%; }
     <tr><td>Baltimore</td><td>data.baltimorecity.gov</td><td>Real neighborhood names</td></tr>
   </table>
 
-  <h3>FBI UCR Calibrated Estimates <span class="badge">40 Cities</span></h3>
-  <p>For the remaining 40 cities, we use FBI Uniform Crime Reporting (UCR) data calibrated with local population and demographic factors to estimate neighborhood-level crime rates.</p>
+  <h3>FBI UCR Data <span class="badge">9,000+ Cities</span></h3>
+  <p>All city safety scores are calculated using official FBI Uniform Crime Reporting (UCR) data, which tracks violent and property crimes across the nation.</p>
+  
+  <h3>ZIP Code Coverage <span class="badge">10,000+ ZIPs</span></h3>
+  <p>ZIP codes are mapped to their primary city and display the city's safety score. This covers ~30% of US residential ZIP codes.</p>
 
   <h2>Safety Score Calculation</h2>
-  <p>Our safety scores (1-100) are calculated using:</p>
+  <p>Our safety scores (1-100) are calculated using a log-scale formula:</p>
   <ul>
-    <li><strong>Violent crime rate</strong> — homicide, assault, robbery, rape (weighted 60%)</li>
-    <li><strong>Property crime rate</strong> — burglary, theft, vehicle theft (weighted 30%)</li>
-    <li><strong>Trend analysis</strong> — year-over-year changes (weighted 10%)</li>
+    <li><strong>Violent crime rate</strong> — murder, rape, robbery, aggravated assault (weighted 50%)</li>
+    <li><strong>Property crime rate</strong> — burglary, larceny-theft, motor vehicle theft (weighted 30%)</li>
   </ul>
-  <p>Scores are normalized against national averages. A score of 50 represents the national median; higher is safer.</p>
+  <p>Formula: <code>100 - (violent_rate/380×50) - (property_rate/2000×30)</code>, clamped between 10-95.</p>
+  <p>Scores are normalized against national averages. Higher scores = safer areas.</p>
+  
+  <h3>Letter Grades</h3>
+  <ul>
+    <li><strong>A (80-100):</strong> Very Safe — well below national crime averages</li>
+    <li><strong>B (70-79):</strong> Safe — below average crime rates</li>
+    <li><strong>C (60-69):</strong> Moderate — near national average</li>
+    <li><strong>D (50-59):</strong> Below Average — above average crime</li>
+    <li><strong>F (below 50):</strong> High Crime — significantly above average</li>
+  </ul>
 
   <h2>Update Frequency</h2>
   <ul>
