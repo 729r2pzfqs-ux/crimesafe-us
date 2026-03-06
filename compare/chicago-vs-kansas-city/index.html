@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chicago vs Kansas City Crime Comparison | HoodSafe</title>
+<meta name="description" content="Compare crime rates: Chicago, IL vs Kansas City, MO. Which city is safer? Safety scores, violent crime, property crime compared.">
+<link rel="canonical" href="https://hoodsafe.org/compare/chicago-vs-kansas-city">
+<link rel="icon" href="/favicon.ico">
+<style>
+:root{--primary:#0d9488;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:1rem}header{background:var(--card);border-bottom:1px solid var(--border);padding:1rem 0}
+.logo{font-weight:700;font-size:1.25rem;color:var(--primary);text-decoration:none}
+.hero{background:linear-gradient(135deg,var(--primary),#0f766e);color:#fff;padding:2rem;border-radius:1rem;margin:1.5rem 0;text-align:center}
+.hero h1{font-size:1.5rem}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;margin:1.5rem 0}
+.city-card{background:var(--card);padding:1.5rem;border-radius:1rem;text-align:center}
+.city-name{font-size:1.25rem;font-weight:700;margin-bottom:0.5rem}
+.city-state{color:var(--muted);font-size:0.875rem}
+.score{font-size:3rem;font-weight:700;margin:1rem 0}
+.grade{font-size:1.5rem;font-weight:700}
+.vs-divider{display:flex;align-items:center;font-size:1.5rem;font-weight:700;color:var(--muted)}
+.compare-table{background:var(--card);border-radius:1rem;overflow:hidden;margin:1.5rem 0}
+.compare-row{display:grid;grid-template-columns:1fr 2fr 1fr;padding:1rem;border-bottom:1px solid var(--border);align-items:center}
+.compare-row:last-child{border-bottom:none}
+.compare-label{text-align:center;font-weight:600;color:var(--muted)}
+.compare-val{text-align:center;font-weight:700}
+.winner{background:var(--card);padding:1.5rem;border-radius:1rem;text-align:center;margin:1.5rem 0}
+.winner h2{color:var(--primary)}
+a{color:var(--primary)}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.875rem}
+</style>
+</head>
+<body>
+<header><div class="container"><a href="/" class="logo">🛡️ HoodSafe</a></div></header>
+<main class="container">
+<div class="hero">
+<h1>Chicago vs Kansas City</h1>
+<p>Crime Rate Comparison • 2024 FBI Data</p>
+</div>
+
+<div class="vs-grid">
+<div class="city-card">
+<div class="city-name"><a href="/city/chicago-il/">Chicago</a></div>
+<div class="city-state">IL • Pop: 2,638,698</div>
+<div class="score" style="color:#f59e0b">60</div>
+<div class="grade" style="color:#f59e0b">C</div>
+</div>
+<div class="vs-divider">VS</div>
+<div class="city-card">
+<div class="city-name"><a href="/city/kansas-city-mo/">Kansas City</a></div>
+<div class="city-state">MO • Pop: 511,535</div>
+<div class="score" style="color:#dc2626">48</div>
+<div class="grade" style="color:#dc2626">D</div>
+</div>
+</div>
+
+<div class="compare-table">
+<div class="compare-row" style="background:var(--bg)">
+<div class="compare-val">Chicago</div>
+<div class="compare-label">Metric</div>
+<div class="compare-val">Kansas City</div>
+</div>
+<div class="compare-row">
+<div class="compare-val">🟢 60</div>
+<div class="compare-label">Safety Score</div>
+<div class="compare-val">🔴 48</div>
+</div>
+<div class="compare-row">
+<div class="compare-val">🟢 539.8</div>
+<div class="compare-label">Violent Crime /100k</div>
+<div class="compare-val">🔴 1547.1</div>
+</div>
+<div class="compare-row">
+<div class="compare-val">🟢 3472.4</div>
+<div class="compare-label">Property Crime /100k</div>
+<div class="compare-val">🔴 4676.1</div>
+</div>
+<div class="compare-row">
+<div class="compare-val">14,245</div>
+<div class="compare-label">Total Violent Crimes</div>
+<div class="compare-val">7,914</div>
+</div>
+<div class="compare-row">
+<div class="compare-val">91,626</div>
+<div class="compare-label">Total Property Crimes</div>
+<div class="compare-val">23,920</div>
+</div>
+</div>
+
+<div class="winner">
+<h2>🏆 Chicago is Safer</h2>
+<p>Chicago has a safety score 12 points higher.</p>
+</div>
+</main>
+<footer>© 2026 HoodSafe.org • <a href="/">Home</a> • <a href="/compare/">More Comparisons</a></footer>
+</body>
+</html>
