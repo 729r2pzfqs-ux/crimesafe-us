@@ -1541,22 +1541,18 @@ renderTable();
 
 // ===== STATES GRID =====
 const states = [
-  ['Alabama','al'],['Alaska','ak'],['Arizona','az'],['Arkansas','ar'],['California','ca'],
-  ['Colorado','co'],['Connecticut','ct'],['Delaware','de'],['Florida','fl'],['Georgia','ga'],
-  ['Hawaii','hi'],['Idaho','id'],['Illinois','il'],['Indiana','in'],['Iowa','ia'],
-  ['Kansas','ks'],['Kentucky','ky'],['Louisiana','la'],['Maine','me'],['Maryland','md'],
-  ['Massachusetts','ma'],['Michigan','mi'],['Minnesota','mn'],['Mississippi','ms'],['Missouri','mo'],
-  ['Montana','mt'],['Nebraska','ne'],['Nevada','nv'],['New Hampshire','nh'],['New Jersey','nj'],
-  ['New Mexico','nm'],['New York','ny'],['North Carolina','nc'],['North Dakota','nd'],['Ohio','oh'],
-  ['Oklahoma','ok'],['Oregon','or'],['Pennsylvania','pa'],['Rhode Island','ri'],['South Carolina','sc'],
-  ['South Dakota','sd'],['Tennessee','tn'],['Texas','tx'],['Utah','ut'],['Vermont','vt'],
-  ['Virginia','va'],['Washington','wa'],['West Virginia','wv'],['Wisconsin','wi'],['Wyoming','wy']
+  'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
+  'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky',
+  'Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri',
+  'Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York',
+  'North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island',
+  'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
+  'West Virginia','Wisconsin','Wyoming'
 ];
-document.getElementById('statesGrid').innerHTML = states.map(([name, abbr]) => `
-  <a href="/safest-cities/${abbr}/" style="display:block;padding:var(--space-3);background:var(--color-bg);border:1px solid var(--color-divider);border-radius:var(--radius-md);text-decoration:none;color:var(--color-text);font-size:var(--text-sm);text-align:center;transition:all 0.15s ease;">
-    ${name}
-  </a>
-`).join('');
+document.getElementById('statesGrid').innerHTML = states.map(name => {
+  const slug = name.toLowerCase().replace(/\s+/g, '-');
+  return `<a href="/safest-cities/${slug}/" style="display:block;padding:var(--space-3);background:var(--color-bg);border:1px solid var(--color-divider);border-radius:var(--radius-md);text-decoration:none;color:var(--color-text);font-size:var(--text-sm);text-align:center;transition:all 0.15s ease;">${name}</a>`;
+}).join('');
 
 // ===== TRENDS CHART =====
 function buildTrendsChart() {
