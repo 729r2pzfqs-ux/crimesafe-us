@@ -141,8 +141,38 @@ print("\nTop 5 safest (table):")
 for c in table_data[:5]:
     print(f"  {c['rank']}. {c['city']}, {c['state']}: {c['safety_score']} ({c['grade']})")
 
+# ========== 3. ALL COUNTIES FOR SEARCH (counties_search.js) ==========
+try:
+    with open('data/fbi/counties_with_population.json') as f:
+        # File is one big array without opening bracket
+        content = f.read().strip()
+        if not content.startswith('['):
+            content = '[' + content + ']'
+        counties = json.loads(content)
+    
+    counties_search = []
+    for c in counties:
+        county_name = c.get('county_clean', c.get('county', ''))
+        state_abbrev = c.get('state_abbr', '')
+        score = c.get('safety_score', 50)
+        slug = slugify(county_name) + '-county-' + state_abbrev.lower()
+        counties_search.append([
+            county_name + ' County',
+            state_abbrev,
+            score,
+            slug
+        ])
+    
+    with open('counties_search.js', 'w') as f:
+        f.write(f"const COUNTIES_SEARCH = {json.dumps(counties_search)};")
+    
+    print(f"Generated counties_search.js: {len(counties_search)} counties for search")
+except Exception as e:
+    print(f"Counties search skipped: {e}")
+
 print("\nFile sizes:")
 import os
-for f in ['crime_data_embedded.js', 'cities_search.js']:
-    size = os.path.getsize(f) / 1024
-    print(f"  {f}: {size:.1f} KB")
+for f in ['crime_data_embedded.js', 'cities_search.js', 'counties_search.js']:
+    if os.path.exists(f):
+        size = os.path.getsize(f) / 1024
+        print(f"  {f}: {size:.1f} KB")
