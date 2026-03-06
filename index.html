@@ -1303,12 +1303,20 @@ function formatPop(n) {
 const quickCityNames = ['New York', 'Chicago', 'Los Angeles', 'Houston', 'Phoenix', 'San Francisco', 'Miami', 'Seattle'];
 const quickCitiesEl = document.getElementById('quickCities');
 quickCityNames.forEach(name => {
-  const city = CRIME_DATA.find(c => c.city === name);
-  if (city) {
-    const chip = document.createElement('button');
+  // Find in CRIME_DATA first (top 50 with slugs), fallback to CITIES_SEARCH
+  let city = CRIME_DATA.find(c => c.city === name);
+  let slug = city ? city.slug : null;
+  if (!slug) {
+    // Search in CITIES_SEARCH: [name, state, score, slug]
+    const found = CITIES_SEARCH.find(c => c[0] === name);
+    if (found) slug = found[3];
+  }
+  if (slug) {
+    const chip = document.createElement('a');
     chip.className = 'city-chip';
-    chip.textContent = city.city;
-    chip.onclick = () => openCityModal(city);
+    chip.textContent = name;
+    chip.href = '/city/' + slug + '/';
+    chip.style.textDecoration = 'none';
     quickCitiesEl.appendChild(chip);
   }
 });
