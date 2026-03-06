@@ -28,10 +28,10 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type": "Question", "name": "How is the safety score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Safety scores (1-100) are calculated using violent crime rates (60% weight), property crime rates (30% weight), and year-over-year trends (10% weight). Scores are normalized against national averages, where 50 represents the median."}},
-    {"@type": "Question", "name": "How often is the data updated?", "acceptedAnswer": {"@type": "Answer", "text": "Cities with real portal data are updated quarterly. Cities using FBI UCR estimates are updated annually. Last update: March 2026."}},
-    {"@type": "Question", "name": "Why is my city not listed?", "acceptedAnswer": {"@type": "Answer", "text": "HoodSafe currently covers the 50 largest US cities by population. We plan to expand coverage based on data availability."}},
-    {"@type": "Question", "name": "Where does the crime data come from?", "acceptedAnswer": {"@type": "Answer", "text": "We use official data from FBI Uniform Crime Reporting (UCR) program covering over 9,000 cities and 2,300 counties nationwide."}}
+    {"@type": "Question", "name": "How is the safety score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Safety scores (1-100) are calculated using violent crime rates (weighted 50%) and property crime rates (weighted 30%), normalized against national averages using a log-scale formula. Higher scores indicate safer areas."}},
+    {"@type": "Question", "name": "How many cities and counties are covered?", "acceptedAnswer": {"@type": "Answer", "text": "HoodSafe covers over 9,000 US cities and 2,300 counties with FBI crime data, making it one of the most comprehensive crime databases available."}},
+    {"@type": "Question", "name": "Where does the crime data come from?", "acceptedAnswer": {"@type": "Answer", "text": "All data comes from the FBI Uniform Crime Reporting (UCR) program, the official national crime statistics database."}},
+    {"@type": "Question", "name": "What do the letter grades mean?", "acceptedAnswer": {"@type": "Answer", "text": "A (80-100) = Very Safe, B (70-79) = Safe, C (60-69) = Moderate, D (50-59) = Below Average, F (below 50) = High Crime."}}
   ]
 }
 </script>
@@ -124,43 +124,54 @@ a:hover { color: var(--color-primary-hover); }
   <h1>Frequently Asked Questions</h1>
   
   <div class="faq-item">
+    <div class="faq-q">How many cities and counties does HoodSafe cover?</div>
+    <div class="faq-a">HoodSafe covers <strong>9,000+ US cities</strong> and <strong>2,300+ counties</strong> with crime data from the FBI. You can search any city or browse by state to find safety rankings.</div>
+  </div>
+
+  <div class="faq-item">
     <div class="faq-q">How is the safety score calculated?</div>
-    <div class="faq-a">Safety scores (1-100) are calculated using violent crime rates (60% weight), property crime rates (30% weight), and year-over-year trends (10% weight). Scores are normalized against national averages, where 50 represents the median. Higher scores indicate safer areas.</div>
+    <div class="faq-a">Safety scores (1-100) are calculated using violent crime rates (50% weight) and property crime rates (30% weight), normalized against national averages using a log-scale formula. Higher scores = safer. The formula: <code>100 - (violent_rate/380×50) - (property_rate/2000×30)</code>, clamped between 10-95.</div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">How often is the data updated?</div>
-    <div class="faq-a">Cities with real portal data (10 cities) are updated quarterly when new crime reports are published. Cities using FBI UCR estimates (40 cities) are updated annually. Last update: March 2026.</div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q">Why is my city not listed?</div>
-    <div class="faq-a">HoodSafe currently covers the 50 largest US cities by population. We're working to expand coverage based on data availability from open data portals and FBI statistics.</div>
+    <div class="faq-q">What do the letter grades mean?</div>
+    <div class="faq-a"><strong>A (80-100):</strong> Very Safe — well below national crime averages<br>
+    <strong>B (70-79):</strong> Safe — below average crime rates<br>
+    <strong>C (60-69):</strong> Moderate — near national average<br>
+    <strong>D (50-59):</strong> Below Average — above average crime<br>
+    <strong>F (below 50):</strong> High Crime — significantly above average</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">Where does the crime data come from?</div>
-    <div class="faq-a">We pull real crime data from 10 official city open data portals (New York, Los Angeles, Chicago, Dallas, Austin, San Francisco, Seattle, Kansas City, Detroit, Baltimore). The remaining 40 cities use FBI Uniform Crime Reporting (UCR) data calibrated with local factors. See our <a href="/about/">methodology page</a> for details.</div>
+    <div class="faq-a">All data comes from the <strong>FBI Uniform Crime Reporting (UCR)</strong> program — the official national crime statistics database. This is the same data used by law enforcement, researchers, and journalists nationwide.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">What types of crime are included?</div>
-    <div class="faq-a">We track both violent crimes (homicide, assault, robbery, rape) and property crimes (burglary, theft, vehicle theft). Violent crimes are weighted more heavily in safety scores.</div>
+    <div class="faq-a"><strong>Violent crimes:</strong> murder, rape, robbery, aggravated assault<br>
+    <strong>Property crimes:</strong> burglary, larceny-theft, motor vehicle theft<br>
+    Violent crimes are weighted more heavily since they pose greater risk to personal safety.</div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">How accurate are the neighborhood boundaries?</div>
-    <div class="faq-a">Neighborhood boundaries are based on official city designations where available. For some cities, we use police precinct or district boundaries. Boundaries may not match all local definitions.</div>
+    <div class="faq-q">Why is my city missing or showing no data?</div>
+    <div class="faq-a">Some cities don't report crime data to the FBI UCR program. Notable examples include Florida cities (the state uses a different reporting system) and some smaller towns. If your city is missing, it's because official data isn't available.</div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-q">Can I use this data for real estate decisions?</div>
-    <div class="faq-a">HoodSafe provides general safety information to help inform decisions. We recommend combining our data with local knowledge, visiting neighborhoods in person, and consulting multiple sources before making major decisions.</div>
+    <div class="faq-q">How often is the data updated?</div>
+    <div class="faq-a">Data is updated annually when the FBI releases new UCR statistics. Current data reflects the latest available FBI release.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I compare cities?</div>
+    <div class="faq-a">Yes! Use our <a href="/#compare">city comparison tool</a> to compare safety scores, crime rates, and grades between any two cities side by side.</div>
   </div>
 
   <div class="faq-item">
     <div class="faq-q">Is HoodSafe free to use?</div>
-    <div class="faq-a">Yes, HoodSafe is completely free. We believe safety information should be accessible to everyone.</div>
+    <div class="faq-a">Yes, HoodSafe is completely free. We believe safety information should be accessible to everyone making decisions about where to live, work, or visit.</div>
   </div>
 </main>
 
