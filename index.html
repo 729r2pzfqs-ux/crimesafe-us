@@ -63,8 +63,8 @@
 
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+<!-- Leaflet loaded in body with defer -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1" defer></script>
 
 <style>
 /* ===== DESIGN TOKENS ===== */
@@ -125,7 +125,7 @@
   --color-divider:        #dcd9d5;
   --color-border:         #d4d1ca;
   --color-text:           #28251d;
-  --color-text-muted:     #7a7974;
+  --color-text-muted:     #5c5955;
   --color-text-faint:     #bab9b4;
   --color-text-inverse:   #f9f8f4;
   --color-primary:        #01696f;
@@ -836,6 +836,7 @@ table { border-collapse: collapse; width: 100%; }
   </div>
 </nav>
 
+<main>
 <!-- ===== HERO ===== -->
 <section class="hero" id="top">
   <div class="container">
@@ -1025,6 +1026,7 @@ table { border-collapse: collapse; width: 100%; }
     </div>
   </div>
 </div>
+</main>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
@@ -1048,6 +1050,7 @@ table { border-collapse: collapse; width: 100%; }
 </script>
 <script src="./crime_data_embedded.js"></script>
 <script src="./cities_full.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 <script src="./counties_search.js"></script>
 <script src="./zips_search.js"></script>
 <script src="./hoodsafe_compact.js"></script>
@@ -1504,7 +1507,12 @@ function addCityMarkers() {
   });
 }
 
-setTimeout(initMap, 100);
+// Wait for Leaflet to load (deferred)
+function initMapWhenReady() {
+  if (typeof L !== 'undefined') initMap();
+  else setTimeout(initMapWhenReady, 100);
+}
+initMapWhenReady();
 
 // ===== RANKINGS TABLE =====
 let sortKey = 'population';
