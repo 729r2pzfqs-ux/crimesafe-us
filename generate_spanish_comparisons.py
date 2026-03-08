@@ -35,6 +35,9 @@ REPLACEMENTS = [
     ('Compare More Cities', 'Comparar Más Ciudades'),
     ('points', 'puntos'),
     ('by ', 'por '),
+    ('Compare crime rates:', 'Comparar tasas de crimen:'),
+    ('See which city is safer.', 'Ver cuál ciudad es más segura.'),
+    ('(Score:', '(Puntuación:'),
     ('© 2026 HoodSafe.org', '© 2026 HoodSafe.org'),
     # Fix links
     ('href="/"', 'href="/es/"'),
