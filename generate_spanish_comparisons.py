@@ -32,6 +32,7 @@ REPLACEMENTS = [
     ('Related Comparisons', 'Comparaciones Relacionadas'),
     ('Compare More Cities', 'Comparar Más Ciudades'),
     ('points', 'puntos'),
+    ('by ', 'por '),
     ('© 2026 HoodSafe.org', '© 2026 HoodSafe.org'),
     # Fix links
     ('href="/"', 'href="/es/"'),
