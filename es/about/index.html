@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0G79LDD6JD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0G79LDD6JD");</script>
 <meta charset="UTF-8">
-<link rel="alternate" hreflang="es" href="https://hoodsafe.org/about/" />
+<link rel="alternate" hreflang="en" href="https://hoodsafe.org/about/" />
 <link rel="alternate" hreflang="es" href="https://hoodsafe.org/es/about/" />
 <link rel="alternate" hreflang="x-default" href="https://hoodsafe.org/about/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About & Methodology | HoodSafe - Cómo Calculamos las Puntuaciones de Seguridad</title>
-<meta name="description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data from FBI UCR crime statistics covering 9,000+ cities, 2,300 counties, and 10,000+ ZIP codes.">
-<link rel="canonical" href="https://hoodsafe.org/about/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="About & Methodology | HoodSafe">
-<meta property="og:description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data.">
-<meta property="og:url" content="https://hoodsafe.org/about/">
+<title>Acerca de y Metodología | HoodSafe - Cómo Calculamos las Puntuaciones de Seguridad</title>
+<meta name="description" content="Aprende cómo HoodSafe calcula las puntuaciones de seguridad de vecindarios usando datos reales de crimen del FBI UCR que cubren más de 9,000 ciudades, 2,300 condados y 10,000+ códigos postales.">
+<link rel="canonical" href="https://hoodsafe.org/es/about/">
+<meta property="og:title" content="Acerca de y Metodología | HoodSafe">
+<meta property="og:description" content="Aprende cómo HoodSafe calcula las puntuaciones de seguridad usando datos reales de crimen.">
+<meta property="og:url" content="https://hoodsafe.org/es/about/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://hoodsafe.org/favicon-512.png">
-
-<!-- Favicon -->
 <meta name="theme-color" content="#3b82f6">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
 <style>
-/* ===== DESIGN TOKENS ===== */
 :root {
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
@@ -41,40 +34,25 @@
   --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
   --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
   --content-wide: 1200px;
-  /* Light theme (default) */
   --color-bg: #f8fafc; --color-surface: #fff; --color-surface-2: #f1f5f9;
   --color-surface-offset: #e2e8f0; --color-divider: #e2e8f0; --color-border: #cbd5e1;
   --color-text: #1e293b; --color-text-muted: #64748b; --color-text-faint: #94a3b8;
   --color-primary: #0d9488; --color-primary-hover: #0f766e;
 }
-
 [data-theme="dark"] {
   --color-bg: #141312; --color-surface: #1c1b19; --color-surface-2: #222120;
   --color-surface-offset: #1d1c1a; --color-divider: #2e2d2b; --color-border: #3a3938;
   --color-text: #e0dfdd; --color-text-muted: #908f8d; --color-text-faint: #5a5957;
   --color-primary: #4f98a3; --color-primary-hover: #6ab4bf;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-body {
-  min-height: 100dvh; line-height: 1.6; font-family: var(--font-body);
-  font-size: var(--text-sm); color: var(--color-text); background: var(--color-bg);
-}
+body { min-height: 100dvh; line-height: 1.6; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text); background: var(--color-bg); }
 h1,h2,h3 { line-height: 1.15; font-family: var(--font-display); }
 a { color: var(--color-primary); text-decoration: none; }
 a:hover { color: var(--color-primary-hover); }
-table { border-collapse: collapse; width: 100%; }
-
 .container { max-width: var(--content-wide); margin: 0 auto; padding: 0 var(--space-5); }
-
-/* NAV */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: oklch(from var(--color-bg) l c h / 0.85);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-divider); padding: var(--space-3) 0;
-}
+.nav { position: sticky; top: 0; z-index: 100; background: oklch(from var(--color-bg) l c h / 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-divider); padding: var(--space-3) 0; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--content-wide); margin: 0 auto; padding: 0 var(--space-5); }
 .nav-logo { display: flex; align-items: center; gap: var(--space-2); font-weight: 700; font-size: var(--text-sm); color: var(--color-text); text-decoration: none; }
 .nav-logo:hover { color: var(--color-text); }
@@ -82,8 +60,6 @@ table { border-collapse: collapse; width: 100%; }
 .nav-links { display: flex; align-items: center; gap: var(--space-1); }
 .nav-links a { font-size: var(--text-xs); font-weight: 500; color: var(--color-text-muted); padding: var(--space-1) var(--space-3); border-radius: var(--radius-md); transition: all var(--transition-interactive); text-decoration: none; }
 .nav-links a:hover { color: var(--color-text); background: var(--color-surface-offset); }
-
-/* CONTENT */
 .page-content { max-width: 800px; margin: 0 auto; padding: var(--space-8) var(--space-5); }
 .page-content h1 { font-size: var(--text-xl); margin-bottom: var(--space-4); }
 .page-content h2 { font-size: var(--text-lg); margin: var(--space-8) 0 var(--space-4); color: var(--color-primary); }
@@ -92,25 +68,15 @@ table { border-collapse: collapse; width: 100%; }
 .page-content ul { margin: var(--space-4) 0 var(--space-4) var(--space-6); color: var(--color-text-muted); }
 .page-content li { margin-bottom: var(--space-2); }
 .badge { display: inline-block; background: var(--color-primary); color: var(--color-bg); padding: 0.15rem 0.6rem; border-radius: 1rem; font-size: var(--text-xs); font-weight: 600; margin-left: var(--space-2); vertical-align: middle; }
-.data-table { margin: var(--space-4) 0; background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; }
-.data-table th, .data-table td { padding: var(--space-3) var(--space-4); text-align: left; border-bottom: 1px solid var(--color-border); }
-.data-table th { color: var(--color-text); font-weight: 600; background: var(--color-surface-2); }
-.data-table td { color: var(--color-text-muted); }
-.data-table tr:last-child td { border-bottom: none; }
-
-/* FOOTER */
 .footer { border-top: 1px solid var(--color-divider); padding: var(--space-8) 0; color: var(--color-text-muted); font-size: var(--text-xs); margin-top: var(--space-8); }
 .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-6); }
 .footer-links { display: flex; gap: var(--space-4); flex-wrap: wrap; }
 .footer-links a { color: var(--color-text-muted); transition: color var(--transition-interactive); }
 .footer-links a:hover { color: var(--color-text); }
 .footer-disclaimer { max-width: 480px; line-height: 1.6; }
-.footer-attrib { color: var(--color-text-faint); }
-.footer-attrib a { color: var(--color-text-muted); }
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <div class="nav-inner">
     <a href="/es/" class="nav-logo">
@@ -132,15 +98,15 @@ table { border-collapse: collapse; width: 100%; }
 <main class="page-content">
   <h1>Acerca de HoodSafe y Metodología</h1>
   
-  <p>HoodSafe provides comprehensive crime safety data for over <strong>9,000 US cities</strong>, <strong>2,300 counties</strong>, and <strong>10,000+ ZIP codes</strong>. With <strong>125,000+ city comparisons</strong>, we help residents, homebuyers, and travelers make informed decisions about where to live and visit.</p>
+  <p>HoodSafe proporciona datos completos de seguridad contra el crimen para más de <strong>9,000 ciudades de EE.UU.</strong>, <strong>2,300 condados</strong> y <strong>10,000+ códigos postales</strong>. Con <strong>125,000+ comparaciones de ciudades</strong>, ayudamos a residentes, compradores de vivienda y viajeros a tomar decisiones informadas sobre dónde vivir y visitar.</p>
 
-  <h2>Data Sources</h2>
+  <h2>Fuentes de Datos</h2>
   
   <h3>Datos de Crimen del FBI <span class="badge">9,000+ Ciudades</span></h3>
-  <p>Todas las puntuaciones de seguridad se calculan usando datos oficiales del <strong>FBI Uniform Crime Reporting (UCR)</strong> que rastrea crímenes violentos y contra la propiedad reportados por agencias policiales en toda la nación. Esto incluye datos de más de 9,000 ciudades, proporcionando cobertura completa de los municipios de EE.UU.</p>
+  <p>Todas las puntuaciones de seguridad se calculan usando datos oficiales del <strong>FBI Uniform Crime Reporting (UCR)</strong>, que rastrea crímenes violentos y contra la propiedad reportados por agencias policiales en toda la nación. Esto incluye datos de más de 9,000 ciudades, proporcionando cobertura completa de los municipios de EE.UU.</p>
   
-  <h3>Cobertura de Códigos Postales <span class="badge">10,000+ Códigos Postales</span></h3>
-  <p>Los códigos postales están mapeados a su ciudad principal and muestran la puntuación de seguridad de la ciudad. Esto cubre ~30% de los códigos postales residenciales de EE.UU.</p>
+  <h3>Cobertura de Códigos Postales <span class="badge">10,000+ Códigos</span></h3>
+  <p>Los códigos postales están mapeados a su ciudad principal y muestran la puntuación de seguridad de la ciudad. Esto cubre aproximadamente el 30% de los códigos postales residenciales de EE.UU.</p>
 
   <h2>Cálculo de Puntuación de Seguridad</h2>
   <p>Nuestras puntuaciones de seguridad (1-100) se calculan usando una fórmula de escala logarítmica:</p>
@@ -148,31 +114,31 @@ table { border-collapse: collapse; width: 100%; }
     <li><strong>Tasa de crimen violento</strong> — homicidio, violación, robo, agresión agravada (ponderado 50%)</li>
     <li><strong>Tasa de crimen contra la propiedad</strong> — allanamiento, hurto, robo de vehículos (ponderado 30%)</li>
   </ul>
-  <p>Formula: <code>100 - (violent_rate/380×50) - (property_rate/2000×30)</code>, clamped between 10-95.</p>
-  <p>Scores are normalized against national averages. Higher scores = safer areas.</p>
+  <p>Fórmula: <code>100 - (tasa_violento/380×50) - (tasa_propiedad/2000×30)</code>, limitado entre 10-95.</p>
+  <p>Las puntuaciones se normalizan contra los promedios nacionales. Puntuaciones más altas = áreas más seguras.</p>
   
-  <h3>Letter Grades</h3>
+  <h3>Calificaciones por Letra</h3>
   <ul>
-    <li><strong>A (80-100):</strong> Very Safe — well below national crime averages</li>
-    <li><strong>B (70-79):</strong> Safe — below average crime rates</li>
-    <li><strong>C (60-69):</strong> Moderate — near national average</li>
-    <li><strong>D (50-59):</strong> Below Average — above average crime</li>
-    <li><strong>F (below 50):</strong> High Crime — significantly above average</li>
+    <li><strong>A (80-100):</strong> Muy Seguro — muy por debajo de los promedios nacionales de crimen</li>
+    <li><strong>B (70-79):</strong> Seguro — tasas de crimen por debajo del promedio</li>
+    <li><strong>C (60-69):</strong> Moderado — cerca del promedio nacional</li>
+    <li><strong>D (50-59):</strong> Por Debajo del Promedio — crimen por encima del promedio</li>
+    <li><strong>F (menos de 50):</strong> Alto Crimen — significativamente por encima del promedio</li>
   </ul>
 
-  <h2>Update Frequency</h2>
+  <h2>Frecuencia de Actualización</h2>
   <ul>
-    <li><strong>Real portal cities:</strong> Data updated quarterly when new reports are published</li>
-    <li><strong>FBI UCR cities:</strong> Updated annually with new FBI releases</li>
-    <li><strong>Last update:</strong> March 2026</li>
+    <li><strong>Ciudades con portal de datos:</strong> Datos actualizados trimestralmente cuando se publican nuevos informes</li>
+    <li><strong>Ciudades FBI UCR:</strong> Actualizado anualmente con nuevas publicaciones del FBI</li>
+    <li><strong>Última actualización:</strong> Marzo 2026</li>
   </ul>
 
-  <h2>Limitations</h2>
+  <h2>Limitaciones</h2>
   <ul>
-    <li>Crime data depends on reporting rates, which vary by neighborhood and city</li>
-    <li>Not all crimes are reported to police</li>
-    <li>Neighborhood boundaries may differ from official designations</li>
-    <li>Historical trends may not predict future safety</li>
+    <li>Los datos de crimen dependen de las tasas de denuncia, que varían por vecindario y ciudad</li>
+    <li>No todos los crímenes son reportados a la policía</li>
+    <li>Los límites de vecindarios pueden diferir de las designaciones oficiales</li>
+    <li>Las tendencias históricas pueden no predecir la seguridad futura</li>
   </ul>
 </main>
 
@@ -180,8 +146,8 @@ table { border-collapse: collapse; width: 100%; }
   <div class="container">
     <div class="footer-inner">
       <div>
-        <p class="footer-disclaimer">Data is for informational purposes. Based on official city data and FBI UCR statistics. Verify with official sources for important decisions.</p>
-              </div>
+        <p class="footer-disclaimer">Los datos son solo para fines informativos. Basado en datos oficiales de ciudades y estadísticas del FBI UCR. Verifique con fuentes oficiales para decisiones importantes.</p>
+      </div>
       <div class="footer-links">
         <a href="/es/about/">Acerca de</a>
         <a href="/es/faq/">Preguntas Frecuentes</a>
@@ -190,6 +156,5 @@ table { border-collapse: collapse; width: 100%; }
     </div>
   </div>
 </footer>
-
 </body>
 </html>
