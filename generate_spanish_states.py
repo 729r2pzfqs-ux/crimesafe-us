@@ -12,6 +12,7 @@ REPLACEMENTS = [
     ('Crime Rate & Safety', 'Tasa de Crimen y Seguridad'),
     ('Crime rate rankings for', 'Clasificaciones de tasa de crimen para'),
     ('Latest FBI Data', 'Datos del FBI'),
+    ('Latest FBI data', 'Datos del FBI'),
     ('Safety Score', 'Puntuación de Seguridad'),
     ('Avg Score', 'Punt. Prom'),
     ('A-Rated', 'Calif. A'),

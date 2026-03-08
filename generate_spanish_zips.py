@@ -54,6 +54,10 @@ REPLACEMENTS = [
     ('Moderate', 'Moderado'),
     ('Below Average', 'Por Debajo del Promedio'),
     ('High Risk', 'Alto Riesgo'),
+    ('Is ZIP code', '¿Es el código postal'),
+    ('safe?', 'seguro?'),
+    ('has a safety score of', 'tiene una puntuación de seguridad de'),
+    ('View crime rates and safety data', 'Ver tasas de crimen y datos de seguridad'),
     ('© 2026 HoodSafe.org', '© 2026 HoodSafe.org'),
     # Fix links to use /es/ prefix
     ('href="/zip/', 'href="/es/zip/'),

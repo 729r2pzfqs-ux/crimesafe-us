@@ -14,6 +14,9 @@ REPLACEMENTS = [
     ('crime data, safety score', 'datos de crimen, puntuación de seguridad'),
     ('safety rankings', 'clasificaciones de seguridad'),
     ('Latest FBI Data', 'Datos del FBI'),
+    ('Latest FBI data', 'Datos del FBI'),
+    ('crime rate and safety statistics', 'tasa de crimen y estadísticas de seguridad'),
+    ('Violent crime rate:', 'Tasa de crimen violento:'),
     
     # Navigation
     ('>Home<', '>Inicio<'),
