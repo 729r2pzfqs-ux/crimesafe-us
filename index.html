@@ -251,6 +251,7 @@ table { border-collapse: collapse; width: 100%; }
   transition: all var(--transition-interactive); text-decoration: none;
 }
 .nav-links a:hover { color: var(--color-text); background: var(--color-surface-offset); }
+.lang-toggle { font-size: 1.25rem !important; padding: var(--space-1) !important; }
 .theme-toggle {
   width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
   border-radius: var(--radius-md); color: var(--color-text-muted);
@@ -871,6 +872,7 @@ table { border-collapse: collapse; width: 100%; }
       <a href="/#map-section">Map</a>
       <a href="/#rankings">Rankings</a>
       <a href="/#states-section">States</a>
+      <a href="/es/" class="lang-toggle" title="Español">🇪🇸</a>
       <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>

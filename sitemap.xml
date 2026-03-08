@@ -9,4 +9,13 @@
   <sitemap>
     <loc>https://hoodsafe.org/sitemap-3.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>https://hoodsafe.org/sitemap-es-1.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://hoodsafe.org/sitemap-es-2.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://hoodsafe.org/sitemap-es-3.xml</loc>
+  </sitemap>
 </sitemapindex>
