@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acerca de y Metodología | HoodSafe - Cómo Calculamos las Puntuaciones de Seguridad</title>
-<meta name="description" content="Aprende cómo HoodSafe calcula puntuaciones de seguridad del vecindario usando datos reales de crimen from FBI UCR estadísticas de crimen covering 9,000+ cities, 2,300 condados, and 10,000+ códigos postales.">
-<link rel="canonical" href="https://hoodsafe.org/es/about/">
+<meta name="description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data from FBI UCR crime statistics covering 9,000+ cities, 2,300 condados, and 10,000+ códigos postales.">
+<link rel="canonical" href="https://hoodsafe.org/about/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Acerca de y Metodología | HoodSafe">
-<meta property="og:description" content="Aprende cómo HoodSafe calcula puntuaciones de seguridad del vecindario usando datos reales de crimen.">
+<meta property="og:description" content="Learn how HoodSafe calculates neighborhood safety scores using real crime data.">
 <meta property="og:url" content="https://hoodsafe.org/about/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://hoodsafe.org/favicon-512.png">
@@ -127,25 +127,25 @@ table { border-collapse: collapse; width: 100%; }
 </nav>
 
 <main class="page-content">
-  <h1>About HoodSafe & Methodology</h1>
+  <h1>Acerca de HoodSafe y Metodología</h1>
   
-  <p>HoodSafe provides comprehensive crime safety data for over <strong>9,000 US cities</strong>, <strong>2,300 condados</strong>, and <strong>10,000+ códigos postales</strong>. With <strong>125,000+ city comparisons</strong>, we help residents, homebuyers, and travelers make informed decisions about where to live and visit.</p>
+  <p>HoodSafe proporciona datos completos de seguridad para más de <strong>9,000 ciudades de EE.UU.</strong>, <strong>2,300 condados</strong>, and <strong>10,000+ códigos postales</strong>. Con <strong>125,000+ comparaciones de ciudades</strong>, ayudamos a residentes, compradores de vivienda y viajeros a tomar decisiones informadas sobre dónde vivir y visitar.</p>
 
   <h2>Fuentes de Datos</h2>
   
-  <h3>FBI Crime Data <span class="badge">9,000+ Cities</span></h3>
-  <p>We use official FBI Uniform Crime Reporting (UCR) data covering:</p>
+  <h3>Datos de Crimen del FBI <span class="badge">9,000+ Cities</span></h3>
+  <p>Usamos datos oficiales del FBI Uniform Crime Reporting (UCR) datos que cubren:</p>
   
   <table class="data-table">
-    <tr><th>City</th><th>Source</th><th>Data Coverage</th></tr>
-    <tr><td>New York</td><td>NYPD CompStat</td><td>Full yearly crime counts</td></tr>
-    <tr><td>Los Angeles</td><td>data.lacity.org</td><td>Yearly + neighborhoods</td></tr>
-    <tr><td>Chicago</td><td>data.cityofchicago.org</td><td>Yearly + neighborhoods</td></tr>
-    <tr><td>Dallas</td><td>dallasopendata.com</td><td>Yearly + divisions</td></tr>
-    <tr><td>Austin</td><td>data.austintexas.gov</td><td>Yearly + council districts</td></tr>
-    <tr><td>San Francisco</td><td>data.sfgov.org</td><td>Yearly + neighborhoods</td></tr>
-    <tr><td>Seattle</td><td>data.seattle.gov</td><td>Yearly + precincts</td></tr>
-    <tr><td>Kansas City</td><td>data.kcmo.org</td><td>2019 baseline, trend-adjusted</td></tr>
+    <tr><th>Ciudad</th><th>Fuente</th><th>Cobertura de Datos</th></tr>
+    <tr><td>New York</td><td>NYPD CompStat</td><td>Conteos anuales completos de crimen</td></tr>
+    <tr><td>Los Angeles</td><td>data.lacity.org</td><td>Anual + vecindarios</td></tr>
+    <tr><td>Chicago</td><td>data.cityofchicago.org</td><td>Anual + vecindarios</td></tr>
+    <tr><td>Dallas</td><td>dallasopendata.com</td><td>Anual + divisiones</td></tr>
+    <tr><td>Austin</td><td>data.austintexas.gov</td><td>Anual + distritos del concejo</td></tr>
+    <tr><td>San Francisco</td><td>data.sfgov.org</td><td>Anual + vecindarios</td></tr>
+    <tr><td>Seattle</td><td>data.seattle.gov</td><td>Anual + distritos</td></tr>
+    <tr><td>Kansas City</td><td>data.kcmo.org</td><td>2019 línea base, ajustado por tendencia</td></tr>
     <tr><td>Detroit</td><td>data.detroitmi.gov</td><td>Real neighborhood names</td></tr>
     <tr><td>Baltimore</td><td>data.baltimorecity.gov</td><td>Real neighborhood names</td></tr>
   </table>
@@ -153,14 +153,14 @@ table { border-collapse: collapse; width: 100%; }
   <h3>FBI UCR Data <span class="badge">9,000+ Cities</span></h3>
   <p>All city safety scores are calculated using official FBI Uniform Crime Reporting (UCR) data, which tracks violent and property crimes across the nation.</p>
   
-  <h3>ZIP Code Coverage <span class="badge">10,000+ ZIPs</span></h3>
+  <h3>Cobertura de Códigos Postales <span class="badge">10,000+ Códigos Postales</span></h3>
   <p>códigos postales are mapped to their primary city and display the city's safety score. This covers ~30% of US residential códigos postales.</p>
 
   <h2>Safety Score Calculation</h2>
   <p>Our safety scores (1-100) are calculated using a log-scale formula:</p>
   <ul>
-    <li><strong>Violent crime rate</strong> — murder, rape, robbery, aggravated assault (weighted 50%)</li>
-    <li><strong>Property crime rate</strong> — burglary, larceny-theft, motor vehicle theft (weighted 30%)</li>
+    <li><strong>Tasa de crimen violento</strong> — murder, rape, robbery, aggravated assault (weighted 50%)</li>
+    <li><strong>Tasa de crimen contra la propiedad</strong> — burglary, larceny-theft, motor vehicle theft (weighted 30%)</li>
   </ul>
   <p>Formula: <code>100 - (violent_rate/380×50) - (property_rate/2000×30)</code>, clamped between 10-95.</p>
   <p>Scores are normalized against national averages. Higher scores = safer areas.</p>
