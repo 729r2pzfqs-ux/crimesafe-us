@@ -27,6 +27,8 @@ REPLACEMENTS = [
     ('Grade: D', 'Calificación: D'),
     ('Grade: F', 'Calificación: F'),
     ('Winner', 'Ganador'),
+    ("It's a Tie!", "¡Es un Empate!"),
+    ('Same safety score', 'Misma puntuación de seguridad'),
     ('View Details', 'Ver Detalles'),
     ('>Ver Detalles →<', '>Ver Detalles →<'),
     ('Related Comparisons', 'Comparaciones Relacionadas'),
