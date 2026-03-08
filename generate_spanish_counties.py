@@ -7,6 +7,8 @@ REPLACEMENTS = [
     ('lang="en"', 'lang="es"'),
     ('>Home<', '>Inicio<'),
     ('Home</a> →', 'Inicio</a> →'),
+    ('crime stats. Score:', 'estadísticas de crimen. Puntuación:'),
+    ('Latest FBI data.', 'Datos del FBI.'),
     ('County Crime Rate', 'Tasa de Crimen del Condado'),
     ('Safety Score', 'Puntuación de Seguridad'),
     ('Cities in this County', 'Ciudades en este Condado'),
