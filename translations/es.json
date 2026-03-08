@@ -1,0 +1,113 @@
+{
+  "meta": {
+    "lang": "es",
+    "langName": "Español",
+    "locale": "es-US"
+  },
+  "site": {
+    "name": "HoodSafe",
+    "tagline": "Encuentra tu vecindario más seguro",
+    "description": "Datos de seguridad y tasas de crimen para más de 9,000 ciudades de EE.UU."
+  },
+  "nav": {
+    "home": "Inicio",
+    "rankings": "Clasificaciones",
+    "compare": "Comparar",
+    "search": "Buscar",
+    "about": "Acerca de",
+    "faq": "Preguntas Frecuentes",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Encuentra tu Vecindario Más Seguro",
+    "subtitle": "9,000+ ciudades · 2,300 condados · 10,000 códigos postales · 125K comparaciones",
+    "searchPlaceholder": "Buscar ciudad, condado o código postal...",
+    "comparePlaceholder1": "Primera ciudad...",
+    "comparePlaceholder2": "Segunda ciudad...",
+    "compareBtn": "Comparar",
+    "tabSearch": "🔍 Buscar",
+    "tabCompare": "⚔️ Comparar"
+  },
+  "scores": {
+    "safetyScore": "Puntuación de Seguridad",
+    "grade": "Calificación",
+    "gradeA": "A - Muy Seguro",
+    "gradeB": "B - Seguro",
+    "gradeC": "C - Moderado",
+    "gradeD": "D - Por Debajo del Promedio",
+    "gradeF": "F - Alto Riesgo"
+  },
+  "stats": {
+    "violentCrime": "Crimen Violento",
+    "propertyCrime": "Crimen contra la Propiedad",
+    "violentRate": "Tasa de Crimen Violento",
+    "propertyRate": "Tasa de Crimen contra la Propiedad",
+    "population": "Población",
+    "per100k": "por cada 100,000 habitantes",
+    "nationalAvg": "Promedio Nacional"
+  },
+  "rankings": {
+    "title": "Clasificaciones de Seguridad por Ciudad",
+    "rank": "#",
+    "city": "Ciudad",
+    "state": "Estado",
+    "score": "Puntuación",
+    "showing": "Mostrando",
+    "of": "de",
+    "cities": "ciudades",
+    "prev": "← Anterior",
+    "next": "Siguiente →",
+    "filterPlaceholder": "Filtrar ciudades..."
+  },
+  "map": {
+    "title": "Mapa Interactivo de Seguridad",
+    "subtitle": "50 ciudades más grandes"
+  },
+  "compare": {
+    "title": "Comparar Tasas de Crimen entre Ciudades",
+    "subtitle": "Comparaciones de seguridad lado a lado · Datos más recientes del FBI",
+    "vs": "vs",
+    "winner": "es más seguro",
+    "tie": "¡Es un empate!",
+    "byPoints": "por {n} puntos",
+    "sameScore": "Misma puntuación de seguridad",
+    "viewDetails": "Ver Detalles →",
+    "relatedComparisons": "Comparaciones Relacionadas",
+    "popularComparisons": "Comparaciones Populares"
+  },
+  "city": {
+    "overview": "Resumen",
+    "crimeBreakdown": "Desglose del Crimen",
+    "trends": "Tendencias",
+    "safetyTips": "Consejos de Seguridad",
+    "compareTo": "Comparar {city}",
+    "compareSubtitle": "Mira cómo {city} se compara con otras ciudades importantes",
+    "compareCities": "Comparar Ciudades →"
+  },
+  "county": {
+    "title": "Condado de {name}",
+    "citiesInCounty": "Ciudades en este Condado"
+  },
+  "state": {
+    "title": "{name}",
+    "citiesInState": "Ciudades en {name}",
+    "countiesInState": "Condados en {name}"
+  },
+  "zip": {
+    "title": "Código Postal {zip}",
+    "locatedIn": "Ubicado en",
+    "basedOnCity": "Puntuación basada en datos de la ciudad"
+  },
+  "footer": {
+    "disclaimer": "Basado en datos del Informe Uniforme de Crimen (UCR) del FBI. Las puntuaciones de seguridad son solo para fines informativos — verifique con fuentes oficiales para decisiones importantes.",
+    "aboutMethodology": "Acerca de y Metodología",
+    "copyright": "© 2026 HoodSafe.org"
+  },
+  "misc": {
+    "loading": "Cargando...",
+    "noResults": "No se encontraron resultados",
+    "error": "Algo salió mal",
+    "viewAll": "Ver Todo",
+    "learnMore": "Más Información"
+  }
+}
