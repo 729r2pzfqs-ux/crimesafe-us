@@ -72,6 +72,7 @@ REPLACEMENTS = [
     ('>Score<', '>Puntuación<'),
     ('Score</span>', 'Puntuación</span>'),
     ('HoodSeguro', 'HoodSafe'),
+    ('>Rankings<', '>Clasificaciones<'),
     ('View ', 'Ver '),
     (' Rankings', ' Clasificaciones'),
     ('ranks against other cities in', 'se compara con otras ciudades en'),
