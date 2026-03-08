@@ -10,8 +10,10 @@ REPLACEMENTS = [
     
     # Page titles and meta
     ('Crime Rate & Safety Score', 'Tasa de Crimen y Puntuación de Seguridad'),
+    ('Crime Rate', 'Tasa de Crimen'),
     ('crime data, safety score', 'datos de crimen, puntuación de seguridad'),
     ('safety rankings', 'clasificaciones de seguridad'),
+    ('Latest FBI Data', 'Datos del FBI'),
     
     # Navigation
     ('>Home<', '>Inicio<'),
@@ -20,6 +22,7 @@ REPLACEMENTS = [
     # Section headers
     ('Safety Overview', 'Resumen de Seguridad'),
     ('Safety Score', 'Puntuación de Seguridad'),
+    ('Average Safety', 'Seguridad Promedio'),
     ('Crime Breakdown', 'Desglose del Crimen'),
     ('Crime Statistics', 'Estadísticas de Crimen'),
     ('Detailed Statistics', 'Estadísticas Detalladas'),
@@ -28,6 +31,30 @@ REPLACEMENTS = [
     ('Nearby Cities', 'Ciudades Cercanas'),
     ('Related Comparisons', 'Comparaciones Relacionadas'),
     ('About This Data', 'Acerca de Estos Datos'),
+    ('Frequently Asked Questions', 'Preguntas Frecuentes'),
+    ('Total Incidents', 'Incidentes Totales'),
+    ('per 100k residents', 'por cada 100k residentes'),
+    ('residents', 'residentes'),
+    
+    # FAQ questions
+    ('What is', '¿Cuál es'),
+    ("'s crime rate?", ' la tasa de crimen?'),
+    ('Is ', '¿Es '),
+    (' safe?', ' seguro?'),
+    (' safe to live?', ' seguro para vivir?'),
+    ('How does ', '¿Cómo se compara '),
+    (' compare to', ' con'),
+    ('the national average', 'el promedio nacional'),
+    ('above average', 'por encima del promedio'),
+    ('below average', 'por debajo del promedio'),
+    ('which is', 'que es'),
+    
+    # Paragraphs
+    (' has a safety score of ', ' tiene una puntuación de seguridad de '),
+    ('The city reported', 'La ciudad reportó'),
+    ('violent crimes and', 'crímenes violentos y'),
+    ('property crimes according to the latest FBI data', 'crímenes contra la propiedad según los datos más recientes del FBI'),
+    ('With a violent crime rate of', 'Con una tasa de crimen violento de'),
     
     # Stats labels
     ('Violent Crime Rate', 'Tasa de Crimen Violento'),
