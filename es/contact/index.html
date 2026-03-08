@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="light">
 <head>
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0G79LDD6JD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0G79LDD6JD");</script>
 <meta charset="UTF-8">
+<link rel="alternate" hreflang="en" href="https://hoodsafe.org/contact/" />
+<link rel="alternate" hreflang="es" href="https://hoodsafe.org/es/contact/" />
+<link rel="alternate" hreflang="x-default" href="https://hoodsafe.org/contact/" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | HoodSafe</title>
-<meta name="description" content="Contact the HoodSafe team with questions, feedback, or data correction requests.">
+<title>Contacto | HoodSafe</title>
+<meta name="description" content="Contacta al equipo de HoodSafe con preguntas, comentarios o solicitudes de corrección de datos.">
 <link rel="canonical" href="https://hoodsafe.org/es/contact/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Contact | HoodSafe">
-<meta property="og:description" content="Contact the HoodSafe team.">
-<meta property="og:url" content="https://hoodsafe.org/contact/">
+<meta property="og:title" content="Contacto | HoodSafe">
+<meta property="og:description" content="Contacta al equipo de HoodSafe.">
+<meta property="og:url" content="https://hoodsafe.org/es/contact/">
 <meta property="og:type" content="website">
-
-<!-- Favicon -->
 <meta name="theme-color" content="#3b82f6">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
 <style>
 :root {
-  /* Light theme (default) */
   --color-bg: #f8fafc; --color-surface: #fff; --color-surface-2: #f1f5f9;
   --color-surface-offset: #e2e8f0; --color-divider: #e2e8f0; --color-border: #cbd5e1;
   --color-text: #1e293b; --color-text-muted: #64748b; --color-text-faint: #94a3b8;
@@ -42,23 +38,19 @@
   --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
   --content-wide: 1200px;
 }
-
 [data-theme="dark"] {
   --color-bg: #141312; --color-surface: #1c1b19; --color-surface-2: #222120;
   --color-surface-offset: #1d1c1a; --color-divider: #2e2d2b; --color-border: #3a3938;
   --color-text: #e0dfdd; --color-text-muted: #908f8d; --color-text-faint: #5a5957;
   --color-primary: #4f98a3; --color-primary-hover: #6ab4bf;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
 body { min-height: 100dvh; line-height: 1.6; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text); background: var(--color-bg); }
 h1,h2,h3 { line-height: 1.15; font-family: var(--font-display); }
 a { color: var(--color-primary); text-decoration: none; }
 a:hover { color: var(--color-primary-hover); }
-
 .container { max-width: var(--content-wide); margin: 0 auto; padding: 0 var(--space-5); }
-
 .nav { position: sticky; top: 0; z-index: 100; background: oklch(from var(--color-bg) l c h / 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-divider); padding: var(--space-3) 0; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--content-wide); margin: 0 auto; padding: 0 var(--space-5); }
 .nav-logo { display: flex; align-items: center; gap: var(--space-2); font-weight: 700; font-size: var(--text-sm); color: var(--color-text); text-decoration: none; }
@@ -67,11 +59,9 @@ a:hover { color: var(--color-primary-hover); }
 .nav-links { display: flex; align-items: center; gap: var(--space-1); }
 .nav-links a { font-size: var(--text-xs); font-weight: 500; color: var(--color-text-muted); padding: var(--space-1) var(--space-3); border-radius: var(--radius-md); transition: all var(--transition-interactive); text-decoration: none; }
 .nav-links a:hover { color: var(--color-text); background: var(--color-surface-offset); }
-
 .page-content { max-width: 600px; margin: 0 auto; padding: var(--space-8) var(--space-5); }
 .page-content h1 { font-size: var(--text-xl); margin-bottom: var(--space-4); }
 .page-content > p { margin-bottom: var(--space-6); color: var(--color-text-muted); }
-
 .contact-card { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-6); margin-bottom: var(--space-5); }
 .contact-card h2 { font-size: var(--text-base); margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
 .contact-card p { color: var(--color-text-muted); margin: 0; }
@@ -79,19 +69,15 @@ a:hover { color: var(--color-primary-hover); }
 .email-link:hover { color: var(--color-primary-hover); }
 .tags { margin-top: var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .tag { background: var(--color-bg); padding: var(--space-1) var(--space-3); border-radius: var(--radius-md); font-size: var(--text-xs); color: var(--color-text-muted); }
-
 .footer { border-top: 1px solid var(--color-divider); padding: var(--space-8) 0; color: var(--color-text-muted); font-size: var(--text-xs); margin-top: var(--space-8); }
 .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-6); }
 .footer-links { display: flex; gap: var(--space-4); flex-wrap: wrap; }
 .footer-links a { color: var(--color-text-muted); transition: color var(--transition-interactive); }
 .footer-links a:hover { color: var(--color-text); }
 .footer-disclaimer { max-width: 480px; line-height: 1.6; }
-.footer-attrib { color: var(--color-text-faint); }
-.footer-attrib a { color: var(--color-text-muted); }
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <div class="nav-inner">
     <a href="/es/" class="nav-logo">
@@ -112,33 +98,33 @@ a:hover { color: var(--color-primary-hover); }
 
 <main class="page-content">
   <h1>Contáctanos</h1>
-  <p>Have questions, feedback, or found an error in our data? Nos encantaría saber de ti.</p>
+  <p>¿Tienes preguntas, comentarios o encontraste un error en nuestros datos? Nos encantaría saber de ti.</p>
 
   <div class="contact-card">
-    <h2>📧 Email</h2>
+    <h2>📧 Correo Electrónico</h2>
     <p><a href="mailto:hello@hoodsafe.org" class="email-link">hello@hoodsafe.org</a></p>
     <div class="tags">
-      <span class="tag">General inquiries</span>
-      <span class="tag">Data corrections</span>
-      <span class="tag">Partnership requests</span>
-      <span class="tag">Press & media</span>
+      <span class="tag">Consultas generales</span>
+      <span class="tag">Correcciones de datos</span>
+      <span class="tag">Solicitudes de asociación</span>
+      <span class="tag">Prensa y medios</span>
     </div>
   </div>
 
   <div class="contact-card">
-    <h2>🐛 Report Data Issues</h2>
-    <p>If you notice incorrect data for a specific city or neighborhood, please include:</p>
+    <h2>🐛 Reportar Problemas de Datos</h2>
+    <p>Si notas datos incorrectos para una ciudad o vecindario específico, por favor incluye:</p>
     <div class="tags">
-      <span class="tag">City name</span>
-      <span class="tag">Neighborhood</span>
-      <span class="tag">What's wrong</span>
-      <span class="tag">Source (if available)</span>
+      <span class="tag">Nombre de la ciudad</span>
+      <span class="tag">Vecindario</span>
+      <span class="tag">Qué está mal</span>
+      <span class="tag">Fuente (si está disponible)</span>
     </div>
   </div>
 
   <div class="contact-card">
-    <h2>💡 Feature Requests</h2>
-    <p>Have an idea to make HoodSafe better? We're always looking to improve. Send us your suggestions!</p>
+    <h2>💡 Solicitudes de Funciones</h2>
+    <p>¿Tienes una idea para mejorar HoodSafe? Siempre buscamos mejorar. ¡Envíanos tus sugerencias!</p>
   </div>
 </main>
 
@@ -146,8 +132,8 @@ a:hover { color: var(--color-primary-hover); }
   <div class="container">
     <div class="footer-inner">
       <div>
-        <p class="footer-disclaimer">Data is for informational purposes. Based on official city data and FBI UCR statistics. Verify with official sources for important decisions.</p>
-              </div>
+        <p class="footer-disclaimer">Los datos son solo para fines informativos. Basado en datos oficiales de ciudades y estadísticas del FBI UCR. Verifique con fuentes oficiales para decisiones importantes.</p>
+      </div>
       <div class="footer-links">
         <a href="/es/about/">Acerca de</a>
         <a href="/es/faq/">Preguntas Frecuentes</a>
@@ -156,6 +142,5 @@ a:hover { color: var(--color-primary-hover); }
     </div>
   </div>
 </footer>
-
 </body>
 </html>
