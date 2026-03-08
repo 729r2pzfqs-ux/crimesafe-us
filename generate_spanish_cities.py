@@ -108,7 +108,7 @@ REPLACEMENTS = [
     ('Grade: D', 'Calificación: D'),
     ('Grade: F', 'Calificación: F'),
     ('Very Safe', 'Muy Seguro'),
-    ('Safe', 'Seguro'),
+    ('— Safe<', '— Seguro<'),
     ('Moderate', 'Moderado'),
     ('Below Average', 'Por Debajo del Promedio'),
     ('High Risk', 'Alto Riesgo'),
