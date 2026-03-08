@@ -1545,9 +1545,9 @@ setupCompareInput('compareCity2', 'compareDropdown2', d => compareCity2Data = d)
 
 document.getElementById('compareBtn').addEventListener('click', () => {
   if (!compareCity1Data || !compareCity2Data) return;
-  const slug1 = compareCity1Data.slug;
-  const slug2 = compareCity2Data.slug;
-  window.location.href = `/compare/${slug1}-vs-${slug2}/`;
+  // Sort alphabetically to match generated page URLs
+  const slugs = [compareCity1Data.slug, compareCity2Data.slug].sort();
+  window.location.href = `/compare/${slugs[0]}-vs-${slugs[1]}/`;
 });
 
 updateCompareBtn();
