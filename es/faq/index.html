@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0G79LDD6JD"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0G79LDD6JD");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | HoodSafe - Preguntas Frecuentes</title>
+<meta name="description" content="Frequently asked questions about HoodSafe puntuaciones de seguridad del vecindario, data sources, and how to use the crime explorer.">
+<link rel="canonical" href="https://hoodsafe.org/es/faq/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="FAQ | HoodSafe">
+<meta property="og:description" content="Frequently asked questions about HoodSafe puntuaciones de seguridad del vecindario.">
+<meta property="og:url" content="https://hoodsafe.org/faq/">
+<meta property="og:type" content="website">
+
+<!-- Favicon -->
+<meta name="theme-color" content="#3b82f6">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How is the safety score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Safety scores (1-100) are calculated using violent crime rates (weighted 50%) and property crime rates (weighted 30%), normalized against national averages using a log-scale formula. Higher scores indicate safer areas."}},
+    {"@type": "Question", "name": "How many cities and condados are covered?", "acceptedAnswer": {"@type": "Answer", "text": "HoodSafe covers over 9,000 US cities, 2,300 condados, 10,000+ códigos postales, and 125,000+ city comparisons with FBI crime data."}},
+    {"@type": "Question", "name": "Where does the crime data come from?", "acceptedAnswer": {"@type": "Answer", "text": "All data comes from the FBI Uniform Crime Reporting (UCR) program, the official national estadísticas de crimen database."}},
+    {"@type": "Question", "name": "What do the letter grades mean?", "acceptedAnswer": {"@type": "Answer", "text": "A (80-100) = Very Safe, B (70-79) = Safe, C (60-69) = Moderate, D (50-59) = Below Average, F (below 50) = High Crime."}}
+  ]
+}
+</script>
+
+<style>
+:root {
+  /* Light theme (default) */
+  --color-bg: #f8fafc; --color-surface: #fff; --color-surface-2: #f1f5f9;
+  --color-surface-offset: #e2e8f0; --color-divider: #e2e8f0; --color-border: #cbd5e1;
+  --color-text: #1e293b; --color-text-muted: #64748b; --color-text-faint: #94a3b8;
+  --color-primary: #0d9488; --color-primary-hover: #0f766e;
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 0.95rem + 0.85vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+  --font-display: 'Satoshi', system-ui, sans-serif;
+  --font-body: 'Satoshi', system-ui, sans-serif;
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --content-wide: 1200px;
+}
+
+[data-theme="dark"] {
+  --color-bg: #141312; --color-surface: #1c1b19; --color-surface-2: #222120;
+  --color-surface-offset: #1d1c1a; --color-divider: #2e2d2b; --color-border: #3a3938;
+  --color-text: #e0dfdd; --color-text-muted: #908f8d; --color-text-faint: #5a5957;
+  --color-primary: #4f98a3; --color-primary-hover: #6ab4bf;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { min-height: 100dvh; line-height: 1.6; font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-text); background: var(--color-bg); }
+h1,h2,h3 { line-height: 1.15; font-family: var(--font-display); }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { color: var(--color-primary-hover); }
+
+.container { max-width: var(--content-wide); margin: 0 auto; padding: 0 var(--space-5); }
+
+.nav { position: sticky; top: 0; z-index: 100; background: oklch(from var(--color-bg) l c h / 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-divider); padding: var(--space-3) 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--content-wide); margin: 0 auto; padding: 0 var(--space-5); }
+.nav-logo { display: flex; align-items: center; gap: var(--space-2); font-weight: 700; font-size: var(--text-sm); color: var(--color-text); text-decoration: none; }
+.nav-logo:hover { color: var(--color-text); }
+.nav-logo svg { flex-shrink: 0; }
+.nav-links { display: flex; align-items: center; gap: var(--space-1); }
+.nav-links a { font-size: var(--text-xs); font-weight: 500; color: var(--color-text-muted); padding: var(--space-1) var(--space-3); border-radius: var(--radius-md); transition: all var(--transition-interactive); text-decoration: none; }
+.nav-links a:hover { color: var(--color-text); background: var(--color-surface-offset); }
+
+.page-content { max-width: 800px; margin: 0 auto; padding: var(--space-8) var(--space-5); }
+.page-content h1 { font-size: var(--text-xl); margin-bottom: var(--space-6); }
+
+.faq-item { background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-4); }
+.faq-q { font-weight: 600; color: var(--color-text); margin-bottom: var(--space-3); font-size: var(--text-base); }
+.faq-a { color: var(--color-text-muted); line-height: 1.7; }
+.faq-a a { color: var(--color-primary); }
+
+.footer { border-top: 1px solid var(--color-divider); padding: var(--space-8) 0; color: var(--color-text-muted); font-size: var(--text-xs); margin-top: var(--space-8); }
+.footer-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-6); }
+.footer-links { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.footer-links a { color: var(--color-text-muted); transition: color var(--transition-interactive); }
+.footer-links a:hover { color: var(--color-text); }
+.footer-disclaimer { max-width: 480px; line-height: 1.6; }
+.footer-attrib { color: var(--color-text-faint); }
+.footer-attrib a { color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/es/" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 3L5 8v7c0 7.2 4.7 13.5 11 16 6.3-2.5 11-8.8 11-16V8L16 3z" fill="currentColor" opacity="0.06" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M16 11l-6 5v6h4v-4h4v4h4v-6l-6-5z" fill="var(--color-primary)" opacity="0.9"/>
+        <path d="M16 11l-6 5h12l-6-5z" fill="var(--color-primary)"/>
+      </svg>
+      HoodSafe
+    </a>
+    <div class="nav-links">
+      <a href="/es/">Inicio</a>
+      <a href="/es/about/">Acerca de</a>
+      <a href="/es/contact/">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <h1>Preguntas Frecuentes</h1>
+  
+  <div class="faq-item">
+    <div class="faq-q">How many cities and condados does HoodSafe cover?</div>
+    <div class="faq-a">HoodSafe covers <strong>9,000+ US cities</strong>, <strong>2,300+ condados</strong>, <strong>10,000+ códigos postales</strong>, and <strong>125,000+ city comparisons</strong> with crime data from the FBI. You can search any city, county, or ZIP code.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How is the safety score calculated?</div>
+    <div class="faq-a">Safety scores (1-100) are calculated using violent crime rates (50% weight) and property crime rates (30% weight), normalized against national averages using a log-scale formula. Higher scores = safer. The formula: <code>100 - (violent_rate/380×50) - (property_rate/2000×30)</code>, clamped between 10-95.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What do the letter grades mean?</div>
+    <div class="faq-a"><strong>A (80-100):</strong> Very Safe — well below national crime averages<br>
+    <strong>B (70-79):</strong> Safe — below average crime rates<br>
+    <strong>C (60-69):</strong> Moderate — near national average<br>
+    <strong>D (50-59):</strong> Below Average — above average crime<br>
+    <strong>F (below 50):</strong> High Crime — significantly above average</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Where does the crime data come from?</div>
+    <div class="faq-a">All data comes from the <strong>FBI Uniform Crime Reporting (UCR)</strong> program — the official national estadísticas de crimen database. This is the same data used by law enforcement, researchers, and journalists nationwide.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What types of crime are included?</div>
+    <div class="faq-a"><strong>Violent crimes:</strong> murder, rape, robbery, aggravated assault<br>
+    <strong>Property crimes:</strong> burglary, larceny-theft, motor vehicle theft<br>
+    Violent crimes are weighted more heavily since they pose greater risk to personal safety.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Why is my city missing or showing no data?</div>
+    <div class="faq-a">Some cities don't report crime data to the FBI UCR program. Notable examples include Florida cities (the state uses a different reporting system) and some smaller towns. If your city is missing, it's because official data isn't available.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How often is the data updated?</div>
+    <div class="faq-a">Data is updated annually when the FBI releases new UCR statistics. Current data reflects the latest available FBI release.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I search by ZIP code?</div>
+    <div class="faq-a">Yes! Enter any 5-digit ZIP code in the search bar or use the dedicated ZIP lookup. We cover <strong>10,000+ códigos postales</strong> (~30% of US residential ZIPs). Each ZIP shows the safety score of its primary city.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I compare cities?</div>
+    <div class="faq-a">Yes! We have <strong>125,000+ city comparisons</strong> covering the top 500 US cities. Use our <a href="/compare/">comparison tool</a> to compare safety scores, crime rates, and grades side by side.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is HoodSafe free to use?</div>
+    <div class="faq-a">Yes, HoodSafe is completely free. We believe safety information should be accessible to everyone making decisions about where to live, work, or visit.</div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-disclaimer">Data is for informational purposes. Based on official city data and FBI UCR statistics. Verify with official sources for important decisions.</p>
+              </div>
+      <div class="footer-links">
+        <a href="/es/about/">Acerca de</a>
+        <a href="/es/faq/">Preguntas Frecuentes</a>
+        <a href="/es/contact/">Contacto</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
