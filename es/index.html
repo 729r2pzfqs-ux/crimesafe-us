@@ -1440,7 +1440,7 @@ quickCityNames.forEach(name => {
     const chip = document.createElement('a');
     chip.className = 'city-chip';
     chip.textContent = name;
-    chip.href = '/city/' + slug + '/';
+    chip.href = '/es/city/' + slug + '/';
     chip.style.textDecoration = 'none';
     quickCitiesEl.appendChild(chip);
   }
@@ -1459,18 +1459,18 @@ heroSearch.addEventListener('input', function() {
   const isZip = /^\d{5}$/.test(q);
   const zipExists = isZip && typeof ZIPS_SEARCH !== 'undefined' && ZIPS_SEARCH.some(z => z[0] === q);
   const zipData = zipExists ? ZIPS_SEARCH.find(z => z[0] === q) : null;
-  const zipResult = zipExists ? [{name: 'ZIP Code ' + q, state: zipData ? zipData[1] + ', ' + zipData[2] : 'View Puntuación de Seguridad', score: '→', url: '/zip/' + q + '/', type: 'zip'}] : [];
+  const zipResult = zipExists ? [{name: 'ZIP Code ' + q, state: zipData ? zipData[1] + ', ' + zipData[2] : 'View Puntuación de Seguridad', score: '→', url: '/es/zip/' + q + '/', type: 'zip'}] : [];
   
   // Search ciudades: [name, state, score, slug, violentRate, propertyRate, population]
   const cityResults = CITIES_FULL.filter(c =>
     c[0].toLowerCase().includes(q) || c[1].toLowerCase().includes(q) ||
     (c[0] + ', ' + c[1]).toLowerCase().includes(q)
-  ).slice(0, isZip ? 3 : 6).map(c => ({name: c[0], state: c[1], score: c[2], url: '/city/' + c[3] + '/', type: 'city'}));
+  ).slice(0, isZip ? 3 : 6).map(c => ({name: c[0], state: c[1], score: c[2], url: '/es/city/' + c[3] + '/', type: 'city'}));
   // Search condados: [name, state, score, slug]
   const condadoResults = (typeof COUNTIES_SEARCH !== 'undefined' ? COUNTIES_SEARCH : []).filter(c =>
     c[0].toLowerCase().includes(q) || c[1].toLowerCase().includes(q) ||
     (c[0] + ', ' + c[1]).toLowerCase().includes(q)
-  ).slice(0, isZip ? 2 : 4).map(c => ({name: c[0], state: c[1], score: c[2], url: '/condado/' + c[3] + '/', type: 'condado'}));
+  ).slice(0, isZip ? 2 : 4).map(c => ({name: c[0], state: c[1], score: c[2], url: '/es/county/' + c[3] + '/', type: 'condado'}));
   const results = [...zipResult, ...cityResults, ...condadoResults];
   if (!results.length) { searchDropdown.classList.remove('active'); return; }
   searchDropdown.innerHTML = results.map(c => `
