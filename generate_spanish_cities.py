@@ -169,6 +169,10 @@ def generate_spanish_cities():
         # Update internal links to Spanish versions
         html = html.replace('href="/"', 'href="/es/"')
         html = html.replace('href="/compare/"', 'href="/es/compare/"')
+        html = html.replace('href="/city/', 'href="/es/city/')
+        html = html.replace('href="/#rankings"', 'href="/es/#rankings"')
+        html = html.replace('>Cities<', '>Ciudades<')
+        html = html.replace('Comparar Cities', 'Comparar Ciudades')
         
         os.makedirs(es_dir, exist_ok=True)
         with open(es_path, 'w', encoding='utf-8') as f:
