@@ -220,6 +220,7 @@ def generate_spanish_cities():
         html = html.replace('href="/"', 'href="/es/"')
         html = html.replace('href="/compare/"', 'href="/es/compare/"')
         html = html.replace('href="/city/', 'href="/es/city/')
+        html = html.replace('href="/safest-cities/', 'href="/es/safest-cities/')
         html = html.replace('href="/#rankings"', 'href="/es/#rankings"')
         html = html.replace('>Cities<', '>Ciudades<')
         html = html.replace('Comparar Cities', 'Comparar Ciudades')
