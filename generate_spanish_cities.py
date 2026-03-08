@@ -22,6 +22,7 @@ REPLACEMENTS = [
     # Section headers - IMPORTANT: More specific strings must come BEFORE general ones!
     ('Safety Overview', 'Resumen de Seguridad'),
     ('Safety Score', 'Puntuación de Seguridad'),
+    ('.score-label { font-size: 0.75rem; opacity: 0.9; }', '.score-label { font-size: 0.75rem; opacity: 0.9; text-align: center; }'),
     ('Below Average Safety', 'Seguridad Por Debajo del Promedio'),
     ('Above Average Safety', 'Seguridad Por Encima del Promedio'),
     ('Average Safety', 'Seguridad Promedio'),
