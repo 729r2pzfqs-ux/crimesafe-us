@@ -76,6 +76,7 @@ REPLACEMENTS = [
     ('View ', 'Ver '),
     (' Rankings', ' Clasificaciones'),
     ('ranks against other cities in', 'se compara con otras ciudades en'),
+    ('with Other Cities', 'con Otras Ciudades'),
     ('has a total crime rate of', 'tiene una tasa de crimen total de'),
     ('has a total crime rate de', 'tiene una tasa de crimen total de'),
     (', with ', ', con '),
