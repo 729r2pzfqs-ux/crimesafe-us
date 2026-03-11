@@ -89,7 +89,7 @@ TEMPLATE = '''<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{city}, {state_abbr} Crime Rate & Safety Score | HoodSafe</title>
+    <title>{city}, {state_abbr} Crime Rate 2025 — Safety Score {score}/100 | HoodSafe</title>
     <meta name="description" content="{city} crime rate and safety statistics. Safety Score: {score}/100 ({grade}). Violent crime rate: {violent_rate} per 100k. Latest FBI data.">
     <link rel="canonical" href="https://hoodsafe.org/city/{slug}/">
     
@@ -113,6 +113,30 @@ TEMPLATE = '''<!DOCTYPE html>
         "description": "Crime statistics and safety analysis for {city}, {state_name}",
         "author": {{"@type": "Organization", "name": "HoodSafe"}},
         "dateModified": "2026-03-06"
+    }}
+    </script>
+    <script type="application/ld+json">
+    {{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {{
+                "@type": "Question",
+                "name": "Is {city} safe to live in?",
+                "acceptedAnswer": {{
+                    "@type": "Answer",
+                    "text": "{city} has a safety score of {score}/100 (Grade {grade}), based on FBI crime data."
+                }}
+            }},
+            {{
+                "@type": "Question",
+                "name": "What is {city}'s crime rate?",
+                "acceptedAnswer": {{
+                    "@type": "Answer",
+                    "text": "{city} has a total crime rate of {total_rate} per 100,000 residents, with {violent_rate} violent crimes and {property_rate} property crimes per 100k."
+                }}
+            }}
+        ]
     }}
     </script>
     
