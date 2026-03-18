@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="x-default" href="https://crimesafe.app/city/savannah-ga/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savannah, GA Crime Rate 2026 — Safety Score 95/100 | CrimeSafe</title>
-    <meta name="description" content="Is Savannah, GA safe? Score: 95/100 — safer than 50% of US cities. Violent crime: 20.3/100k. Full breakdown, rankings &amp; safety tips.">
+    <meta name="description" content="Is Savannah, GA safe? Score: 95/100 — safer than 50% of US cities. Violent crime: 20.3/100k.">
     <link rel="canonical" href="https://crimesafe.app/city/savannah-ga/">
     
     <!-- Favicons -->
@@ -28,10 +28,67 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Savannah, GA Crime Rate & Safety Score",
+        "description": "Crime statistics and safety analysis for Savannah, Georgia",
+        "author": {"@type": "Organization", "name": "CrimeSafe"},
+        "dateModified": "2026-03-06"
+    }
+    </script>
+    
+    <style>
+        :root { --primary: #0d9488; --danger: #dc2626; --warning: #f59e0b; --success: #16a34a; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+        header { background: var(--card); border-bottom: 1px solid var(--border); padding: 1rem 0; }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-weight: 700; font-size: 1.25rem; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .breadcrumb { font-size: 0.875rem; color: var(--muted); margin-top: 1rem; }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .hero { background: var(--card); padding: 2rem; border-radius: 1rem; margin: 1.5rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .hero h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .hero-meta { color: var(--muted); margin-bottom: 1.5rem; }
+        .score-card { display: flex; gap: 2rem; align-items: center; }
+        .score-circle { width: 120px; height: 120px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-weight: 700; }
+        .score-num { font-size: 2.5rem; line-height: 1; }
+        .score-label { font-size: 0.75rem; opacity: 0.9; }
+        .score-details { flex: 1; }
+        .grade { font-size: 3rem; font-weight: 700; }
+        .grade-text { color: var(--muted); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .stat-card { background: var(--card); padding: 1.25rem; border-radius: 0.75rem; border: 1px solid var(--border); }
+        .stat-value { font-size: 1.5rem; font-weight: 700; }
+        .stat-label { font-size: 0.875rem; color: var(--muted); }
+        .stat-rate { font-size: 0.75rem; color: var(--muted); }
+        .section { background: var(--card); padding: 1.5rem; border-radius: 1rem; margin: 1.5rem 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .section h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+        .faq { margin-top: 1rem; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+        .faq-q { font-weight: 600; margin-bottom: 0.5rem; }
+        .faq-a { color: var(--muted); }
+        .cta { background: linear-gradient(135deg, var(--primary), #0f766e); color: white; text-align: center; padding: 2rem; border-radius: 1rem; margin: 2rem 0; }
+        .cta h3 { margin-bottom: 0.5rem; }
+        .cta a { display: inline-block; background: white; color: var(--primary); padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; margin-top: 1rem; }
+        footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.875rem; }
+        footer a { color: var(--primary); }
+        @media (max-width: 600px) { .score-card { flex-direction: column; text-align: center; } .stats-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+<meta property="og:image" content="https://crimesafe.app/favicon-512.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {"@type": "Question", "name": "Is Savannah, GA safe to live in?", "acceptedAnswer": {"@type": "Answer", "text": "Savannah, GA has a safety score of 95/100, ranking #0 out of 8,874 US cities."}},
-            {"@type": "Question", "name": "Is Savannah, GA safe at night?", "acceptedAnswer": {"@type": "Answer", "text": "With a safety score of 95/100, Savannah, GA is generally safe at night."}}
+            {
+                "@type": "Question",
+                "name": "Is Savannah, GA safe to live in?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Savannah, GA has a safety score of 95/100 (Grade A), based on FBI crime data."
+                }
+            }
         ]
     }
     </script>
@@ -95,33 +152,32 @@
         
         <div class="section">
             <h2>Is Savannah, GA Safe?</h2>
-            <p>Savannah, GA is a <strong>safe city</strong> with a safety score of 95/100, placing it safer than 50% of US cities. 
-            The city ranks <strong>#0</strong> out of 8,874 US cities in our safety database.</p>
-            <p style="margin-top: 1rem;">The violent crime rate of 20.3 per 100k is <strong>95% below</strong> the national average (380 per 100k). 
-            Violent crime accounts for 100% of all reported incidents.</p>
+            <p>Savannah, GA is a <strong>safe city</strong> with a safety score of 95/100, placing it safer than 50% of US cities. The city ranks among 8,874 US cities.</p>
+            <p style="margin-top: 1rem;">The violent crime rate of 20.3 per 100k is <strong>95% below</strong> the national average (380 per 100k). Violent crime accounts for 100% of all incidents.</p>
             <p style="margin-top: 1rem;">This city is generally suitable for families, retirees, and visitors.</p>
         </div>
+        
         <div class="section">
             <h2>Frequently Asked Questions</h2>
             <div class="faq">
                 <div class="faq-item">
                     <div class="faq-q">Is Savannah, GA safe to live in?</div>
-                    <div class="faq-a">Savannah, GA is considered a <strong>safe city</strong>, scoring 95/100. It is safer than 50% of US cities.</div>
+                    <div class="faq-a">Savannah, GA has a safety score of 95/100, ranking among 8,874 US cities.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">What is Savannah, GA's crime rate?</div>
-                    <div class="faq-a">Savannah, GA has a violent crime rate of 20.3 per 100k (below the US avg of 380) and a property crime rate of 0.0 per 100k. It ranks #0 out of 8,874 US cities.</div>
+                    <div class="faq-a">Violent crime: 20.3/100k (below US avg). Property crime: 0.0/100k.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">Is Savannah, GA safe at night?</div>
-                    <div class="faq-a">With a safety score of 95/100, Savannah, GA is generally safe at night.</div>
+                    <div class="faq-a">Savannah, GA is generally safe at night.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q">Is Savannah, GA good for families?</div>
-                    <div class="faq-a">Yes, Savannah, GA is generally suitable for families with its safety score of 95/100.</div>
+                    <div class="faq-a">Savannah, GA is suitable for families (score: 95/100).</div>
+                </div></div>
                 </div>
             </div>
-        </div>
         </div>
         
         
@@ -129,21 +185,19 @@
             <h2 style="font-size:1.125rem;margin-bottom:1rem">Crime Summary</h2>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
                 <div style="background:#fef2f2;padding:1rem;border-radius:0.5rem;border-left:4px solid #ef4444">
-                    <div style="font-size:0.75rem;color:#991b1b;font-weight:600;margin-bottom:0.25rem">⚠️ Biggest Concern</div>
+                    <div style="font-size:0.75rem;color:#991b1b;font-weight:600">⚠️ Biggest Concern</div>
                     <div style="font-weight:700;color:#991b1b">Property Crime</div>
-                    <div style="font-size:0.75rem;color:#991b1b">0.0/100k</div>
                 </div>
                 <div style="background:#f0fdf4;padding:1rem;border-radius:0.5rem;border-left:4px solid #22c55e">
-                    <div style="font-size:0.75rem;color:#166534;font-weight:600;margin-bottom:0.25rem">✅ Safest Aspect</div>
+                    <div style="font-size:0.75rem;color:#166534;font-weight:600">✅ Safest Aspect</div>
                     <div style="font-weight:700;color:#166534">Violent Crime</div>
-                    <div style="font-size:0.75rem;color:#166534">20.3/100k (95% below US avg)</div>
                 </div>
             </div>
         </div>
         <div class="section" style="margin-top:1.5rem">
             <h2 style="font-size:1.125rem;margin-bottom:1rem">Explore More</h2>
             <p style="margin-bottom:0.75rem"><span style="color:var(--muted);font-size:0.875rem">Nearby: </span><a href="/city/braswell-ga/" style="color:var(--primary);text-decoration:none">Braswell</a> · <a href="/city/elberton-ga/" style="color:var(--primary);text-decoration:none">Elberton</a> · <a href="/city/bainbridge-ga/" style="color:var(--primary);text-decoration:none">Bainbridge</a> · <a href="/city/gainesville-ga/" style="color:var(--primary);text-decoration:none">Gainesville</a> · <a href="/city/midville-ga/" style="color:var(--primary);text-decoration:none">Midville</a></p><p style="margin-bottom:0.75rem"><span style="color:var(--muted);font-size:0.875rem">State: </span><a href="/safest-cities/georgia/" style="color:var(--primary);text-decoration:none">Safest Cities in Georgia</a></p>
-            <p style="margin-bottom:0.75rem"><span style="color:var(--muted);font-size:0.875rem">Rankings: </span><a href="/safest-cities/" style="color:var(--primary);text-decoration:none">US City Rankings</a> · <a href="/zip/" style="color:var(--primary);text-decoration:none">ZIP Code Lookup</a> · <a href="/county/" style="color:var(--primary);text-decoration:none">County Data</a></p>
+            <p><span style="color:var(--muted);font-size:0.875rem">More: </span><a href="/safest-cities/" style="color:var(--primary);text-decoration:none">US Rankings</a> · <a href="/zip/" style="color:var(--primary);text-decoration:none">ZIP Codes</a> · <a href="/county/" style="color:var(--primary);text-decoration:none">Counties</a></p>
         </div>
         <div class="cta">
             <h3>Compare Savannah with Other Cities</h3>
