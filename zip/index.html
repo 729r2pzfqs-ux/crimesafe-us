@@ -1,58 +1,264 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0G79LDD6JD"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0G79LDD6JD');</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZIP Code Safety Scores | Crime Data by ZIP | CrimeSafe</title>
-<meta name="description" content="Search crime rates and safety scores for any US ZIP code. Data from FBI UCR covering 10,000+ ZIP codes.">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-0G79LDD6JD');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZIP Code Crime Index | 9,933 US ZIP Codes | CrimeSafe</title>
+<meta name="description" content="Browse crime rates and safety scores for 9,933 US ZIP codes. Search by state or ZIP code.">
 <link rel="canonical" href="https://crimesafe.app/zip/">
 <link rel="icon" href="/favicon.ico">
-<style>:root{--primary:#0d9488;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}.container{max-width:800px;margin:0 auto;padding:1rem}header{background:var(--card);border-bottom:1px solid var(--border);padding:1rem 0}.logo{font-weight:700;font-size:1.25rem;color:var(--primary);text-decoration:none}h1{font-size:1.75rem;margin-bottom:1rem}h2{font-size:1.25rem;margin:2rem 0 1rem}.card{background:var(--card);padding:2rem;border-radius:1rem;margin:1.5rem 0;text-align:center}.search-box{display:flex;gap:0.5rem;max-width:400px;margin:1rem auto}input{flex:1;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:0.5rem;font-size:1rem}.btn{background:var(--primary);color:#fff;padding:0.75rem 1.5rem;border:none;border-radius:0.5rem;cursor:pointer;font-size:1rem}.stat{font-size:3rem;font-weight:700;color:var(--primary)}footer{text-align:center;padding:2rem;color:var(--muted)}a{color:var(--primary)}</style>
+<style>
+:root{--primary:#0d9488;--bg:#f8fafc;--card:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:1rem}
+header{background:var(--card);border-bottom:1px solid var(--border);padding:1rem 0}
+.header-inner{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;font-size:1.25rem;color:var(--primary);text-decoration:none}
+nav a{color:var(--muted);text-decoration:none;font-size:0.875rem;margin-left:1.5rem}
+h1{font-size:2rem;margin:2rem 0 0.5rem;text-align:center}
+.subtitle{color:var(--muted);text-align:center;margin-bottom:2rem}
+.search-box{max-width:400px;margin:1.5rem auto;display:flex;gap:0.5rem}
+.search-box input{flex:1;padding:0.75rem 1rem;border:1px solid var(--border);border-radius:0.5rem;font-size:1rem}
+.search-box button{background:var(--primary);color:#fff;padding:0.75rem 1.5rem;border:none;border-radius:0.5rem;cursor:pointer;font-size:1rem}
+.stats{display:flex;gap:2rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap}
+.stat-value{font-size:1.5rem;font-weight:700;color:var(--primary)}
+.stat-label{font-size:0.8rem;color:var(--muted)}
+.state-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem;margin:2rem 0}
+.state-card{background:var(--card);border:1px solid var(--border);border-radius:0.75rem;padding:1rem}
+.state-card:hover{border-color:var(--primary)}
+.state-card a{color:var(--primary);text-decoration:none;margin-right:0.5rem}
+.state-card a:hover{text-decoration:underline}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.875rem}
+</style>
 </head><body>
-<header><div class="container"><a href="/" class="logo"><svg width="22" height="22" viewBox="0 0 512 512" style="vertical-align:middle;margin-right:6px"><path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" fill="#0d9488" opacity="0.15"/><path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" fill="none" stroke="#0d9488" stroke-width="24"/><text x="256" y="320" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="160" fill="#0d9488">US</text></svg>CrimeSafe</a></div></header>
-<div class="container" style="font-size:0.875rem;color:var(--muted);padding-top:0.5rem"><a href="/">Home</a> → ZIP Codes</div>
+<header><div class="container header-inner">
+<a href="/" class="logo"><svg width="22" height="22" viewBox="0 0 512 512" style="vertical-align:middle;margin-right:6px"><path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" fill="#0d9488" opacity="0.15"/><path d="M256 52L88 140v120c0 104 72 192 168 224 96-32 168-120 168-224V140L256 52z" fill="none" stroke="#0d9488" stroke-width="24"/><text x="256" y="320" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="160" fill="#0d9488">US</text></svg>CrimeSafe</a>
+<nav><a href="/">Home</a><a href="/city/">Cities</a><a href="/county/">Counties</a><a href="/zip/">ZIP Codes</a><a href="/safest-cities/">Rankings</a><a href="/about/">About</a></nav>
+</div></header>
 <main class="container">
-<h1>ZIP Code Safety Scores</h1>
-<p>Search crime rates and safety data for any US ZIP code. Our database covers <strong>10,000+ ZIP codes</strong> with data from the FBI.</p>
-
-<div class="card">
-<div class="stat">9,933</div>
-<p style="color:var(--muted)">ZIP codes with safety data</p>
-
+<h1>US ZIP Code Crime Index</h1>
+<p class="subtitle">Browse crime rates and safety scores for 9,933 ZIP codes across all 50 states</p>
+<div class="stats">
+<div><div class="stat-value">9,933</div><div class="stat-label">ZIP Codes</div></div>
+<div><div class="stat-value">50</div><div class="stat-label">States</div></div>
+</div>
 <div class="search-box">
 <input type="text" id="zip-input" placeholder="Enter ZIP code (e.g., 90210)" maxlength="5" pattern="[0-9]*">
-<button class="btn" onclick="searchZip()">Search</button>
+<button onclick="searchZip()">Search</button>
+</div>
+<h2 style="font-size:1.25rem;margin:2rem 0 1rem">Browse by State</h2>
+<div class="state-grid">
+<div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Alaska (AK)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">33 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/99501/">99501</a> <a href="/zip/99502/">99502</a> <a href="/zip/99503/">99503</a> <a href="/zip/99504/">99504</a> <a href="/zip/99507/">99507</a> <a href="/zip/99508/">99508</a> <a href="/zip/99513/">99513</a> <a href="/zip/99515/">99515</a> <a href="/zip/99516/">99516</a> <a href="/zip/99517/">99517</a> <a href="/zip/99518/">99518</a> <a href="/zip/99611/">99611</a> <span style="color:var(--muted)">+21 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Alabama (AL)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">289 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/35005/">35005</a> <a href="/zip/35010/">35010</a> <a href="/zip/35016/">35016</a> <a href="/zip/35020/">35020</a> <a href="/zip/35023/">35023</a> <a href="/zip/35031/">35031</a> <a href="/zip/35034/">35034</a> <a href="/zip/35036/">35036</a> <a href="/zip/35040/">35040</a> <a href="/zip/35042/">35042</a> <a href="/zip/35045/">35045</a> <a href="/zip/35051/">35051</a> <span style="color:var(--muted)">+277 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Arkansas (AR)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">189 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/71603/">71603</a> <a href="/zip/71639/">71639</a> <a href="/zip/71640/">71640</a> <a href="/zip/71646/">71646</a> <a href="/zip/71653/">71653</a> <a href="/zip/71655/">71655</a> <a href="/zip/71667/">71667</a> <a href="/zip/71671/">71671</a> <a href="/zip/71730/">71730</a> <a href="/zip/71742/">71742</a> <a href="/zip/71743/">71743</a> <a href="/zip/71744/">71744</a> <span style="color:var(--muted)">+177 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Arizona (AZ)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">164 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/85003/">85003</a> <a href="/zip/85004/">85004</a> <a href="/zip/85006/">85006</a> <a href="/zip/85007/">85007</a> <a href="/zip/85008/">85008</a> <a href="/zip/85009/">85009</a> <a href="/zip/85012/">85012</a> <a href="/zip/85013/">85013</a> <a href="/zip/85014/">85014</a> <a href="/zip/85015/">85015</a> <a href="/zip/85016/">85016</a> <a href="/zip/85017/">85017</a> <span style="color:var(--muted)">+152 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">California (CA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">806 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/90001/">90001</a> <a href="/zip/90002/">90002</a> <a href="/zip/90003/">90003</a> <a href="/zip/90004/">90004</a> <a href="/zip/90005/">90005</a> <a href="/zip/90006/">90006</a> <a href="/zip/90007/">90007</a> <a href="/zip/90008/">90008</a> <a href="/zip/90010/">90010</a> <a href="/zip/90011/">90011</a> <a href="/zip/90012/">90012</a> <a href="/zip/90013/">90013</a> <span style="color:var(--muted)">+794 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Colorado (CO)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">196 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/80002/">80002</a> <a href="/zip/80003/">80003</a> <a href="/zip/80004/">80004</a> <a href="/zip/80005/">80005</a> <a href="/zip/80010/">80010</a> <a href="/zip/80011/">80011</a> <a href="/zip/80012/">80012</a> <a href="/zip/80013/">80013</a> <a href="/zip/80014/">80014</a> <a href="/zip/80015/">80015</a> <a href="/zip/80016/">80016</a> <a href="/zip/80017/">80017</a> <span style="color:var(--muted)">+184 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Connecticut (CT)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">122 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/06001/">06001</a> <a href="/zip/06002/">06002</a> <a href="/zip/06010/">06010</a> <a href="/zip/06019/">06019</a> <a href="/zip/06032/">06032</a> <a href="/zip/06033/">06033</a> <a href="/zip/06035/">06035</a> <a href="/zip/06037/">06037</a> <a href="/zip/06040/">06040</a> <a href="/zip/06051/">06051</a> <a href="/zip/06052/">06052</a> <a href="/zip/06053/">06053</a> <span style="color:var(--muted)">+110 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Delaware (DE)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">33 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/19702/">19702</a> <a href="/zip/19706/">19706</a> <a href="/zip/19709/">19709</a> <a href="/zip/19711/">19711</a> <a href="/zip/19713/">19713</a> <a href="/zip/19734/">19734</a> <a href="/zip/19801/">19801</a> <a href="/zip/19802/">19802</a> <a href="/zip/19804/">19804</a> <a href="/zip/19805/">19805</a> <a href="/zip/19806/">19806</a> <a href="/zip/19901/">19901</a> <span style="color:var(--muted)">+21 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Florida (FL)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">197 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/32112/">32112</a> <a href="/zip/32177/">32177</a> <a href="/zip/32233/">32233</a> <a href="/zip/32266/">32266</a> <a href="/zip/32401/">32401</a> <a href="/zip/32403/">32403</a> <a href="/zip/32404/">32404</a> <a href="/zip/32405/">32405</a> <a href="/zip/32424/">32424</a> <a href="/zip/32444/">32444</a> <a href="/zip/32446/">32446</a> <a href="/zip/32447/">32447</a> <span style="color:var(--muted)">+185 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Georgia (GA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">189 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/30030/">30030</a> <a href="/zip/30032/">30032</a> <a href="/zip/30033/">30033</a> <a href="/zip/30034/">30034</a> <a href="/zip/30035/">30035</a> <a href="/zip/30038/">30038</a> <a href="/zip/30060/">30060</a> <a href="/zip/30062/">30062</a> <a href="/zip/30064/">30064</a> <a href="/zip/30066/">30066</a> <a href="/zip/30067/">30067</a> <a href="/zip/30068/">30068</a> <span style="color:var(--muted)">+177 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Hawaii (HI)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">11 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/96813/">96813</a> <a href="/zip/96814/">96814</a> <a href="/zip/96815/">96815</a> <a href="/zip/96816/">96816</a> <a href="/zip/96817/">96817</a> <a href="/zip/96818/">96818</a> <a href="/zip/96819/">96819</a> <a href="/zip/96821/">96821</a> <a href="/zip/96822/">96822</a> <a href="/zip/96825/">96825</a> <a href="/zip/96826/">96826</a></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Iowa (IA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">176 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/50003/">50003</a> <a href="/zip/50009/">50009</a> <a href="/zip/50010/">50010</a> <a href="/zip/50014/">50014</a> <a href="/zip/50021/">50021</a> <a href="/zip/50022/">50022</a> <a href="/zip/50047/">50047</a> <a href="/zip/50054/">50054</a> <a href="/zip/50069/">50069</a> <a href="/zip/50072/">50072</a> <a href="/zip/50112/">50112</a> <a href="/zip/50124/">50124</a> <span style="color:var(--muted)">+164 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Idaho (ID)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">63 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/83201/">83201</a> <a href="/zip/83202/">83202</a> <a href="/zip/83204/">83204</a> <a href="/zip/83211/">83211</a> <a href="/zip/83221/">83221</a> <a href="/zip/83226/">83226</a> <a href="/zip/83254/">83254</a> <a href="/zip/83263/">83263</a> <a href="/zip/83274/">83274</a> <a href="/zip/83276/">83276</a> <a href="/zip/83301/">83301</a> <a href="/zip/83313/">83313</a> <span style="color:var(--muted)">+51 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Illinois (IL)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">495 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/60002/">60002</a> <a href="/zip/60008/">60008</a> <a href="/zip/60010/">60010</a> <a href="/zip/60012/">60012</a> <a href="/zip/60013/">60013</a> <a href="/zip/60014/">60014</a> <a href="/zip/60015/">60015</a> <a href="/zip/60016/">60016</a> <a href="/zip/60018/">60018</a> <a href="/zip/60020/">60020</a> <a href="/zip/60021/">60021</a> <a href="/zip/60022/">60022</a> <span style="color:var(--muted)">+483 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Indiana (IN)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">171 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/46011/">46011</a> <a href="/zip/46012/">46012</a> <a href="/zip/46013/">46013</a> <a href="/zip/46016/">46016</a> <a href="/zip/46032/">46032</a> <a href="/zip/46033/">46033</a> <a href="/zip/46034/">46034</a> <a href="/zip/46036/">46036</a> <a href="/zip/46038/">46038</a> <a href="/zip/46052/">46052</a> <a href="/zip/46055/">46055</a> <a href="/zip/46060/">46060</a> <span style="color:var(--muted)">+159 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Kansas (KS)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">156 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/66002/">66002</a> <a href="/zip/66006/">66006</a> <a href="/zip/66007/">66007</a> <a href="/zip/66024/">66024</a> <a href="/zip/66025/">66025</a> <a href="/zip/66030/">66030</a> <a href="/zip/66032/">66032</a> <a href="/zip/66043/">66043</a> <a href="/zip/66044/">66044</a> <a href="/zip/66046/">66046</a> <a href="/zip/66047/">66047</a> <a href="/zip/66048/">66048</a> <span style="color:var(--muted)">+144 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Kentucky (KY)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">165 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/40004/">40004</a> <a href="/zip/40008/">40008</a> <a href="/zip/40011/">40011</a> <a href="/zip/40019/">40019</a> <a href="/zip/40031/">40031</a> <a href="/zip/40033/">40033</a> <a href="/zip/40047/">40047</a> <a href="/zip/40056/">40056</a> <a href="/zip/40059/">40059</a> <a href="/zip/40065/">40065</a> <a href="/zip/40067/">40067</a> <a href="/zip/40071/">40071</a> <span style="color:var(--muted)">+153 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Louisiana (LA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">88 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/70052/">70052</a> <a href="/zip/70053/">70053</a> <a href="/zip/70062/">70062</a> <a href="/zip/70065/">70065</a> <a href="/zip/70123/">70123</a> <a href="/zip/70301/">70301</a> <a href="/zip/70357/">70357</a> <a href="/zip/70380/">70380</a> <a href="/zip/70392/">70392</a> <a href="/zip/70427/">70427</a> <a href="/zip/70433/">70433</a> <a href="/zip/70437/">70437</a> <span style="color:var(--muted)">+76 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Massachusetts (MA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">322 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/01001/">01001</a> <a href="/zip/01005/">01005</a> <a href="/zip/01007/">01007</a> <a href="/zip/01010/">01010</a> <a href="/zip/01011/">01011</a> <a href="/zip/01012/">01012</a> <a href="/zip/01013/">01013</a> <a href="/zip/01020/">01020</a> <a href="/zip/01028/">01028</a> <a href="/zip/01032/">01032</a> <a href="/zip/01033/">01033</a> <a href="/zip/01034/">01034</a> <span style="color:var(--muted)">+310 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Maryland (MD)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">77 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/20646/">20646</a> <a href="/zip/20707/">20707</a> <a href="/zip/20710/">20710</a> <a href="/zip/20712/">20712</a> <a href="/zip/20715/">20715</a> <a href="/zip/20720/">20720</a> <a href="/zip/20722/">20722</a> <a href="/zip/20723/">20723</a> <a href="/zip/20724/">20724</a> <a href="/zip/20747/">20747</a> <a href="/zip/20770/">20770</a> <a href="/zip/20781/">20781</a> <span style="color:var(--muted)">+65 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Maine (ME)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">88 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/03901/">03901</a> <a href="/zip/03903/">03903</a> <a href="/zip/03904/">03904</a> <a href="/zip/03906/">03906</a> <a href="/zip/03907/">03907</a> <a href="/zip/03908/">03908</a> <a href="/zip/03909/">03909</a> <a href="/zip/04009/">04009</a> <a href="/zip/04032/">04032</a> <a href="/zip/04037/">04037</a> <a href="/zip/04038/">04038</a> <a href="/zip/04043/">04043</a> <span style="color:var(--muted)">+76 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Michigan (MI)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">376 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/48003/">48003</a> <a href="/zip/48005/">48005</a> <a href="/zip/48009/">48009</a> <a href="/zip/48015/">48015</a> <a href="/zip/48017/">48017</a> <a href="/zip/48021/">48021</a> <a href="/zip/48022/">48022</a> <a href="/zip/48025/">48025</a> <a href="/zip/48026/">48026</a> <a href="/zip/48030/">48030</a> <a href="/zip/48034/">48034</a> <a href="/zip/48035/">48035</a> <span style="color:var(--muted)">+364 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Minnesota (MN)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">274 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/55003/">55003</a> <a href="/zip/55006/">55006</a> <a href="/zip/55008/">55008</a> <a href="/zip/55009/">55009</a> <a href="/zip/55016/">55016</a> <a href="/zip/55019/">55019</a> <a href="/zip/55021/">55021</a> <a href="/zip/55024/">55024</a> <a href="/zip/55025/">55025</a> <a href="/zip/55040/">55040</a> <a href="/zip/55041/">55041</a> <a href="/zip/55044/">55044</a> <span style="color:var(--muted)">+262 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Missouri (MO)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">277 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/63005/">63005</a> <a href="/zip/63011/">63011</a> <a href="/zip/63017/">63017</a> <a href="/zip/63020/">63020</a> <a href="/zip/63021/">63021</a> <a href="/zip/63028/">63028</a> <a href="/zip/63031/">63031</a> <a href="/zip/63033/">63033</a> <a href="/zip/63034/">63034</a> <a href="/zip/63042/">63042</a> <a href="/zip/63043/">63043</a> <a href="/zip/63044/">63044</a> <span style="color:var(--muted)">+265 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Mississippi (MS)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">61 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/38606/">38606</a> <a href="/zip/38632/">38632</a> <a href="/zip/38637/">38637</a> <a href="/zip/38652/">38652</a> <a href="/zip/38654/">38654</a> <a href="/zip/38668/">38668</a> <a href="/zip/38671/">38671</a> <a href="/zip/38676/">38676</a> <a href="/zip/38683/">38683</a> <a href="/zip/38732/">38732</a> <a href="/zip/38801/">38801</a> <a href="/zip/38821/">38821</a> <span style="color:var(--muted)">+49 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Montana (MT)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">50 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/59014/">59014</a> <a href="/zip/59019/">59019</a> <a href="/zip/59034/">59034</a> <a href="/zip/59044/">59044</a> <a href="/zip/59047/">59047</a> <a href="/zip/59068/">59068</a> <a href="/zip/59101/">59101</a> <a href="/zip/59102/">59102</a> <a href="/zip/59106/">59106</a> <a href="/zip/59201/">59201</a> <a href="/zip/59230/">59230</a> <a href="/zip/59270/">59270</a> <span style="color:var(--muted)">+38 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">North Carolina (NC)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">241 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/27013/">27013</a> <a href="/zip/27021/">27021</a> <a href="/zip/27025/">27025</a> <a href="/zip/27027/">27027</a> <a href="/zip/27030/">27030</a> <a href="/zip/27055/">27055</a> <a href="/zip/27101/">27101</a> <a href="/zip/27103/">27103</a> <a href="/zip/27104/">27104</a> <a href="/zip/27105/">27105</a> <a href="/zip/27106/">27106</a> <a href="/zip/27107/">27107</a> <span style="color:var(--muted)">+229 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">North Dakota (ND)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">15 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/58072/">58072</a> <a href="/zip/58103/">58103</a> <a href="/zip/58201/">58201</a> <a href="/zip/58202/">58202</a> <a href="/zip/58203/">58203</a> <a href="/zip/58367/">58367</a> <a href="/zip/58482/">58482</a> <a href="/zip/58501/">58501</a> <a href="/zip/58504/">58504</a> <a href="/zip/58505/">58505</a> <a href="/zip/58523/">58523</a> <a href="/zip/58554/">58554</a> <span style="color:var(--muted)">+3 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Nebraska (NE)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">94 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/68005/">68005</a> <a href="/zip/68008/">68008</a> <a href="/zip/68010/">68010</a> <a href="/zip/68025/">68025</a> <a href="/zip/68046/">68046</a> <a href="/zip/68048/">68048</a> <a href="/zip/68064/">68064</a> <a href="/zip/68066/">68066</a> <a href="/zip/68069/">68069</a> <a href="/zip/68102/">68102</a> <a href="/zip/68104/">68104</a> <a href="/zip/68105/">68105</a> <span style="color:var(--muted)">+82 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">New Hampshire (NH)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">152 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/03031/">03031</a> <a href="/zip/03032/">03032</a> <a href="/zip/03033/">03033</a> <a href="/zip/03034/">03034</a> <a href="/zip/03036/">03036</a> <a href="/zip/03037/">03037</a> <a href="/zip/03038/">03038</a> <a href="/zip/03042/">03042</a> <a href="/zip/03043/">03043</a> <a href="/zip/03044/">03044</a> <a href="/zip/03045/">03045</a> <a href="/zip/03047/">03047</a> <span style="color:var(--muted)">+140 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">New Jersey (NJ)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">320 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/07003/">07003</a> <a href="/zip/07005/">07005</a> <a href="/zip/07006/">07006</a> <a href="/zip/07008/">07008</a> <a href="/zip/07009/">07009</a> <a href="/zip/07010/">07010</a> <a href="/zip/07011/">07011</a> <a href="/zip/07012/">07012</a> <a href="/zip/07013/">07013</a> <a href="/zip/07014/">07014</a> <a href="/zip/07016/">07016</a> <a href="/zip/07017/">07017</a> <span style="color:var(--muted)">+308 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">New Mexico (NM)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">58 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/87004/">87004</a> <a href="/zip/87015/">87015</a> <a href="/zip/87020/">87020</a> <a href="/zip/87031/">87031</a> <a href="/zip/87042/">87042</a> <a href="/zip/87048/">87048</a> <a href="/zip/87068/">87068</a> <a href="/zip/87102/">87102</a> <a href="/zip/87104/">87104</a> <a href="/zip/87105/">87105</a> <a href="/zip/87106/">87106</a> <a href="/zip/87107/">87107</a> <span style="color:var(--muted)">+46 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Nevada (NV)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">23 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/89005/">89005</a> <a href="/zip/89011/">89011</a> <a href="/zip/89012/">89012</a> <a href="/zip/89014/">89014</a> <a href="/zip/89015/">89015</a> <a href="/zip/89030/">89030</a> <a href="/zip/89031/">89031</a> <a href="/zip/89032/">89032</a> <a href="/zip/89406/">89406</a> <a href="/zip/89431/">89431</a> <a href="/zip/89434/">89434</a> <a href="/zip/89436/">89436</a> <span style="color:var(--muted)">+11 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">New York (NY)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">368 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/10001/">10001</a> <a href="/zip/10002/">10002</a> <a href="/zip/10003/">10003</a> <a href="/zip/10005/">10005</a> <a href="/zip/10006/">10006</a> <a href="/zip/10007/">10007</a> <a href="/zip/10009/">10009</a> <a href="/zip/10010/">10010</a> <a href="/zip/10011/">10011</a> <a href="/zip/10012/">10012</a> <a href="/zip/10013/">10013</a> <a href="/zip/10014/">10014</a> <span style="color:var(--muted)">+356 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Ohio (OH)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">384 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/43015/">43015</a> <a href="/zip/43016/">43016</a> <a href="/zip/43017/">43017</a> <a href="/zip/43019/">43019</a> <a href="/zip/43025/">43025</a> <a href="/zip/43026/">43026</a> <a href="/zip/43031/">43031</a> <a href="/zip/43040/">43040</a> <a href="/zip/43044/">43044</a> <a href="/zip/43054/">43054</a> <a href="/zip/43055/">43055</a> <a href="/zip/43056/">43056</a> <span style="color:var(--muted)">+372 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Oklahoma (OK)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">352 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/73003/">73003</a> <a href="/zip/73004/">73004</a> <a href="/zip/73005/">73005</a> <a href="/zip/73006/">73006</a> <a href="/zip/73007/">73007</a> <a href="/zip/73008/">73008</a> <a href="/zip/73009/">73009</a> <a href="/zip/73010/">73010</a> <a href="/zip/73013/">73013</a> <a href="/zip/73014/">73014</a> <a href="/zip/73015/">73015</a> <a href="/zip/73016/">73016</a> <span style="color:var(--muted)">+340 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Oregon (OR)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">117 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/97005/">97005</a> <a href="/zip/97013/">97013</a> <a href="/zip/97018/">97018</a> <a href="/zip/97026/">97026</a> <a href="/zip/97027/">97027</a> <a href="/zip/97030/">97030</a> <a href="/zip/97031/">97031</a> <a href="/zip/97032/">97032</a> <a href="/zip/97034/">97034</a> <a href="/zip/97035/">97035</a> <a href="/zip/97038/">97038</a> <a href="/zip/97045/">97045</a> <span style="color:var(--muted)">+105 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Pennsylvania (PA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">458 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/15009/">15009</a> <a href="/zip/15012/">15012</a> <a href="/zip/15017/">15017</a> <a href="/zip/15033/">15033</a> <a href="/zip/15035/">15035</a> <a href="/zip/15037/">15037</a> <a href="/zip/15042/">15042</a> <a href="/zip/15045/">15045</a> <a href="/zip/15056/">15056</a> <a href="/zip/15059/">15059</a> <a href="/zip/15061/">15061</a> <a href="/zip/15062/">15062</a> <span style="color:var(--muted)">+446 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Rhode Island (RI)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">48 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/02806/">02806</a> <a href="/zip/02809/">02809</a> <a href="/zip/02812/">02812</a> <a href="/zip/02813/">02813</a> <a href="/zip/02816/">02816</a> <a href="/zip/02817/">02817</a> <a href="/zip/02818/">02818</a> <a href="/zip/02825/">02825</a> <a href="/zip/02832/">02832</a> <a href="/zip/02833/">02833</a> <a href="/zip/02835/">02835</a> <a href="/zip/02836/">02836</a> <span style="color:var(--muted)">+36 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">South Carolina (SC)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">168 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/29003/">29003</a> <a href="/zip/29010/">29010</a> <a href="/zip/29020/">29020</a> <a href="/zip/29033/">29033</a> <a href="/zip/29036/">29036</a> <a href="/zip/29042/">29042</a> <a href="/zip/29045/">29045</a> <a href="/zip/29047/">29047</a> <a href="/zip/29048/">29048</a> <a href="/zip/29053/">29053</a> <a href="/zip/29059/">29059</a> <a href="/zip/29063/">29063</a> <span style="color:var(--muted)">+156 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">South Dakota (SD)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">33 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/57004/">57004</a> <a href="/zip/57006/">57006</a> <a href="/zip/57014/">57014</a> <a href="/zip/57025/">57025</a> <a href="/zip/57028/">57028</a> <a href="/zip/57038/">57038</a> <a href="/zip/57039/">57039</a> <a href="/zip/57042/">57042</a> <a href="/zip/57059/">57059</a> <a href="/zip/57064/">57064</a> <a href="/zip/57069/">57069</a> <a href="/zip/57078/">57078</a> <span style="color:var(--muted)">+21 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Tennessee (TN)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">215 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/37015/">37015</a> <a href="/zip/37027/">37027</a> <a href="/zip/37033/">37033</a> <a href="/zip/37034/">37034</a> <a href="/zip/37040/">37040</a> <a href="/zip/37042/">37042</a> <a href="/zip/37043/">37043</a> <a href="/zip/37055/">37055</a> <a href="/zip/37061/">37061</a> <a href="/zip/37062/">37062</a> <a href="/zip/37064/">37064</a> <a href="/zip/37066/">37066</a> <span style="color:var(--muted)">+203 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Texas (TX)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">971 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/75001/">75001</a> <a href="/zip/75002/">75002</a> <a href="/zip/75006/">75006</a> <a href="/zip/75007/">75007</a> <a href="/zip/75009/">75009</a> <a href="/zip/75010/">75010</a> <a href="/zip/75019/">75019</a> <a href="/zip/75020/">75020</a> <a href="/zip/75021/">75021</a> <a href="/zip/75023/">75023</a> <a href="/zip/75024/">75024</a> <a href="/zip/75025/">75025</a> <span style="color:var(--muted)">+959 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Utah (UT)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">71 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/84014/">84014</a> <a href="/zip/84015/">84015</a> <a href="/zip/84020/">84020</a> <a href="/zip/84025/">84025</a> <a href="/zip/84029/">84029</a> <a href="/zip/84032/">84032</a> <a href="/zip/84037/">84037</a> <a href="/zip/84040/">84040</a> <a href="/zip/84041/">84041</a> <a href="/zip/84042/">84042</a> <a href="/zip/84043/">84043</a> <a href="/zip/84054/">84054</a> <span style="color:var(--muted)">+59 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Virginia (VA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">191 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/22026/">22026</a> <a href="/zip/22030/">22030</a> <a href="/zip/22031/">22031</a> <a href="/zip/22032/">22032</a> <a href="/zip/22033/">22033</a> <a href="/zip/22046/">22046</a> <a href="/zip/22180/">22180</a> <a href="/zip/22181/">22181</a> <a href="/zip/22182/">22182</a> <a href="/zip/22301/">22301</a> <a href="/zip/22302/">22302</a> <a href="/zip/22304/">22304</a> <span style="color:var(--muted)">+179 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Vermont (VT)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">38 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/05033/">05033</a> <a href="/zip/05045/">05045</a> <a href="/zip/05055/">05055</a> <a href="/zip/05060/">05060</a> <a href="/zip/05074/">05074</a> <a href="/zip/05089/">05089</a> <a href="/zip/05091/">05091</a> <a href="/zip/05101/">05101</a> <a href="/zip/05143/">05143</a> <a href="/zip/05149/">05149</a> <a href="/zip/05156/">05156</a> <a href="/zip/05201/">05201</a> <span style="color:var(--muted)">+26 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Washington (WA)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">235 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/98001/">98001</a> <a href="/zip/98002/">98002</a> <a href="/zip/98003/">98003</a> <a href="/zip/98004/">98004</a> <a href="/zip/98005/">98005</a> <a href="/zip/98006/">98006</a> <a href="/zip/98007/">98007</a> <a href="/zip/98008/">98008</a> <a href="/zip/98010/">98010</a> <a href="/zip/98011/">98011</a> <a href="/zip/98012/">98012</a> <a href="/zip/98014/">98014</a> <span style="color:var(--muted)">+223 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Wisconsin (WI)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">239 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/53005/">53005</a> <a href="/zip/53007/">53007</a> <a href="/zip/53012/">53012</a> <a href="/zip/53014/">53014</a> <a href="/zip/53018/">53018</a> <a href="/zip/53022/">53022</a> <a href="/zip/53024/">53024</a> <a href="/zip/53027/">53027</a> <a href="/zip/53029/">53029</a> <a href="/zip/53032/">53032</a> <a href="/zip/53039/">53039</a> <a href="/zip/53040/">53040</a> <span style="color:var(--muted)">+227 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">West Virginia (WV)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">43 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/24970/">24970</a> <a href="/zip/25039/">25039</a> <a href="/zip/25064/">25064</a> <a href="/zip/25130/">25130</a> <a href="/zip/25136/">25136</a> <a href="/zip/25143/">25143</a> <a href="/zip/25213/">25213</a> <a href="/zip/25271/">25271</a> <a href="/zip/25276/">25276</a> <a href="/zip/25301/">25301</a> <a href="/zip/25303/">25303</a> <a href="/zip/25304/">25304</a> <span style="color:var(--muted)">+31 more</span></div>
+</div><div class="state-card">
+<div style="font-weight:600;margin-bottom:0.5rem">Wyoming (WY)</div>
+<div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem">31 ZIP codes</div>
+<div style="font-size:0.8rem;line-height:1.8"><a href="/zip/82001/">82001</a> <a href="/zip/82007/">82007</a> <a href="/zip/82009/">82009</a> <a href="/zip/82051/">82051</a> <a href="/zip/82070/">82070</a> <a href="/zip/82082/">82082</a> <a href="/zip/82223/">82223</a> <a href="/zip/82225/">82225</a> <a href="/zip/82240/">82240</a> <a href="/zip/82401/">82401</a> <a href="/zip/82414/">82414</a> <a href="/zip/82435/">82435</a> <span style="color:var(--muted)">+19 more</span></div>
 </div>
 </div>
-
-<h2>How It Works</h2>
-<p>Each ZIP code is mapped to its primary city, and we display the city's safety score based on FBI crime data. This gives you a general sense of safety, though individual neighborhoods within a ZIP may vary.</p>
-
-<h2>Popular ZIP Code Searches</h2>
-<ul style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem">
-<li><a href="/zip/90210/">90210 - Beverly Hills, CA</a></li>
-<li><a href="/zip/10001/">10001 - New York, NY</a></li>
-<li><a href="/zip/60601/">60601 - Chicago, IL</a></li>
-<li><a href="/zip/77002/">77002 - Houston, TX</a></li>
-<li><a href="/zip/85003/">85003 - Phoenix, AZ</a></li>
-<li><a href="/zip/19103/">19103 - Philadelphia, PA</a></li>
-<li><a href="/zip/78201/">78201 - San Antonio, TX</a></li>
-<li><a href="/zip/92101/">92101 - San Diego, CA</a></li>
-</ul>
-
 </main>
-<footer>© 2026 CrimeSafe.org • <a href="/">Home</a> • <a href="/city/">Cities</a> • Data: FBI UCR</footer>
+<footer>&copy; 2026 CrimeSafe &bull; <a href="/">Home</a> &bull; <a href="/city/">Cities</a> &bull; Data: FBI UCR</footer>
 <script>
-function searchZip() {
-  const zip = document.getElementById('zip-input').value.trim();
-  if (zip.length === 5 && /^\d+$/.test(zip)) {
-    window.location.href = '/zip/' + zip + '/';
-  } else {
-    alert('Please enter a valid 5-digit ZIP code');
-  }
+function searchZip(){
+const zip=document.getElementById('zip-input').value.trim();
+if(zip.length===5&&/^\d+$/.test(zip))window.location.href='/zip/'+zip+'/';
+else alert('Please enter a valid 5-digit ZIP code');
 }
-document.getElementById('zip-input').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') searchZip();
-});
+document.getElementById('zip-input').addEventListener('keypress',function(e){if(e.key==='Enter')searchZip()});
 </script>
 </body></html>
