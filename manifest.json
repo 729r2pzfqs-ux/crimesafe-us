@@ -1,6 +1,6 @@
 {
-  "name": "HoodSafe - Neighborhood Crime Explorer",
-  "short_name": "HoodSafe",
+  "name": "CrimeSafe - Neighborhood Crime Explorer",
+  "short_name": "CrimeSafe",
   "description": "Explore neighborhood crime safety data",
   "start_url": "/",
   "display": "standalone",
