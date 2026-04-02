@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0G79LDD6JD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0G79LDD6JD');</script><meta charset="UTF-8">
 <link rel="alternate" hreflang="en" href="https://crimesafe.app/compare/bowling-green-ky-vs-independence-mo/" />
 <link rel="alternate" hreflang="es" href="https://crimesafe.app/es/compare/bowling-green-ky-vs-independence-mo/" />
@@ -45,4 +44,15 @@
 </div>
 </main>
 <footer>© 2026 CrimeSafe.org • <a href="/">Home</a> • <a href="/compare/">Compare Cities</a></footer>
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#fff;padding:1rem;z-index:10000;font-size:0.9rem;text-align:center;">
+We use cookies for analytics to improve your experience. By clicking Accept, you consent to our use of cookies.
+<button onclick="acceptCookies()" style="margin-left:1rem;padding:0.4rem 1.2rem;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.85rem;">Accept</button>
+<button onclick="declineCookies()" style="margin-left:0.5rem;padding:0.4rem 1.2rem;background:#666;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.85rem;">Decline</button>
+</div>
+<script>
+function loadGA(){var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-0G79LDD6JD';s.async=true;document.head.appendChild(s);s.onload=function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0G79LDD6JD');};}
+function acceptCookies(){localStorage.setItem('crimesafe-consent','granted');document.getElementById('cookie-consent').style.display='none';loadGA();}
+function declineCookies(){localStorage.setItem('crimesafe-consent','denied');document.getElementById('cookie-consent').style.display='none';}
+(function(){var c=localStorage.getItem('crimesafe-consent');if(c==='granted'){loadGA();}else if(c!=='denied'){document.getElementById('cookie-consent').style.display='block';}})();
+</script>
 </body></html>
