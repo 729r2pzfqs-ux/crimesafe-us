@@ -863,8 +863,8 @@ table { border-collapse: collapse; width: 100%; }
       .nav-links.active { display: flex; right: 0; }
       .nav-links.active a { display: block !important; }
       .nav-links a { font-size: 1rem !important; padding: 0.75rem 0 !important; }
-      .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 1000; }
-      .overlay.active { display: block; }
+      
+      
     }
 </style>
 </head>
@@ -882,6 +882,7 @@ table { border-collapse: collapse; width: 100%; }
       CrimeSafe
     </a>
         <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+    <div class="overlay" onclick="toggleMenu()" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.3);z-index:9998;display:none;"></div>
     <div class="nav-links">
       <a href="/es/#overview">Resumen</a>
       <a href="/es/#map-section">Mapa</a>
@@ -2115,13 +2116,14 @@ function acceptCookies(){localStorage.setItem('crimesafe-consent','granted');doc
 function declineCookies(){localStorage.setItem('crimesafe-consent','denied');document.getElementById('cookie-consent').style.display='none';}
 (function(){var c=localStorage.getItem('crimesafe-consent');if(c==='granted'){loadGA();}else if(c!=='denied'){document.getElementById('cookie-consent').style.display='block';}})();
 </script>
-<div class="overlay" onclick="toggleMenu()"></div>
+
 <script>
 function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('active');
+    var nl = document.querySelector('.nav-links');
+    nl.classList.toggle('active');
     var o = document.querySelector('.overlay');
-    if (o) o.classList.toggle('active');
-    document.body.style.overflow = document.querySelector('.nav-links').classList.contains('active') ? 'hidden' : '';
+    if (o) o.style.display = nl.classList.contains('active') ? 'block' : 'none';
+    document.body.style.overflow = nl.classList.contains('active') ? 'hidden' : '';
 }
 document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){toggleMenu();});});
 </script>
