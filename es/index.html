@@ -1177,7 +1177,7 @@ zipInput?.addEventListener('input', function() {
   }
   
   zipSuggestions.innerHTML = matches.map(z => `
-    <a href="/es/zip/${z[0]}/" style="display:flex;justify-content:space-between;padding:10px 12px;text-decoration:none;color:var(--color-text);border-bottom:1px solid var(--color-divider);">
+    <a href="javascript:void(0)" data-href="/es/zip/${z[0]}/" style="display:flex;justify-content:space-between;padding:10px 12px;text-decoration:none;color:var(--color-text);border-bottom:1px solid var(--color-divider);">
       <span><strong>${z[0]}</strong></span>
       <span style="color:var(--color-text-muted)">${z[1]}, ${z[2]}</span>
     </a>
@@ -1486,7 +1486,7 @@ heroSearch.addEventListener('input', function() {
   const results = [...zipResult, ...cityResults, ...condadoResults];
   if (!results.length) { searchDropdown.classList.remove('active'); return; }
   searchDropdown.innerHTML = results.map(c => `
-    <a class="search-item" href="${c.url}" style="text-decoration:none;color:inherit;display:flex;${c.type === 'zip' ? 'background:linear-gradient(135deg,#0d948820,#14b8a620);' : ''}">
+    <a class="search-item" href="javascript:void(0)" data-url="${c.url}" style="text-decoration:none;color:inherit;display:flex;${c.type === 'zip' ? 'background:linear-gradient(135deg,#0d948820,#14b8a620);' : ''}">
       <div>
         <span class="search-item-name">${c.name}</span>
         <span class="search-item-state"> · ${c.state}</span>
@@ -1651,7 +1651,7 @@ function addCityMarkers() {
       <div class="popup-stat"><span>Crimen Violento</span><span>${formatNumber(city.violent_rate)}</span></div>
       <div class="popup-stat"><span>Crimen contra la Propiedad</span><span>${formatNumber(city.property_rate)}</span></div>
       <div class="popup-stat"><span>Población</span><span>${formatPop(city.population)}</span></div>
-      <a class="popup-link" href="/es/city/${city.slug}/">Ver Detalles →</a>
+      <a class="popup-link" href="javascript:void(0)" data-href="/es/city/${city.slug}/">Ver Detalles →</a>
     `, { maxWidth: 220 });
 
     marker.on('mouseover', function() { this.setStyle({ fillOpacity: 0.85, weight: 3 }); });
@@ -1781,7 +1781,7 @@ const states = [
 ];
 document.getElementById('statesGrid').innerHTML = states.map(name => {
   const slug = name.toLowerCase().replace(/\s+/g, '-');
-  return `<a href="/es/safest-cities/${slug}/" style="display:block;padding:var(--space-3);background:var(--color-bg);border:1px solid var(--color-divider);border-radius:var(--radius-md);text-decoration:none;color:var(--color-text);font-size:var(--text-sm);text-align:center;transition:all 0.15s ease;">${name}</a>`;
+  return `<a href="javascript:void(0)" data-href="/es/safest-cities/${slug}/" style="display:block;padding:var(--space-3);background:var(--color-bg);border:1px solid var(--color-divider);border-radius:var(--radius-md);text-decoration:none;color:var(--color-text);font-size:var(--text-sm);text-align:center;transition:all 0.15s ease;">${name}</a>`;
 }).join('');
 
 // ===== TRENDS CHART =====
