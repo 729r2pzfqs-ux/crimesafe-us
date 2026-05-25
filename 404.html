@@ -3,6 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+  (function(){
+    var p = window.location.pathname;
+
+    // 1. Spanish locale /es/X → English equivalent /X
+    if (p.indexOf('/es/') === 0) {
+      var english = p.replace(/^\/es/, '');
+      if (english === '' || english === '/') english = '/';
+      window.location.replace(english);
+      return;
+    }
+
+    // 2. Old compare format without state codes: /compare/houston-vs-new-york/ → /compare/
+    if (p.indexOf('/compare/') === 0 && p !== '/compare/') {
+      // Try to keep the URL if it matches current format (city-st-vs-city-st)
+      var slug = p.replace(/^\/compare\//, '').replace(/\/$/, '');
+      if (slug.match(/-vs-/)) {
+        // Already has -vs- format, just go to compare index
+        window.location.replace('/compare/');
+        return;
+      }
+    }
+
+    // 3. Old safest-cities paths → /safest-cities/
+    if (p.indexOf('/safest-cities/') === 0) {
+      // Extract state slug and try redirect
+      var state = p.replace(/^\/safest-cities\//, '').replace(/\/$/, '');
+      if (state && state !== 'index.html') {
+        window.location.replace('/safest-cities/' + state + '/');
+        return;
+      }
+    }
+
+    // 4. Bare /city/ or /city paths
+    if (p === '/city' || p === '/city/') {
+      window.location.replace('/');
+      return;
+    }
+
+    // 5. City pages: /city/name-st/ → try to resolve
+    var cityMatch = p.match(/^\/city\/([a-z0-9-]+)\/?$/);
+    if (cityMatch) {
+      var citySlug = cityMatch[1];
+      // Redirect to same path (page may exist, could be caching issue)
+      window.location.replace('/city/' + citySlug + '/');
+      return;
+    }
+
+    // 6. Bare /zip/ path
+    if (p === '/zip' || p === '/zip/') {
+      window.location.replace('/');
+      return;
+    }
+
+    // 7. Double-dash in any path
+    if (p.indexOf('--') !== -1) {
+      window.location.replace(p.replace(/--+/g, '-'));
+      return;
+    }
+  })();
+  </script>
   <title>Page Not Found | CrimeSafe</title>
   <link rel="icon" href="/favicon.ico">
   <style>
@@ -20,12 +81,12 @@
   </style>
 </head>
 <body>
-  <h1>🏠</h1>
+  <h1>404</h1>
   <h2>Page Not Found</h2>
-  <p>Sorry, the page you're looking for doesn't exist. Try searching for a city or ZIP code instead.</p>
+  <p>Sorry, the page you're looking for doesn't exist or has moved. Try searching for a city or ZIP code instead.</p>
   <div class="links">
     <a href="/" class="btn">Go Home</a>
-    <a href="/zip/">Search ZIP Codes</a>
+    <a href="/safest-cities/">Safest Cities</a>
     <a href="/compare/">Compare Cities</a>
   </div>
 <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);color:#fff;padding:1rem;z-index:10000;font-size:0.9rem;text-align:center;">
