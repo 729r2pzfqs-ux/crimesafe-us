@@ -1,0 +1,7 @@
+# crimesafe.app
+
+## About
+CrimeSafe provides US crime statistics and neighbourhood safety data. Search by city, address, or ZIP code to find crime rates, safety scores, and compare areas across the United States.
+
+## URLs
+- Homepage: https://crimesafe.app/
