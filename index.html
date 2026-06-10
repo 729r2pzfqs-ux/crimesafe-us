@@ -2120,7 +2120,7 @@ function toggleMenu() {
     if (o) o.style.display = nl.classList.contains('active') ? 'block' : 'none';
     document.body.style.overflow = nl.classList.contains('active') ? 'hidden' : '';
 }
-document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){toggleMenu();});});
+document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){if(document.querySelector('.nav-links').classList.contains('active')){toggleMenu();}});});
 </script>
 </body>
 </html>
