@@ -8,6 +8,16 @@
   (function(){
     var p = window.location.pathname;
 
+    // Prevent redirect loops - if we already redirected here, stop
+    var loopKey = 'cs404_' + p;
+    try {
+      if (sessionStorage.getItem(loopKey)) { sessionStorage.removeItem(loopKey); return; }
+      sessionStorage.setItem(loopKey, '1');
+    } catch(e) {}
+
+    // State code to name mapping for friendly redirects
+    var stateNames = {"al":"alabama","ak":"alaska","az":"arizona","ar":"arkansas","ca":"california","co":"colorado","ct":"connecticut","de":"delaware","fl":"florida","ga":"georgia","hi":"hawaii","id":"idaho","il":"illinois","in":"indiana","ia":"iowa","ks":"kansas","ky":"kentucky","la":"louisiana","me":"maine","md":"maryland","ma":"massachusetts","mi":"michigan","mn":"minnesota","ms":"mississippi","mo":"missouri","mt":"montana","ne":"nebraska","nv":"nevada","nh":"new-hampshire","nj":"new-jersey","nm":"new-mexico","ny":"new-york","nc":"north-carolina","nd":"north-dakota","oh":"ohio","ok":"oklahoma","or":"oregon","pa":"pennsylvania","ri":"rhode-island","sc":"south-carolina","sd":"south-dakota","tn":"tennessee","tx":"texas","ut":"utah","vt":"vermont","va":"virginia","wa":"washington","wv":"west-virginia","wi":"wisconsin","wy":"wyoming"};
+
     // 1. Spanish locale /es/X → English equivalent /X
     if (p.indexOf('/es/') === 0) {
       var english = p.replace(/^\/es/, '');
@@ -16,25 +26,23 @@
       return;
     }
 
-    // 2. Old compare format without state codes: /compare/houston-vs-new-york/ → /compare/
+    // 2. Compare pages → compare index
     if (p.indexOf('/compare/') === 0 && p !== '/compare/') {
-      // Try to keep the URL if it matches current format (city-st-vs-city-st)
-      var slug = p.replace(/^\/compare\//, '').replace(/\/$/, '');
-      if (slug.match(/-vs-/)) {
-        // Already has -vs- format, just go to compare index
-        window.location.replace('/compare/');
-        return;
-      }
+      window.location.replace('/compare/');
+      return;
     }
 
-    // 3. Old safest-cities paths → /safest-cities/
+    // 3. Safest-cities with invalid slugs (including template leaks like ${slug})
     if (p.indexOf('/safest-cities/') === 0) {
-      // Extract state slug and try redirect
       var state = p.replace(/^\/safest-cities\//, '').replace(/\/$/, '');
-      if (state && state !== 'index.html') {
-        window.location.replace('/safest-cities/' + state + '/');
+      // Redirect template leaks and invalid states to safest-cities index
+      if (!state || state === 'index.html' || state.indexOf('$') !== -1 || state.indexOf('{') !== -1) {
+        window.location.replace('/safest-cities/');
         return;
       }
+      // Valid state slug - redirect to safest-cities index (the state page is already there if it exists)
+      window.location.replace('/safest-cities/');
+      return;
     }
 
     // 4. Bare /city/ or /city paths
@@ -43,17 +51,22 @@
       return;
     }
 
-    // 5. City pages: /city/name-st/ → try to resolve
+    // 5. City pages: /city/name-st/ → redirect to home (page doesn't exist)
     var cityMatch = p.match(/^\/city\/([a-z0-9-]+)\/?$/);
     if (cityMatch) {
       var citySlug = cityMatch[1];
-      // Redirect to same path (page may exist, could be caching issue)
-      window.location.replace('/city/' + citySlug + '/');
+      // Extract state code from slug (last 2 chars after the final dash)
+      var stateMatch = citySlug.match(/-([a-z]{2})$/);
+      if (stateMatch && stateNames[stateMatch[1]]) {
+        window.location.replace('/safest-cities/' + stateNames[stateMatch[1]] + '/');
+      } else {
+        window.location.replace('/');
+      }
       return;
     }
 
-    // 6. Bare /zip/ path
-    if (p === '/zip' || p === '/zip/') {
+    // 6. Bare /zip/ path or /es/zip/
+    if (p === '/zip' || p === '/zip/' || p === '/es/zip' || p === '/es/zip/') {
       window.location.replace('/');
       return;
     }
@@ -61,6 +74,12 @@
     // 7. Double-dash in any path
     if (p.indexOf('--') !== -1) {
       window.location.replace(p.replace(/--+/g, '-'));
+      return;
+    }
+
+    // 8. County pages → home
+    if (p.indexOf('/county/') === 0) {
+      window.location.replace('/');
       return;
     }
   })();
