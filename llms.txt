@@ -1,7 +1,61 @@
 # crimesafe.app
 
+> Comprehensive US crime statistics and neighborhood safety data covering 9,000+ cities, 2,300+ counties, and 10,000+ ZIP codes, with safety scores derived from FBI Uniform Crime Reporting data.
+
 ## About
 CrimeSafe provides US crime statistics and neighbourhood safety data. Search by city, address, or ZIP code to find crime rates, safety scores, and compare areas across the United States.
 
-## URLs
-- Homepage: https://crimesafe.app/
+## Features / Content
+- City pages: per-city crime rates, safety scores (1-100), letter grades (A-F), violent and property crime breakdowns, population context, and comparisons to the national average.
+- County pages: county-level crime statistics and safety scores.
+- ZIP code pages: ZIP codes mapped to their primary city, displaying that city's safety data.
+- City-vs-city comparison pages: side-by-side comparison of two cities' safety scores, violent and property crime rates, a "safer city" verdict, and the points difference.
+- Address / ZIP / city search: search the site by city, address, or ZIP code from the homepage.
+- Safety scores and grades: a 1-100 score and A-F grade for every covered area.
+- FAQ and About/Methodology pages explaining how scores are calculated.
+- "Safest cities" ranking pages organized by US state.
+
+## Key Facts
+- ~9,205 city pages (`/city/<slug>/`).
+- ~2,347 county pages (`/county/<slug>/`).
+- ~126,000 city-vs-city comparison pages (`/compare/<a>-vs-<b>/`).
+- ~9,935 ZIP code pages (`/zip/<zip>/`).
+- Crime categories: violent crime (murder, rape, robbery, aggravated assault) and property crime (burglary, larceny-theft, motor vehicle theft).
+- Safety scores range 1-100; grades: A (80+), B (70-79), C (60-69), D (50-59), F (below 50).
+- Nationwide US coverage across all 50 states plus DC.
+- Available in English and Spanish.
+
+## Sections
+- [Homepage](https://crimesafe.app/): search by city, address, or ZIP code.
+- [FAQ](https://crimesafe.app/faq/): common questions about crime data and safety scores.
+- [About & Methodology](https://crimesafe.app/about/): data sources and how safety scores are calculated.
+- [Contact](https://crimesafe.app/contact/): contact page.
+- [Spanish version](https://crimesafe.app/es/): full Spanish-language site.
+- [Safest cities rankings](https://crimesafe.app/safest-cities/): safest-cities lists by state.
+- Sample city page: [Memphis, TN](https://crimesafe.app/city/memphis-tn/)
+- Sample county page: [Ada County, ID](https://crimesafe.app/county/ada-county-id/)
+- Sample comparison page: [Abilene, TX vs Akron, OH](https://crimesafe.app/compare/abilene-tx-vs-akron-oh/)
+
+## URL Patterns
+- City: `/city/<city-state-slug>/` (e.g. `/city/memphis-tn/`)
+- County: `/county/<county-state-slug>/` (e.g. `/county/ada-county-id/`)
+- ZIP code: `/zip/<zipcode>/`
+- Comparison: `/compare/<city-a>-vs-<city-b>/` (e.g. `/compare/abilene-tx-vs-akron-oh/`)
+- Safest cities by state: `/safest-cities/<state>/`
+- Spanish equivalents: prefix any of the above with `/es/`
+
+## Data Sources / Methodology
+- City and county safety scores are calculated from official FBI Uniform Crime Reporting (UCR) data, which tracks violent and property crimes reported by law enforcement agencies nationwide.
+- Population figures (used for per-capita rates) come from US Census data.
+- Safety scores (1-100) use a log-scale formula combining violent crime rate (weighted 50%), property crime rate (weighted 30%), and crime trend, normalized against national averages. Higher scores indicate safer areas.
+- Letter grades map from the score: A (80+), B (70-79), C (60-69), D (50-59), F (below 50).
+- ZIP codes are mapped to their primary city and display that city's safety score; this covers roughly 30% of US residential ZIP codes.
+
+## Languages
+- English (default, at the site root).
+- Spanish (`/es/`), a full translation of city, county, ZIP, comparison, FAQ, about, and contact pages.
+
+## Notes
+- This is a static site hosted on GitHub Pages.
+- Not affiliated with any law enforcement agency, government body, or the FBI.
+- Crime data is sourced from publicly reported FBI UCR statistics and is provided for informational purposes only; it may not reflect the most recent reporting period.
