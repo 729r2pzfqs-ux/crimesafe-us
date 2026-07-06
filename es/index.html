@@ -984,7 +984,7 @@ table { border-collapse: collapse; width: 100%; }
         <div class="legend-item"><div class="legend-dot" style="background:#16a34a;"></div> Más Seguro (80+)</div>
         <div class="legend-item"><div class="legend-dot" style="background:#ca8a04;"></div> Moderado (60-79)</div>
         <div class="legend-item"><div class="legend-dot" style="background:#ea580c;"></div> Elevado (40-59)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#dc2626;"></div> High Risk (&lt;40)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#dc2626;"></div> Alto Riesgo (&lt;40)</div>
       </div>
     </div>
   </div>
@@ -1101,7 +1101,7 @@ table { border-collapse: collapse; width: 100%; }
     </div>
     <div class="city-selector-wrap">
       <select class="city-select" id="comparisonSelect" onchange="updateComparison()">
-        <option value="">Select a city to compare...</option>
+        <option value="">Selecciona una ciudad para comparar...</option>
       </select>
     </div>
     <div class="comparison-cities" id="comparisonCities"></div>
@@ -1153,7 +1153,7 @@ function lookupZip() {
     if (exists) {
       window.location.href = '/zip/' + zip + '/';
     } else {
-      alert('código postal ' + zip + ' is not in our database. We cover ~10,000 US códigos postales.');
+      alert('código postal ' + zip + ' no está en nuestra base de datos. Cubrimos ~10,000 códigos postales de EE.UU.');
     }
   } else {
     alert('Please enter a valid 5-digit código postal');
@@ -1255,14 +1255,14 @@ function showLookupResult(result, address) {
   cityEl.textContent = result.city;
   addressEl.textContent = address.split(',').slice(0, 3).join(',');
   
-  let safetyLevel = 'Moderate';
-  if (result.score >= 80) safetyLevel = 'Very Safe';
-  else if (result.score >= 65) safetyLevel = 'Above Average';
-  else if (result.score >= 50) safetyLevel = 'Average';
-  else if (result.score >= 35) safetyLevel = 'Below Average';
-  else safetyLevel = 'High Risk';
+  let safetyLevel = 'Moderado';
+  if (result.score >= 80) safetyLevel = 'Muy Seguro';
+  else if (result.score >= 65) safetyLevel = 'Por Encima del Promedio';
+  else if (result.score >= 50) safetyLevel = 'Promedio';
+  else if (result.score >= 35) safetyLevel = 'Por Debajo del Promedio';
+  else safetyLevel = 'Alto Riesgo';
   
-  statsEl.innerHTML = `<strong>${safetyLevel}</strong> — Based on ${HS.g.length.toLocaleString()} neighborhood data points`;
+  statsEl.innerHTML = `<strong>${safetyLevel}</strong> — Basado en ${HS.g.length.toLocaleString()} puntos de datos de vecindarios`;
   
   resultDiv.style.display = 'flex';
 }
@@ -1995,7 +1995,7 @@ let compCity = null;
 function openComparison() {
   closeModal();
   const select = document.getElementById('comparisonSelect');
-  select.innerHTML = '<option value="">Select a city to compare...</option>' +
+  select.innerHTML = '<option value="">Selecciona una ciudad para comparar...</option>' +
     CRIME_DATA.filter(c => c.city !== currentCity.city).sort((a, b) => a.city.localeCompare(b.city))
       .map(c => `<option value="${c.city}">${c.city}, ${c.state}</option>`).join('');
   document.getElementById('comparisonModal').classList.add('active');
@@ -2036,8 +2036,8 @@ function renderComparisonCities() {
         <p class="meta">Pop: ${formatPop(c2.population)} · Rank #${c2.rank}</p>
       ` : `
         <div style="width:48px;height:48px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;background:var(--color-surface-offset);color:var(--color-text-faint);margin:0 auto var(--space-2);font-size:var(--text-lg);">?</div>
-        <h3 style="color:var(--color-text-faint);">Select a city</h3>
-        <p class="meta">Use the dropdown above</p>
+        <h3 style="color:var(--color-text-faint);">Selecciona una ciudad</h3>
+        <p class="meta">Usa el menú de arriba</p>
       `}
     </div>
   `;

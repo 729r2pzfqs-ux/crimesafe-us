@@ -73,7 +73,7 @@ def build_faq_and_schema(d, lang="en"):
             (f"What is the property crime rate in {a} vs {b}?",
              f"{a} has a property crime rate of {d['prop_a']} per 100,000, compared to {d['prop_b']} per 100,000 in {b}. Property crimes include burglary, theft, and motor vehicle theft."),
             (f"How are CrimeSafe safety scores calculated?",
-             f"Safety scores range from 0-100, combining violent crime rates, property crime rates, and population data from the FBI UCR. Higher scores mean safer cities. Grades: A (80+), B (70-79), C (60-69), D (50-59), F (below 50)."),
+             f"Safety scores range from 0-100, combining violent crime rates, property crime rates, and population data from the FBI UCR. Higher scores mean safer cities. Grades: A (80+), B (65-79), C (50-64), D (40-49), F (below 40)."),
             (f"Should I move to {a} or {b}?",
              f"Based on crime data alone, {w} is safer. However, safety is just one factor — also consider cost of living, job market, schools, and quality of life. Visit our city pages for more details on each."),
         ]

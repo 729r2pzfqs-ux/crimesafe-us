@@ -74,7 +74,7 @@ REPLACEMENTS = [
     ('Property Crimes', 'Crímenes contra la Propiedad'),
     ('>Score<', '>Puntuación<'),
     ('Score</span>', 'Puntuación</span>'),
-    ('HoodSeguro', 'HoodSafe'),
+    ('HoodSeguro', 'CrimeSafe'),
     ('>Rankings<', '>Clasificaciones<'),
     ('View ', 'Ver '),
     (' Rankings', ' Clasificaciones'),
