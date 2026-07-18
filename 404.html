@@ -80,9 +80,14 @@
       return;
     }
 
-    // 8. County pages → home
+    // 8. County pages: ZIP-code paths redirect to /zip/; others → home
     if (p.indexOf('/county/') === 0) {
-      window.location.replace('/');
+      var countySlug = p.replace(/^\/county\//, '').replace(/\/$/, '');
+      if (/^\d{5}$/.test(countySlug)) {
+        window.location.replace('/zip/' + countySlug + '/');
+      } else {
+        window.location.replace('/');
+      }
       return;
     }
   })();
